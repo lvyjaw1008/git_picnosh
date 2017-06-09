@@ -5,10 +5,12 @@
     padding-left: 0;
     padding-right: 0; }
     .admin-jumbotron-search .col-lg-6 button.btn-primary {
-      border-radius: 0px 4px 4px 0px !important; }
+      border-radius: 0px 4px 4px 0px !important; 
+    }
     .admin-jumbotron-search .col-lg-6 span a i {
       color: #818181;
-      margin-left: 10px; }
+      margin-left: 10px; 
+    }
       .admin-jumbotron-search .col-lg-6 span a i:hover {
         text-decoration: none; }
   .admin-jumbotron-search ul li {
