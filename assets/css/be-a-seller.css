@@ -5,8 +5,7 @@
   -o-background-size: cover;
   background-size: cover;
   min-height: 400px;
-  width: 100%; 
-}
+  width: 100%; }
 
 .seller-banner-sm {
   background: url("../images/banner/sellers.jpg") no-repeat center center;
