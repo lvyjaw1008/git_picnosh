@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Offerings") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article">
+  <head>
+    {% include "_parts/head.html" %}
+    <meta property="og:type" content="activity"/>
+    {% for photo in offering['photos'] %}
+    <link rel="image_src" href="{{photo['url']}}" />
+    {% end %}
+    <link href="/assets/css/offering.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    {% if __rich_front_end__ %}<link href="/assets/css/mobiscroll.custom-2.13.0.min.css" rel="stylesheet" type="text/css" />{% end %}
+  </head>
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    {% if canEdit %}
+    <div class="jumbotron my-offering-actions">
+      <div class="container">
+        <div class="view-message-actions">
+          <form method="post" action="{{__url_list__('Offering', offering['url_id'])}}">
+            {% if canQuickApprove %}<button type="submit" class="btn btn-danger" name="action" value="quick_approve">{{_("Quick Approve")}}</button>{% end %}
+            {% if canQuickReject %}<button type="submit" class="btn btn-danger" name="action" value="quick_reject">{{_("Quick Reject")}}</button>{% end %}
+            <button type="submit" class="btn btn-default" name="action" value="edit">{{_("Edit")}} {{_("Offering")}}</button>
+            <button type="submit" class="btn btn-danger" name="action" value="delete">{{_("Delete")}} {{_("Offering")}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% end %}
+
+    <!-- TODO PAUL: It may happen that those two alerts will appear at the same time. Do their styles handle that? -->
+    {% if 'seller_applied' in alerts2show %}
+      <div class="alert alert-success" style="margin-top: 30px;">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Someone from our team will confirm your status within 24 hours via your preferred communications method selected.
+      </div>
+    {% end %}
+    {% if 'offering_submitted' in alerts2show %}
+      <div class="alert alert-success" style="margin-top: 30px;">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Your Offering has been submitted to our editors. If it is approved for the site, you will receive an email with confirmation.
+      </div>
+    {% end %}
+    {% if 'aborted_booking' in alerts2show %}
+      <div class="alert alert-warning" style="margin-top: 30px;">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Your Booking can not be confirmed. Our support team will contact you soon.
+      </div>
+    {% end %}
+
+    <div class="container" id="offering" {% if not canEdit %}style="margin-top: 50px;"{% end %}>
+
+      <div class="row offering-view">
+        <div class="col-lg-12">
+          <h1 class="offering-header">{{offering['title']}}</h1>
+          <p style="margin-top: -20px;margin-bottom: 20px;">Inspired by: <a href="{{__url_list__('Inspiration', offering['target_inspiration_url_id'])}}" style="color: #dce9be;">{{offering['target_inspiration_title']}}</a></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-7">
+
+          {% if len(offering['photos'])>0 or len(offering['videos'])>0 or len(offering['youtubes'])>0 %}
+          <div id="carousel-offering-media" class="carousel slide videos" data-interval="false">
+            <ol class="carousel-indicators">
+              {% set carousel_counter = 0 %}
+              {% for i in range(len(offering['photos'])) %}
+                <li data-target="#carousel-offering-media" data-slide-to="{{str(i)}}" class="{% if i==offering['frontPhotoNumber'] %}active{% end %}"></li>
+                {% set carousel_counter = carousel_counter + 1 %}
+              {% end %}
+              {% for video in offering['videos'] %}
+                <li data-target="#carousel-offering-media" data-slide-to="{{str(carousel_counter)}}" class="{% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}"></li>
+                {% set carousel_counter = carousel_counter + 1 %}
+              {% end %}
+              {% for youtube in offering['youtubes'] %}
+                <li data-target="#carousel-offering-media" data-slide-to="{{str(carousel_counter)}}" class="{% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}"></li>
+                {% set carousel_counter = carousel_counter + 1 %}
+              {% end %}
+            </ol>
+            <div class="carousel-inner video-container">
+              {% set carousel_counter = 0 %}
+              {% for i in range(len(offering['photos'])) %}
+                <div class="item {% if i==offering['frontPhotoNumber'] %}active{% end %}">
+                  <img src="{{offering['photos'][i]['url']}}">
+                </div>
+                {% set carousel_counter = carousel_counter + 1 %}
+              {% end %}
+              {% for video in offering['videos'] %}
+                {% set video_or_shot_size = 'width="315" height="560"' if video['vertical'] else 'width="560" height="315"' %}
+                {% if video.has_key('formats') %}
+                  <div style="min-height: 300px;" class="item {% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}">
+                    <video controls id="movie" preload="metadata" width="100%" height="auto" poster="{{video['formats']['poster']}}">
+                      <source src="{{video['formats']['webm']}}" type='video/webm;codecs="vp8, vorbis"' />
+                      <source src="{{video['formats']['mp4']}}" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'/>
+                    </video>
+                  </div>
+                {% elif video.has_key('offering') %}
+                  <div class="item {% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}">
+                    <img src="/assets/images/icons/image_loading.png"/>
+                  </div>
+                {% else %}
+                  <!-- Sorry. There is a problem with your video. Please contact support. -->
+                {% end %}
+                {% set carousel_counter = carousel_counter + 1 %}
+              {% end %}
+              {% for youtube in offering['youtubes'] %}
+                <div class="item {% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}">
+                  <iframe src="{% raw youtube['url'] %}" frameborder="0" width="560" height="315" allowfullscreen></iframe>
+                </div>
+                {% set carousel_counter = carousel_counter + 1 %}
+              {% end %}
+            </div>
+            <a class="left carousel-control" href="#carousel-offering-media" data-slide="prev">
+              <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-offering-media" data-slide="next">
+              <span class="icon-next"></span>
+            </a>
+          </div>
+          {% end %}
+
+          <div class="jumbotron seller-booking-price">
+              <h4>
+                {{offering['price']}} <a class="btn btn-default btn-xs" target="_blank" href="http://www.xe.com/currencyconverter/convert/?Amount={{offering['price'].number}}&From={{offering['price'].currency}}&To={{currency['current']}}" data-toggle="tooltip" data-placement="top" title="" id="tooltip_a" data-original-title="Change Currency"><i class="icon-refresh"></i></a>
+              </h4>
+          </div>
+
+          <div class="jumbotron seller-booking">
+            <form role="form" method="POST" action="{{__url_list__('NewBooking', offering['url_id'])}}" id="booking-form">
+              <fieldset>
+                {% if offering['mobiscrollParams']['available'] is True %}
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="text" class="form-control{% if __rich_front_end__ %} datetimepicker_style img_datepicker{% end %}" placeholder="Select Date" onchange="ask_for_time(this.value)" id="scroller_date_{{offering['url_id']}}" name="scroller_date_{{offering['url_id']}}"/>
+                </div>
+                <div class="form-group{% if __rich_front_end__ %} hide {% end %}">
+                  <label>Time</label>
+                  <input type="text" class="form-control{% if __rich_front_end__ %} datetimepicker_style img_datepicker{% end %}" placeholder="Select Time" id="scroller_time_{{offering['url_id']}}" name="scroller_time_{{offering['url_id']}}"/>
+                </div>
+
+                <div class="hide">
+                {% if offering['diff_timezone'] is not None %}
+                <p style="font-size: 12px;margin-bottom: 20px;">The Seller has scheduled the dates and times for this Offerings using the <span style="font-style:italic;">{{offering['diff_timezone']['offering_timezone']}}</span> timezone. Your current timezone is <span style="font-style:italic;">{{offering['diff_timezone']['diff']}} hours {% if offering['diff_timezone']['ahead'] %}ahead{% else %}behind{% end %}</span>.</p>
+                {% end %}
+                </div>
+
+                <div class="form-group hide">
+                  <label>No. of People</label>
+                  <select class="form-control" id="people_{{offering['url_id']}}" name="people_{{offering['url_id']}}">
+                    {% for i in range(1, offering['maxParticipants']+1) %}
+                    <option>{{str(i)}}</option>
+                    {% end %}
+                  </select>
+                </div>
+
+                <div class="form-group hide">
+                  <label>Add-ons</label>
+                  {% for i in range(len(offering['addOns'])) %}
+                  <div class="input-group checkbox-style">
+                    <span class="input-group-addon">
+                      <input type="checkbox" id="addon_{{offering['url_id']}}_{{i}}" name="addon_{{offering['url_id']}}_{{i}}" style="cursor:auto;">
+                    </span>
+                    <div class="form-control">{{offering['addOns'][i]}}</div>
+                  </div>
+                  {% end %}
+                </div>
+
+                <div class="form-group hide">
+                  <label>Promotional Code</label>
+                  <input type="text" class="form-control" placeholder="Optional" name="promo"/>
+                </div>
+
+                <button type="submit" class="btn btn-default btn-block" name="action" value="book">Book it</button>
+                {% else %}
+                <label>This offering is not available anymore.</label>
+                {% end %}
+              </fieldset>
+            </form>
+          </div>
+
+          <p style="text-align: justify;">{% raw offering['description'] %}</p>
+
+          <h2>Itinerary</h2>
+          <p style="text-align: justify;">{% raw offering['itinerary'] %}</p>
+
+          <h2>Seller</h2>
+          <div class="row" style="margin-bottom: 15px;">
+              <div class="col-xs-3">
+                  <a href="{{__url_list__('Seller', creator_url_id)}}">
+                      <img src="{{creators_photo}}" class="img-responsive"/>
+                  </a>
+              </div>
+              <div class="col-xs-9">
+                  <ul class="creator-details">
+                    <li><i class="icon-user"></i> <a href="{{__url_list__('Seller', creator_url_id)}}" style="color: #dce9be;">{{creators_name}}</a></li>
+                    {% if creators_address %}<li><i class="icon-globe"></i> {{creators_address}}</li>{% end %}
+                    {% if creators_age or creators_gender %}
+                    <li><i class="icon-{% if creators_gender == 'female' %}female{% else %}male{% end %}"></i> {% if creators_age %}{{creators_age}}{% if creators_gender in ['female', 'male'] %}, {% end %}{% end %}{% if creators_gender == 'female' %}Female{% elif creators_gender == 'male' %}Male{% end %}</li>
+                    {% end %}
+                  </ul>
+              </div>
+          </div>
+
+        </div>
+        <div class="col-lg-5">
+
+          <h3 style="margin-bottom: 10px;margin-top:0;">Meeting Place</h3>
+          
+          <div class="google-maps-embed" style="margin-bottom:0;">
+            <iframe
+              width="600"
+              height="450"
+              frameborder="0" style="border:0"
+              src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCatO2hfnqS6yCgXcUWAMBfB9hhdaUuKw8&q={{offering['gmapLatitude']}},{{offering['gmapLongitude']}}&zoom={{offering['gmapZoom']}}&maptype=satellite">
+            </iframe>
+          </div>
+
+          <h4 style="margin-top:0;"><i class="icon-map-marker"></i> {{offering['locationName']}}</h4>
+
+          {% if len(someClientsReviews) %}
+          <h3>Reviews</h3>
+          <div class="reviews-section">
+            <div class="review-offerings">
+              <div class="row-fluid">
+                {% for i in range(len(someClientsReviews)) %}
+                <div class="media alert alert-warning">
+                  <a class="pull-left" href="#">
+                    <img src="{{someClientsReviews[i]['client_photo']}}" class="img-responsive profile-photo">
+                  </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">{{someClientsReviews[i]['client_name']}}<em>{{someClientsReviews[i]['timestamp']}}</em></h4>
+                    <div id="star-review-{{i}}" class="star-styles"></div>
+                    <p>{{someClientsReviews[i]['review']}}</p>
+                  </div>
+                </div>
+                {% end %}
+              </div>
+              {% if moreReviews %}
+              <div class="accordion-heading">
+                <a class="pull-left" href="{{__url_list__('OfferingReviews', offering['url_id'])}}">
+                  View all reviews<span class="arrow"> »</span>
+                </a>
+              </div>
+              {% end %}
+            </div>
+          </div>
+          {% end %}
+
+          <div class="add-this-social">
+            <h4 class="pull-right">Share this on
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{escape(__pageUrl__)}}&t={{escape(page_title)}}" title="Share on Facebook"><img src="/assets/images/sharing/facebook.png"/></a>
+
+            <a href="https://twitter.com/share?url={{escape(__pageUrl__)}}&via=marketplace&text={{escape(page_title)}}" title="Share on Twitter"><img src="/assets/images/sharing/twitter.png"/></a>
+
+            <a href="https://plus.google.com/share?url={{escape(__pageUrl__)}}" title="Share on Google+"><img src="/assets/images/sharing/googleplus.png"/></a>
+
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url={{escape(__pageUrl__)}}&title={{escape(page_title)}}&summary={{escape(meta_data['description'])}}&source=marketplace.com" title="Share on Linkedin"><img src="/assets/images/sharing/linkedin.png"/></a>
+
+            <a href="http://pinterest.com/pin/create/link/?url={{escape(__pageUrl__)}}" title="Share on Pinterest"><img src="/assets/images/sharing/pinterest.png"/></a></h4>
+
+          </div>
+          <div class="clearfix"></div>
+
+        </div><!--end col-lg-5-->
+
+      </div><!--end row-->
+
+    </div>
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+    <script src="/assets/javascripts/youtube.js"></script>
+    <script src="/assets/javascripts/jquery.fitvids.js"></script>
+
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/assets/javascripts/jquery-ui-sliderAccess.js"></script>
+    {% if __rich_front_end__ %}<script src="/assets/javascripts/mobiscroll.custom-2.13.0.min.js" type="text/javascript"></script>{% end %}
+
+    <script>
+      var is_touch_device = 'ontouchstart' in document.documentElement;
+
+      $(document).ready(function() {
+        {% for i in range(len(someClientsReviews)) %}
+          $("#star-review-{{i}}").raty({readOnly: true,score: {{someClientsReviews[i]['score']}}});
+        {% end %}
+        
+        {% if len(offering['photos'])>0 or len(offering['videos'])>0 or len(offering['youtubes'])>0 %}
+        $(".videos .video-container").fitVids();
+        setTimeout(function(){
+          $(".videos iframe").fadeIn();
+        },0);
+
+        $('#carousel-offering-media').on('slide.bs.carousel', function (event) {
+
+            if (!is_touch_device) {
+              // stop all videos, whether youtube or HTML5
+              $( ".videos .video-container iframe" ).each( function( index, element ){
+                  callPlayer($(this).attr("id"), "pauseVideo");
+              });
+
+              $( "video" ).each( function( index, element ){
+                  $(this).get(0).pause();
+              });
+
+              setTimeout(function(){
+                var $currentSlideIframe = $('#carousel-offering-media').find(".active iframe");
+                var $currentSlideVideo = $('#carousel-offering-media').find(".active video");
+                // start the video in the active frame, whether youtube or HTML5
+                if ($currentSlideIframe.length>0) { 
+                    callPlayer($currentSlideIframe.first().attr("id"), "playVideo");
+                  
+                } else if ($currentSlideVideo.length>0) {
+                  $currentSlideVideo.first().get(0).play();
+                } else {
+                  return;
+                }  
+              }, 1000);
+            }
+
+        });
+        {% end %}
+        {% if canEdit %}window.scrollTo(0,100);{% end %}
+
+        {% if __rich_front_end__ %}
+        var now = new Date();
+        var mobiscroll_date_params = {
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            dateFormat: 'yy-mm-dd',
+            invalid: {% raw offering['mobiscrollParams']['invalid'] %}
+        }
+        setup_mobiscroll_date('#scroller_date_{{offering['url_id']}}', mobiscroll_date_params);
+
+        $("#booking-form").submit(function (e) {
+          $(".hide").removeClass("hide");
+          if ($("#scroller_date_{{offering['url_id']}}").val()=="") {
+            $("#scroller_date_{{offering['url_id']}}").parent().addClass("has-error");
+            e.preventDefault();
+          }
+          if ($("#scroller_time_{{offering['url_id']}}").val()=="") {
+            $("#scroller_time_{{offering['url_id']}}").parent().addClass("has-error");
+            e.preventDefault();
+          }
+        });
+        {% end %}
+
+      });
+
+      {% if __rich_front_end__ %}
+      submitRequest = function(req_obj, api_call, _callback) {
+        if (typeof req_obj == "object") {
+          $.ajax({
+            type: "POST",
+            url: api_call,
+            data: {"ajaxReq": JSON.stringify(req_obj)},
+            dataType: 'json',
+            success: _callback
+          });
+        }
+      }
+
+      readResp = function(data) {
+        var mobiscroll_time_params = {
+            stepMinute: data['stepMinute'],
+            invalid: data['invalid'],
+        }
+        setup_mobiscroll_time('#scroller_time_{{offering['url_id']}}', mobiscroll_time_params);
+      }
+      function ask_for_time(date) {
+        $(".hide").removeClass("hide");
+        $('#scroller_time_{{offering['url_id']}}').val('Loading..');
+        var req = {date: date};
+        submitRequest(req, "{{__url_list__('Offering', offering['url_id'])}}", readResp);
+      }
+
+      function update_mobiscroll_device_params(scroll_id, params) {
+        var all_params = {};
+        if(navigator.userAgent.match(/iPad/i)){
+          all_params = $.extend({}, params, {
+              theme: 'ios7',
+              display: 'bottom',
+              mode: 'scroller'});
+        }
+
+        else if(navigator.userAgent.match(/iPhone/i)){
+          all_params = $.extend({}, params, {
+              theme: 'ios7',
+              display: 'bottom',
+              mode: 'scroller'});
+        }
+
+        else if(navigator.userAgent.match(/Android/i)){
+          all_params = $.extend({}, params, {
+              theme: 'android',
+              display: 'bottom',
+              mode: 'scroller'});
+        }
+
+        else if(navigator.userAgent.match(/BlackBerry/i)){
+          all_params = $.extend({}, params, {
+              theme: 'android',
+              display: 'bottom',
+              mode: 'scroller'});
+        }
+        else if (is_touch_device) {
+          all_params = $.extend({}, params, {
+              theme: 'ios7',
+              display: 'bottom',
+              mode: 'scroller'});
+        }
+        else {
+          all_params = $.extend({}, params, {
+              theme: 'bootstrap',
+              display: 'modal',
+              mode: 'scroller'});
+        }
+        return all_params;
+      };
+      function setup_mobiscroll_date(mobiscroll_id, params) {
+        var all_params = update_mobiscroll_device_params(mobiscroll_id, params);
+        $(mobiscroll_id).mobiscroll().date(all_params);
+      }
+      function setup_mobiscroll_time(mobiscroll_id, params) {
+        var all_params = update_mobiscroll_device_params(mobiscroll_id, params);
+        $(mobiscroll_id).mobiscroll().time(all_params);
+        $(mobiscroll_id).val('');
+      }
+      {% end %}
+    </script>
+
+  </body>
+</html>

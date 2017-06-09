@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+{% set page_title = "" %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": '',
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/search-result.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="hidden-sm hidden-xs">
+      <div class="banner-location-search">
+        <h1>Search</h1>
+      </div>
+    </div>
+
+    <div class="visible-sm visible-xs banner-location-search-sm">
+      <h1>Search</h1>
+    </div>
+
+    <div class="jumbotron jumbotron-search">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 browse-search">
+            <form role="search" method="post">
+              <div class="input-group">
+                <input type="text" class="form-control" value="{{query}}" name="total_search_query">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit" name="action" value="total_search">Search</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container offerings-container">
+
+      <div class="row offerings">
+        {% for expoffering in expofferings %}
+          <div class="col-sm-6 col-lg-3">
+            <a href="/{% if expoffering.has_key('price') %}offering/{% end %}{{expoffering['url_id']}}" class="thumbnail" style="background-image: url({{expoffering['photo']}});">
+              <div class="caption">
+                <h2>{{expoffering['title']}}</h2>
+                <h3>{{expoffering['locationName']}}</h3>
+                {% if expoffering.has_key('price') %}
+                <div class="seller">
+                  <h5><img src="{{expoffering['creator_profile_photo']}}" class="img-responsive">{{expoffering['price']}}</h5>
+                </div>
+                {% end %}
+              </div>
+            </a>
+          </div>
+        {% end %}
+        <div class="col-sm-6 col-lg-3">
+          <a href="request-inspiration.html" class="thumbnail request-inspiration">
+            <img src="/assets/images/inspiration/request.indexed.png" class="offering-img">
+            <p>Let Marketplace find a Seller for your dream inspiration.</p>
+            <button class="btn btn-primary btn-lg" type="button">Request a Photo Offerings</button>
+          </a>
+        </div>
+      </div>
+    </div><!--end-->
+
+    {% include "_parts/pagination.html" %}
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    
+  </body>
+</html>

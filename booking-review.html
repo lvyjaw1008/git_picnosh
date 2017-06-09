@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+{% set page_title = "" %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": '',
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/my-bookings.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set dashboard_top_nav_elem = 'bookings' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+
+        <div class="tab-pane active" id="{% if __seller_or_applicant__ %}tab4{% else %}tab3{% end %}">
+          <div class="container">
+
+            {% if 'review' in error_list %}
+            <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              Please provide a review and rate Your overall experience.
+            </div>
+            {% end %}
+
+            <div class="leave-review-form">
+              <form method="post" action="{{__url_list__('ReviewBooking', booking_id)}}">
+                <textarea class="form-control" rows="3" name="review"></textarea>
+                <input type="hidden" id="scoreVal" name="scoreVal" value="0"/>
+                <ul class="star-rating">
+                  <li><p>Please rate your inspiration:</p></li>
+                  <li id="star-2" class="star-styles" onclick="scoreMe(this)"></li>
+                </ul>
+                <button type="submit" class="pull-right btn btn-primary" name="action" value="submit_review">Submit Review</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab4">
+        </div>
+
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+    <script src="/assets/javascripts/jquery-ui-sliderAccess.js"></script>
+    <script src="/assets/javascripts/jquery.autosize.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('textarea').autosize();
+      });
+
+      function scoreMe(scoreValue) {
+        $("#scoreVal").val(scoreValue.score[0].defaultValue);
+      };
+    </script>
+  </body>
+</html>

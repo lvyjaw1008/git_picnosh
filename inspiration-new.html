@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+{% set page_title = _("New Inspiration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/inspiration-new.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/jasny-bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="/assets/css/jquery-gmaps-latlon-picker.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    {% if __rich_front_end__ %} <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-wysihtml5.css"> {% end %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-tagmanager.css">
+    <script type="text/javascript">
+      <!--
+        function more_photos() {
+          if (more_photos.counter == undefined) { more_photos.counter = 1 };
+          $("#photo_list").append('<div class="fileinput fileinput-new input-group" data-provides="fileinput">\
+                    <div class="form-control" data-trigger="fileinput">\
+                      <i class="glyphicon glyphicon-file fileinput-exists"></i>\
+                      <span class="fileinput-filename"></span>\
+                    </div>\
+                    <span class="input-group-addon btn btn-default btn-file">\
+                      <span class="fileinput-new" data-trigger="fileinput">Select file</span>\
+                      <span class="fileinput-exists" data-trigger="fileinput">Change</span>\
+                      <input type="file" name="photo_file'+ more_photos.counter +'">\
+                    </span>\
+                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>\
+                  </div>');
+          more_photos.counter++;
+          $("#photos_count").val(more_photos.counter);
+        };
+        function more_videos() {
+          if (more_videos.counter == undefined) { more_videos.counter = 1 };
+          $("#video_list").append('<div class="fileinput fileinput-new input-group" data-provides="fileinput">\
+                    <div class="form-control" data-trigger="fileinput">\
+                      <i class="glyphicon glyphicon-file fileinput-exists"></i>\
+                      <span class="fileinput-filename"></span>\
+                    </div>\
+                    <span class="input-group-addon btn btn-default btn-file">\
+                      <span class="fileinput-new" data-trigger="fileinput">Select file</span>\
+                      <span class="fileinput-exists" data-trigger="fileinput">Change</span>\
+                      <input type="file" name="video_file'+ more_videos.counter +'">\
+                    </span>\
+                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>\
+                  </div>');
+          more_videos.counter++;
+          $("#videos_count").val(more_videos.counter);
+        };
+        function more_youtube() {
+          if (more_youtube.counter == undefined) { more_youtube.counter = 1 };
+          $("#youtube_list").append('<input type="text" class="form-control img_youtube-icon" name="youtube_url'+ more_youtube.counter + '" placeholder="Youtube URL">');
+          more_youtube.counter++;
+          $("#youtube_count").val(more_youtube.counter);
+        };
+        function remove_photo(photo_id) {
+          if (remove_photo.counter == undefined) { remove_photo.counter = 1 };
+          $("#remove_photos_list").append('<input type="hidden" name="remove_photo' + (remove_photo.counter-1)  + '" value="' + photo_id + '">');
+          $("#remove_photos_count").val(remove_photo.counter++);
+          $("#__p_" + photo_id).remove();
+        };
+        function remove_video(video_id) {
+          if (remove_video.counter == undefined) { remove_video.counter = 1 };
+          $("#remove_videos_list").append('<input type="hidden" name="remove_video' + (remove_video.counter-1)  + '" value="' + video_id + '">');
+          $("#remove_videos_count").val(remove_video.counter++);
+          $("#__v_" + video_id).remove();
+        };
+        function remove_youtube(youtube_id) {
+          if (remove_youtube.counter == undefined) { remove_youtube.counter = 1 };
+          $("#remove_youtubes_list").append('<input type="hidden" name="remove_youtube' + (remove_youtube.counter-1)  + '" value="' + youtube_id + '">');
+          $("#remove_youtubes_count").val(remove_youtube.counter++);
+          $("#__y_" + youtube_id).remove();
+        };
+        var mapInitialized = false;
+        function toggle_visibility() {
+          if (!mapInitialized) {
+            $(".gllpLatlonPicker").each(function() {
+              $(this).show();
+              (new window.GMapsLatLonPicker()).init( $(this) );
+            });
+            mapInitialized = true;
+          } else {
+            $(".gllpLatlonPicker").each(function() {
+              if ($(this).css("display")=="block") {
+                $(this).hide();
+              } else {
+                $(this).show();
+              }
+            });
+          }
+        };
+      //-->
+    </script>
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="hidden-sm hidden-xs">
+      <div class="new-inspiration-banner">
+        <h1>{% if insp_url %}{{_("Edit")}} {{_("Your")}}{% else %}{{_("Add")}} {{_("New")}}{% end %} {{_("Inspiration")}}</h1>
+      </div>
+    </div>
+
+    <div class="visible-sm visible-xs new-inspiration-banner-sm">
+      <h1>{% if insp_url %}{{_("Edit")}} {{_("Your")}}{% else %}{{_("Add")}} {{_("New")}}{% end %} {{_("Inspiration")}}</h1>
+    </div>
+    {% if insp_url %}
+    <form enctype="multipart/form-data" method="post" action="{{__url_list__('EditInspiration', insp_url)}}" class="form-wrapper">
+    {% else %}
+    <form enctype="multipart/form-data" method="post" action="{{__url_list__('NewInspiration')}}" class="form-wrapper">
+    {% end %}
+      <div class="container add-new-inspiration-container">
+        <div class="">
+          <!--
+          <div class="breadcrumb-style">
+            <ol class="breadcrumb all-breadcrumb-style">
+              <li><a href="{{__url_list__('Main')}}">Home</a></li>
+              <li class="active">{% if insp_url %}{{_("Edit")}}{% else %}{{_("Add")}} {{_("New")}}{% end %} {{_("Inspiration")}}</li>
+            </ol>
+          </div>
+          -->
+
+          <div class="heading-wrapper">
+            <p>Inspirations are amazing activities, places, and inspirations that also provide for a great photo or video Offerings.</p>
+            <p>A good inspiration on Marketplace is inspiring, uplifting and useful. Showcase something worth visiting and provide all the necessary details to make the journey accessible to others.</p>
+          </div>
+
+          <div class="jumbotron jumbotron-container">
+            <h1 class="inspiration-main-header"><i class="icon-plane"></i> {{_("Inspiration Details")}}</h1>
+            <div class="panel panel-style">
+              <div class="panel-heading">
+                <h3 class="panel-title ">Description</h3>
+              </div>
+              <div class="panel-body">
+                <div id="title_div">
+                  {% if 'title' in errs %}
+                    <font color="#ee2222">
+                      <label><span>*</span> Title must be between 5 and 200 characters.</label>
+                    </font>
+                  {% else %}
+                    <label><span>*</span> Title</label>
+                  {% end %}
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <input type="text" class="form-control" name="title"
+                             {% if 'title' in errs %} style="border-color:#ee2222" {% end %}
+                             placeholder="" value="{{title}}">
+                    </div>
+                  </div>
+                </div>
+
+                <div id="description_div">
+                  {% if 'description' in errs %}
+                    <font color="#ee2222">
+                      <label><span>*</span> Tell us about your inspiration (at least 10 characters)</label>
+                    </font>
+                  {% else %}
+                    <label><span>*</span> Tell us about your inspiration</label>
+                  {% end %}
+                  {% if __rich_front_end__ %} <div class="wysiwyg-editor"> {% end %}
+                    <textarea class="form-control textarea-3" rows="12" name="description"
+                              {% if 'description' in errs %} style="border-color:#ee2222" {% end %}
+                              placeholder="">{{description}}</textarea>
+                  {% if __rich_front_end__ %} </div> {% end %}
+                </div>
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">More details</h3>
+              </div>
+              <div id="location_div" class="panel-body">
+                {% if 'location' in errs %}
+                  <font color="#ee2222">
+                    <label><span>*</span> Add Location to your inspiration</label>
+                  </font>
+                {% else %}
+                  <label><span>*</span> Add Location</label>
+                {% end %}
+                <div class="row">
+                  <div class="col-lg-4 add-google-maps">
+                    <input id="CustomLocationName" name="CustomLocationName" type="text" class="form-control gllpSearchField" {% if CustomLocationName %} value="{{CustomLocationName}}" {% end %}>
+                    <a href="#gmaps" onclick="toggle_visibility()">
+                      <img src="/assets/images/social/google_map.png" height="30px" width="30px"> or position pin using Google Maps
+                    </a>
+                  </div>
+                </div>
+
+                <fieldset class="gllpLatlonPicker" style="border:0 none;padding: 0;margin: 0; display: none;">
+                  <div class="gmap-container">
+                    <div class="panel-body" id="gmaps" style="display:block">
+                      <div class="gllpMap">Google Maps</div>
+                      <input type="hidden" class="gllpAddressComponents" name="gmapAddressComponents" {% if gmapAddressComponents %} value="{{gmapAddressComponents}}" {% end %}/>
+                      <input type="hidden" class="gllpLocationName" name="gmapLocationName" {% if gmapLocationName %} value="{{gmapLocationName}}" {% end %}/>
+                      <input type="hidden" class="gllpLongitude" name="gmapLongitude" {% if gmapLongitude %} value="{{gmapLongitude}}" {% end %}/>
+                      <input type="hidden" class="gllpLatitude" name="gmapLatitude" {% if gmapLatitude %} value="{{gmapLatitude}}" {% end %}/>
+                      <input type="hidden" class="gllpZoom" name="gmapZoom" {% if gmapZoom %} value="{{gmapZoom}}" {% end %}/>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="panel-heading" id="inspiration_photos">
+                <h3 class="panel-title">{% if insp_url %}{{_("Edit")}}{% else %}Add{% end %} Photos</h3>
+              </div>
+              <div class="panel-body">
+
+                {% if insp_url %}
+                  <div id="remove_photos_list">
+                    <input type="hidden" name="remove_photos_count" value="0" id="remove_photos_count">
+                  </div>
+
+                  {% for inspirationPhoto in inspirationPhotos %}
+                  <div id="__p_{{inspirationPhoto['s3key']}}">
+                    <div class="alert alert-success alert-add-wrapper clearfix">
+                      
+                      <div class="col-xs-12 alert-ellipsis">
+                        
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                          <img src="{{inspirationPhoto['url']}}" class="img-responsive">
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                          <input type="text" name="caption_photo_{{inspirationPhoto['s3key']}}" placeholder="Photo Credit" value="{{inspirationPhoto['caption']}}" class="form-control pull-right">
+                        </div>
+                        
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                          <a href="#inspiration_photos" class="btn btn-default pull-right" onclick="remove_photo('{{inspirationPhoto['s3key']}}')">Remove</a>
+                        </div>
+                      
+                      </div>
+                    
+                    </div>
+                  </div>
+                  {% end %}
+                {% end %}
+
+                <div id="photo_list">
+                  <input type="hidden" name="photos_count" value="1" id="photos_count">
+                  <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                    <div class="form-control" data-trigger="fileinput">
+                      <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                      <span class="fileinput-filename"></span>
+                    </div>
+                    <span class="input-group-addon btn btn-default btn-file">
+                      <span class="fileinput-new" data-trigger="fileinput">Select file</span>
+                      <span class="fileinput-exists" data-trigger="fileinput">Change</span>
+                      <input type="file" name="photo_file0">
+                    </span>
+                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                  </div>
+                </div>
+                <hr>
+                <a href="#inspiration_photos" class="add-more" onclick="more_photos()"><p>Add more photos</p></a>
+              </div>
+              <div class="panel-heading add-video-style" id="inspiration_videos">
+                <h3 class="panel-title">{% if insp_url %}{{_("Edit")}}{% else %}Add{% end %} Videos</h3>
+              </div>
+              <div class="panel-body add-video-style">
+
+                {% if insp_url %}
+                  <div id="remove_videos_list">
+                    <input type="hidden" name="remove_videos_count" value="0" id="remove_videos_count">
+                  </div>
+                  {% for video in inspirationVideos %}
+                    {% set video_or_shot_size = 'width=158 height=280' if video['vertical'] else 'width=280 height=158' %}
+                    {% if video.has_key('formats') %}
+                    <div id="__v_{{video['s3key']}}">
+                      <div class="alert alert-success alert-add-wrapper clearfix">
+                        <div class="col-xs-8 alert-ellipsis">
+                          <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                            <p>
+                              <video id="movie" {{ video_or_shot_size }} preload="" controls="">
+                                <source src="{{video['formats']['webm']}}" type="video/webm; codecs=vp8,vorbis" />
+                                <source src="{{video['formats']['mp4']}}" />
+                                <object {{ video_or_shot_size }} data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" type="application/x-shockwave-flash">
+                                  <param name="movie" value="flowplayer-3.2.1.swf" />
+                                  <param name="allowfullscreen" value="true" />
+                                </object>
+                              </video>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-xs-4 alert-ellipsis">
+                          <a href="#inspiration_videos" class="btn btn-default pull-right" onclick="remove_video('{{video['s3key']}}')">Remove</a>
+                        </div>
+                      </div>
+                    </div>
+                    {% elif video.has_key('offering') %}
+                    <div class="alert alert-success alert-add-wrapper clearfix">
+                      <div class="col-xs-12 alert-ellipsis">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                          <img src="/assets/images/icons/image_loading.png" class="img-responsive">
+                        </div>
+                        <div class="col-xs-4 alert-ellipsis">
+                          <a href="#inspiration_videos" class="btn btn-default pull-right" onclick="remove_video('{{video['s3key']}}')">Remove</a>
+                        </div>
+                      </div>
+                    </div>
+                    {% else %}
+                      <p>There is a problem with your video. Please contact support.</p>
+                    {% end %}
+                  {% end %}
+                {% end %}
+
+                <div id="video_list">
+                  <input type="hidden" name="videos_count" value="1" id="videos_count">
+                  <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                    <div class="form-control" data-trigger="fileinput">
+                      <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                      <span class="fileinput-filename"></span>
+                    </div>
+                    <span class="input-group-addon btn btn-default btn-file">
+                      <span class="fileinput-new" data-trigger="fileinput">Select file</span>
+                      <span class="fileinput-exists" data-trigger="fileinput">Change</span>
+                      <input type="file" name="video_file0">
+                    </span>
+                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                  </div>
+                </div>
+                <hr>
+                <a href="#inspiration_videos" class="add-more" onclick="more_videos()"><p>Add more videos</p></a>
+                
+                {% if insp_url %}
+                  <div id="remove_youtubes_list">
+                    <input type="hidden" name="remove_youtubes_count" value="0" id="remove_youtubes_count">
+                  </div>
+                  {% for youtube in inspirationYoutubes %}
+                    <div id="__y_{{youtube['id']}}">
+                      <div class="alert alert-success alert-add-wrapper clearfix">
+                        <div class="col-xs-8 alert-ellipsis">
+                          <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                            <iframe width="280" height="158" src="{{youtube['url']}}" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                        <div class="col-xs-4 alert-ellipsis">
+                          <a href="#inspiration_videos" class="btn btn-default pull-right" onclick="remove_youtube('{{youtube['id']}}')">Remove</a>
+                        </div>
+                      </div>
+                    </div>
+                  {% end %}
+                {% end %}
+                <label>or submit a Youtube url</label>
+                <div class="form-group" id="youtube_list">
+                  <input type="hidden" name="youtube_count" value="1" id="youtube_counter">
+                  <input type="text" class="form-control img_youtube-icon" name="youtube_url0" placeholder="Youtube URL">
+                </div>
+                <hr>
+                <a href="#inspiration_videos" class="add-more" onclick="more_youtube()"><p>Submit more Youtube URLs</p></a>
+              </div>
+            </div>
+          </div>
+
+          {% if __admin__ %}
+          <div class="jumbotron admin-access-only">
+            <h1><i class="icon-info-sign"></i> {{_("Editors")}} Only</h1>
+            <div class="clearfix">
+              <div id="insp_admin_div" class="col-sm-12">
+                <form role="form">
+                  <div class="form-group">
+                    <label>Page Title</label>
+                    <input type="text" class="form-control" name="insp_page_title" value="{{insp_page_title}}">
+                  </div>
+                  <div class="form-group">
+                    <label>Page Description</label>
+                    <textarea class="form-control" rows="3" name="insp_page_description">{{insp_page_description}}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Page Keywords (comma separated)</label>
+                    <input type="text" class="form-control" name="insp_page_keywords" value="{{insp_page_keywords}}">
+                  </div>
+                  {% if __allow_custom_id__ %}
+                  <div class="form-group">
+                    {% if 'insp_url' in errs %}
+                      <font color="#ee2222">
+                        {% if 'insp_url_bad' in errs %}
+                          <label>Page unique URL should consists of letters, digits, underscore and minus sign only. It shall be 5 to 200 characters.</label>
+                        {% elif 'insp_url_already_exists' in errs %}
+                          <label>Page unique URL should be unique for whole Marketplace system.</label>
+                        {% else %}
+                          <label>Page unique URL.</label>
+                        {% end %}
+                      </font>
+                    {% else %}
+                      <label>Page unique URL</label>
+                    {% end %}
+                    <input type="text" class="form-control" name="new_id" value="{{insp_url}}">
+                  </div>
+                  {% end %}
+                </form>
+              </div>
+            </div>
+          </div>
+          {% end %}
+
+          <div id="terms_div" class="jumbotron terms-and-condition">
+            {% include _parts/agree_to_terms.html %}
+            <p class="form-action-button">
+              <button type="submit" class="btn btn-primary" name="action" value="submit">{% if insp_url %}Save{% else %}Submit{% end %} {{_("Inspiration")}}</button>
+              <button type="button" class="btn btn-default">Cancel</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+    {% if __rich_front_end__ %}
+      <script src="/assets/javascripts/wysihtml5-0.3.0.js"></script>
+       <script src="/assets/javascripts/bootstrap3-wysihtml5.js"></script>
+    {% end %}
+    <script src="/assets/javascripts/jquery-ui-sliderAccess.js"></script>
+    <script src="/assets/javascripts/bootstrap-tagmanager.js"></script>
+
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="/assets/javascripts/jquery-gmaps-latlon-picker.js"></script>
+    <script src="/assets/javascripts/jquery.preventdoublesubmission.js"></script>
+    <script src="/assets/javascripts/jasny-bootstrap.js"></script>
+    <script src="/assets/javascripts/prevent_unwanted_submission.js"></script>
+    {% if __rich_front_end__ and isBootstrapLocal(lang) %}
+    <script src="/assets/javascripts/locales/bootstrap-wysihtml5{{giveBootstrapLocalId(lang)}}.js"></script>
+    {% end %}
+    <script src="/assets/javascripts/jquery.autosize.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('textarea').autosize();   
+    });
+    </script>
+
+    <script>
+    $(function() {
+
+    {% if __rich_front_end__ %}
+      $('.textarea-3').wysihtml5({
+        "image": false,
+        {% if isBootstrapLocal(lang) %} locale: "{{giveBootstrapLocalId(lang)[1:]}}", {% end %}
+      });
+    {% end %}
+      $(".tm-input").tagsManager();
+      $('form').preventDoubleSubmission();
+    });
+    $(document).ready(function() {
+      {% if errs %}
+      {% set scroll_to = {'title': 'title_div',
+                          'description': 'description_div',
+                          'terms': 'terms_div',
+                          'location': 'location_div',
+                          'insp_url': 'insp_admin_div'}[errs[0]] %}
+      $(document).scrollTop($('#{{scroll_to}}').offset().top);
+      {% end %}
+    });
+    </script>
+
+  </body>
+</html>

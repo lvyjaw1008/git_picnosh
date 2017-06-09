@@ -1,0 +1,18 @@
+{{_("You have 24 hours to confirm a new booking.")}}
+
+{{offering_title}}
+{{_("Status")}}: {{booking_status}}
+{{_("Location")}}: {{offering_location}}
+{{_("Date")}}: {{booking_date}}
+{{_("Time")}}: {{booking_time}}
+{{_("Number of Guests")}}: {{booking_no_participants}}
+{{_("Add-ons")}}: {{booking_add_ons}}
+{{_("Customer Name")}}: {{client_name}}
+
+{{_("Total Price")}}: {{total_earning}}
+
+Confirm this booking on the site at {{booking_url}}
+If you do not update the status within 24 hours the booking will be automatically cancelled and the money refunded.
+
+Marketplace ©{{__copyrights_year__}} All rights reserved.
+1-844-GET-MARKETPLACE

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+{% set page_title = _("New Booking") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": '',
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/confirm-booking.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper"><!--start-->
+
+      {% set dashboard_top_nav_elem = 'bookings' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="tab3">
+          <div class="container panel-container">
+            <!--
+            <div class="breadcrumb-style">
+              <ol class="breadcrumb all-breadcrumb-style">
+                <li><a href="{{__url_list__('ListMyBookings')}}">My Bookings</a></li>
+                <li><a href="{{__url_list__('Offering', offering['url_id'])}}">{{offering['title']}}</a></li>
+                <li class="active">Complete Booking</li>
+              </ol>
+            </div>
+            -->
+
+            <div class="confirm-booking-page">
+              <form id="myForm" method="post" action="{{__url_list__('NewBooking', offering['url_id'])}}">>
+                <h1 class="confirm-header">Complete Booking</h1>
+                <div class="offering-details-section clearfix">
+                  <div class="panel panel-primary panel-header-confirm-booking">
+                    <div class="panel-body">
+                      <span class="circle">1</span> Reservation Details
+                    </div>
+                  </div>
+                  <p>Praesent semper sed massa non molestie. Nam pharetra sollicitudin porta. Quisque aliquet, nulla vitae fringilla sagittis, lacus tortor scelerisque risus, in condimentum urna purus non turpis. Vestibulum interdum, massa eget laoreet porta, elit risus pharetra velit, ut lobortis mauris metus nec liberod. <br><br>Vestibulum interdum, massa eget laoreet porta, elit risus pharetra velit, ut lobortis mauris metus nec libero. </p>
+                  <br>
+                  <div class="confirm-booking-wrapper clearfix">
+                    <div class="col-lg-4">
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <h3 style="margin-top:0;">{{offering['title']}}</h3>
+                          <div id="carousel-offering-{{offering['url_id']}}" class="carousel slide videos"  data-interval="false">
+                            <ol class="carousel-indicators">
+                              {% set carousel_counter = 0 %}
+                              {% for i in range(len(offering['photos'])) %}
+                                <li data-target="#carousel-offering-{{offering['url_id']}}" data-slide-to="{{str(i)}}" class="{% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}"></li>
+                                {% set carousel_counter = carousel_counter + 1 %}
+                              {% end %}
+                              {% for video in offering['videos'] %}
+                                <li data-target="#carousel-offering-{{offering['url_id']}}" data-slide-to="{{str(carousel_counter)}}" class="{% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}"></li>
+                                {% set carousel_counter = carousel_counter + 1 %}
+                              {% end %}
+                              {% for youtube in offering['youtubes'] %}
+                                <li data-target="#carousel-offering-{{offering['url_id']}}" data-slide-to="{{str(carousel_counter)}}" class="{% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}"></li>
+                                {% set carousel_counter = carousel_counter + 1 %}
+                              {% end %}
+                            </ol>
+                            <div class="carousel-inner video-container">
+                              {% set carousel_counter = 0 %}
+                              {% for i in range(len(offering['photos'])) %}
+                                <div class="item {% if i==offering['frontPhotoNumber'] %}active{% end %}">
+                                  <img src="{{offering['photos'][i]['url']}}">
+                                </div>
+                                {% set carousel_counter = carousel_counter + 1 %}
+                              {% end %}
+                              {% for video in offering['videos'] %}
+                                {% set video_or_shot_size = 'width="315" height="560"' if video['vertical'] else 'width="560" height="315"' %}
+                                {% if video.has_key('formats') %}
+                                  <div style="min-height: 300px;" class="item {% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}">
+                                    <video controls preload="metadata" width="100%" height="auto" poster="{{video['formats']['poster']}}">
+                                      <source src="{{video['formats']['webm']}}" type='video/webm;codecs="vp8, vorbis"' />
+                                      <source src="{{video['formats']['mp4']}}" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'/>
+                                    </video>
+                                  </div>
+                                {% elif video.has_key('offering') %}
+                                  <div class="item {% if carousel_counter==frontPhotoNumber %}active{% end %}">
+                                    <img src="/assets/images/icons/image_loading.png"/>
+                                  </div>
+                                {% else %}
+                                  <!-- Sorry. There is a problem with your video. Please contact support. -->
+                                {% end %}
+                                {% set carousel_counter = carousel_counter + 1 %}
+                              {% end %}
+                              {% for youtube in offering['youtubes'] %}
+                                <div class="item {% if carousel_counter==offering['frontPhotoNumber'] %}active{% end %}">
+                                  <iframe src="{% raw youtube['url'] %}" frameborder="0" width="560" height="315" allowfullscreen></iframe>
+                                </div>
+                                {% set carousel_counter = carousel_counter + 1 %}
+                              {% end %}
+                            </div>
+                            <a class="left carousel-control" href="#carousel-offering-{{offering['url_id']}}" data-slide="prev">
+                              <span class="icon-prev"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-offering-{{offering['url_id']}}" data-slide="next">
+                              <span class="icon-next"></span>
+                            </a>
+                          </div>
+                          <p class="linked-inspiration">Inspired by: <a href="{{__url_list__('Inspiration', offering['target_inspiration_url_id'])}}">{{offering['target_inspiration_title']}}</a></p>
+                          <p class="status"><span class="label label-warning">Payment Pending, Booking Incomplete</span></p>
+                          <hr class="dotted">
+                          <ul class="list-unstyled">
+                            <li><i class="icon-bookmark"></i> <strong>Seller:</strong> <a href="{{__url_list__('Seller', creator_url_id)}}">{{creatorsName}}</a></li>
+                            <li><i class="icon-user"></i> <strong>No. of Guests:</strong> {{participants}}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                      <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <div><i class="icon-edit"></i> Offerings Details</div>
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                              <p>{% raw offering['description'] %}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <div><i class="icon-folder-open-alt"></i> Itinerary</div>
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <p>{% raw offering['itinerary'] %}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                <div><i class="icon-map-marker"></i> Location</div>
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseSix" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <p>On the day of the offering, meet your Seller at the location below.</p>
+                              <p class="label-info">{{offering['locationName']}}</p>
+                              <div class="google-maps-embed">
+                                <iframe
+                                  width="600"
+                                  height="450"
+                                  frameborder="0" style="border:0"
+                                  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCatO2hfnqS6yCgXcUWAMBfB9hhdaUuKw8&q={{offering['gmapLatitude']}},{{offering['gmapLongitude']}}&zoom={{offering['gmapZoom']}}">
+                                </iframe>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                <div><i class="icon-calendar-empty"></i> Date and Time</div>
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseFour" class="panel-collapse collapse in">
+                            <div class="panel-body dashboard-send-message">
+                              <br>
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    {% if diff_timezone is not None %}
+                                    <th>Your Time</th>
+                                    {% end %}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td rowspan="4">{{date}}</td>
+                                    <td>{{time}}{% if diff_timezone is not None %} {{diff_timezone['offering_timezone']}}{% end %}</td>
+                                    {% if diff_timezone is not None %}
+                                    <td>{% if date != date_in_users_timezone %}{{date_in_users_timezone}} {% end %}{{time_in_users_timezone}} {{timezone['current']}}</td>
+                                    {% end %}
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                <div><i class="icon-tags"></i> Pricing</div>
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <br>
+
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Item</th>
+                                    <th class="center-align">Type</th>
+                                    <th class="right-align">Price</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for item2buy in items_to_buy %}
+                                  <tr>
+                                    <td>{{item2buy['item']}}</td>
+                                    <td class="center-align">{{item2buy['name']}}</td>
+                                    <td class="right-align">{{item2buy['price']}} <a class="btn btn-default btn-xs" target="_blank" href="http://www.xe.com/currencyconverter/convert/?Amount={{item2buy['price'].number}}&amp;From={{item2buy['price'].currency}}&amp;To={{currency['current']}}" data-toggle="tooltip" data-placement="top" title="" id="tooltip_a" data-original-title="Change Currency"><i class="icon-refresh"></i></a></td>
+                                  </tr>
+                                  {% end %}
+                                  {% if discount is not None %}
+                                  <tr class="warning">
+                                    <td>{{promo_code}}</td>
+                                    <td class="center-align">Promotional Code</td>
+                                    <td class="right-align">{{discount}} OFF</td>
+                                  </tr>
+                                  {% end %}
+                                  <tr class="total-price-summary">
+                                    <td><strong>Total</strong></td>
+                                    <td></td>
+                                    <td class="right-align"><strong>{{total_price}} <a class="btn btn-default btn-xs" target="_blank" href="http://www.xe.com/currencyconverter/convert/?Amount={{total_price.number}}&amp;From={{total_price.currency}}&amp;To={{currency['current']}}" data-toggle="tooltip" data-placement="top" title="" id="tooltip_a" data-original-title="Change Currency"><i class="icon-refresh"></i></a></strong></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </div>
+                          </div>
+                        </div>
+                        {% if 0 %}
+                        As for now we let client message Seller only via /inbox
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <div><i class="icon-envelope-alt"></i> Message to Seller</div>
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <textarea class="form-control" rows="9" name="message2seller" placeholder="If you wish to send a message with your booking request, add it here."></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        {% end %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="offering-details-section clearfix">
+
+                  <div class="panel panel-primary panel-header-confirm-booking">
+                    <div class="panel-body">
+                      <span class="circle">2</span> Contact Details
+                    </div>
+                  </div>
+
+                  <div class="clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="control-label">First Name</label>
+                          <input id="user_fname" type="text" class="form-control" placeholder="" name="first_name" value="{{clientsFirstName}}">
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Last Name</label>
+                          <input id="user_lname" type="text" class="form-control" placeholder="" name="last_name" value="{{clientsLastName}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="control-label">Email address</label>
+                          <input id="user_email" type="email" class="form-control" placeholder="" name="email" value="{{clientsEmail}}">
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Phone number</label>
+                          <input id="user_phone" type="text" class="form-control" name="phone" placeholder="" value="{{clientsPhone}}">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="offering-details-section clearfix">
+                  <div class="panel panel-primary panel-header-confirm-booking">
+                    <div class="panel-body">
+                      <span class="circle">3</span> Payment
+                    </div>
+                  </div>
+                  <div class="clearfix">
+                    <p>Praesent semper sed massa non molestie. Nam pharetra sollicitudin porta. Quisque aliquet, nulla vitae fringilla sagittis, lacus tortor scelerisque risus, in condimentum urna purus non turpis. Vestibulum interdum, massa eget laoreet porta, elit risus pharetra velit, ut lobortis mauris metus nec libero. Duis eu volutpat tellus, eget feugiat sem. Sed ac justo turpis. Morbi tincidunt purus volutpat pharetra pulvinar. Donec quis fringilla urna. Nunc vel nisl feugiat, iaculis nibh ut, faucibus arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <br><br>Etiam condimentum, justo id eleifend volutpat, augue eros ornare ante, quis placerat ipsum nunc ac lectus. Donec a orci erat. Curabitur posuere hendrerit nunc quis ullamcorper. Phasellus mollis massa vel urna ultrices pulvinar.</p>
+                    <hr class="dotted">
+                    <fieldset>
+                      <input type="hidden" name="date" value="{{date}}"/>
+                      <input type="hidden" name="time" value="{{time}}"/>
+                      <input type="hidden" name="participants" value="{{participants}}"/>
+                      {% for i in range(len(add_ons_chosen)) %}
+                        {% if add_ons_chosen[i] %}
+                          <input type="hidden" name="add_on_{{i}}" value="on"/>
+                        {% end %}
+                      {% end %}
+                      <input type="hidden" name="offering_price" value="{{price_in_cents}}"/>
+                      <input type="hidden" name="offering_price_g" value="{{seller_earns_in_cents}}"/>
+                      <input type="hidden" name="promo" value="{{promo_code}}"/>
+                      <input type="hidden" name="currency" value="{{booking_currency}}"/>
+                      <button id="payNowButton" class="btn btn-lg btn-success" type="button">Pay Now {{total_price}}</button>
+                      <button id="fastPayNowButton" class="btn btn-lg btn-success" type="submit" name="action" value="fast_booking">Fast Pay {{total_price}} (dev and test only)</button>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+    <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+    <script src="/assets/javascripts/jquery.autosize.min.js"></script>
+    <script src="/assets/javascripts/youtube.js"></script>
+    <script src="/assets/javascripts/jquery.fitvids.js"></script>
+    <script src="/assets/javascripts/prevent_unwanted_submission.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('textarea').autosize();   
+      });
+    </script>
+    
+    <script>
+    var is_touch_device = 'ontouchstart' in document.documentElement;
+
+    $(document).ready(function() {
+
+      $(".videos .video-container").fitVids();
+      setTimeout(function(){
+        $(".videos iframe").fadeIn();
+      },0);
+
+      $('.carousel').on('slide.bs.carousel', function (event) {
+
+          if (!is_touch_device) {
+            // stop all videos, whether youtube or HTML5
+            $( ".videos .video-container iframe" ).each( function( index, element ){
+                callPlayer($(this).attr("id"), "pauseVideo");
+            });
+
+            $( "video" ).each( function( index, element ){
+                $(this).get(0).pause();
+            });
+
+            setTimeout(function(){
+              var $currentSlideIframe = $('.carousel').find(".active iframe");
+              var $currentSlideVideo = $('.carousel').find(".active video");
+              // start the video in the active frame, whether youtube or HTML5
+              if ($currentSlideIframe.length>0) { 
+                  callPlayer($currentSlideIframe.first().attr("id"), "playVideo");
+                
+              } else if ($currentSlideVideo.length>0) {
+                $currentSlideVideo.first().get(0).play();
+              } else {
+                return;
+              }  
+            }, 1000);
+          }
+
+      });
+
+      submitRequest = function(req_obj, api_call, _callback) {
+        if (typeof req_obj == "object") {
+          $.ajax({
+            type: "POST",
+            url: api_call,
+            data: {"ajaxReq": JSON.stringify(req_obj)},
+            dataType: 'json',
+            success: _callback
+          });
+        }
+      }
+
+      readResp = function(data) {
+        console.log(data);
+        if (data['ok'] == true) {
+          var token = function(res){
+            var $stripe_input = $('<input type=hidden name=stripeToken />').val(JSON.stringify(res));
+            $('#myForm').append($stripe_input);
+            var $action_input = $('<input type=hidden name="action" value="confirm_booking"/>');
+            $('#myForm').append($action_input);
+            $('#myForm').submit();
+          };
+
+          StripeCheckout.open({
+            key:         '{{stripe_key}}',
+            address:     true,
+            amount:      {{price_in_cents}},
+            currency:    '{{booking_currency}}',
+            name:        'Marketplace',
+            description: '',
+            panelLabel:  'Pay',
+            token:       token,
+          });
+        }
+        else {
+          $(".form-group").removeClass("has-error");
+
+          for (i=0; i<data['errors'].length; i++) {
+            if (data['errors'][i] == 'fname') {
+              $("#user_fname").parent().addClass("has-error");
+            }
+            else if (data['errors'][i] == 'lname') {
+              $("#user_lname").parent().addClass("has-error");
+            }
+            else if (data['errors'][i] == 'email') {
+              $("#user_email").parent().addClass("has-error");
+            }
+            else if (data['errors'][i] == 'phone') {
+              $("#user_phone").parent().addClass("has-error");
+            }
+          }
+        }
+      }
+
+      $('#payNowButton').click(function(){
+        var req = {fname: $('#user_fname').val(),
+                   lname: $('#user_lname').val(),
+                   email: $('#user_email').val(),
+                   phone: $('#user_phone').val(),};
+        submitRequest(req, "{{__url_list__('NewBooking', offering['url_id'])}}", readResp);
+      });
+    });
+    </script>
+
+  </body>
+</html>

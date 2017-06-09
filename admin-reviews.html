@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body class="admin-bookings">
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = 'reviews' %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="5">
+          <div class="container">
+
+            <div class="row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Reviewed</th>
+                  <th>Reviewed by</th>
+                  <th>Review</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <td>{{item['reviewed_on']}}</td>
+                  <td>{{item['reviewed_by']}}</td>
+                  <td>{{item['review_text']}}</td>
+                  <td>
+                    <form method="post">
+                      <input type="hidden" name="booking_id" value="{{item['booking_id']}}"/>
+                      <input type="hidden" name="who_reviewed" value="{{item['who_reviewed']}}"/>
+                      {% if item['review_visible'] %}
+                      <button type="submit" class="btn btn-primary btn-xs" name="action" value="visibility|hide">Reject Review</button>
+                      {% else %}
+                      <button type="submit" class="btn btn-primary btn-xs" name="action" value="visibility|show">Approve Review</button>
+                      {% end %}
+                    </form>
+                  </td>
+                  <td>
+                    <a href="{{__url_list__('Booking', item['booking_id'])}}">
+                      <button type="submit" class="btn btn-primary btn-xs">View Booking</button>
+                    </a>
+                  </td>
+                </tr>
+                {% end %}
+
+              </tbody>
+            </table>
+            </div>
+
+            {% include _parts/pagination.html %}
+          </div>
+        </div>
+
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

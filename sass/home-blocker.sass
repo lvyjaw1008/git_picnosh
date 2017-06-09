@@ -1,0 +1,68 @@
+body#home-blocker
+  #myModal
+    top: 0
+    padding-top: 75px
+    position: fixed
+    .modal-header
+      border-bottom: 0
+      margin: 0
+      text-align: center
+      h1
+        color: #99173C !important
+        font-size: 36px
+        font-weight: 200
+        height: 20px
+        letter-spacing: 0.07em
+        img 
+          margin-right: 3px
+          height: 60px
+    .modal-content
+      padding: 20px
+    .modal-body 
+      text-align: center
+      h2
+        font-weight: bold
+        margin-top: 0
+      h3 
+        font-size: 18px
+        margin-top: 0
+      p 
+        font-size: 16px
+        margin: 20px 0
+
+
+@media (max-width: 767px)
+  body#home-blocker
+    top: 0
+    position: fixed
+    nav.navbar
+      position: fixed
+    #myModal
+      padding-top: 0
+      position: fixed
+
+@media (max-width: 494px)
+  body#home-blocker
+    #myModal
+      top: 70px
+      .modal-content
+        padding: 10px
+      .modal-body 
+        text-align: center
+        h2
+          font-size: 21px
+        p 
+          font-size: 15px
+          margin: 20px 0
+
+@media (max-width: 360px)
+  body#home-blocker
+    #myModal
+      top: 50px
+      .modal-body 
+        text-align: center
+        h2
+          font-size: 16px
+        p 
+          font-size: 12px
+          margin: 20px 0

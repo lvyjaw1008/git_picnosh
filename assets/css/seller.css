@@ -1,0 +1,170 @@
+#seller {
+  margin-top: 50px; }
+  #seller .seller-info {
+    margin-top: 30px;
+    margin-bottom: 30px; }
+    #seller .seller-info a:hover {
+      text-decoration: none; }
+    #seller .seller-info h1 span.badge-type img {
+      width: 60px; }
+    #seller .seller-info img.seller-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      margin-bottom: 10px; }
+  #seller .jumbotron.seller-booking-price {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    background-color: #99173C;
+    color: #ffffff; }
+    #seller .jumbotron.seller-booking-price .btn {
+      margin-bottom: 5px; }
+    #seller .jumbotron.seller-booking-price h4 {
+      font-size: 25px;
+      margin: 0; }
+  #seller .jumbotron.seller-booking {
+    background-color: #dce9be !important;
+    color: #333333;
+    line-height: 18px;
+    padding: 10px !important;
+    text-shadow: none;
+    border-radius: 0; }
+    #seller .jumbotron.seller-booking form label {
+      font-size: 14px;
+      width: 100%; }
+    #seller .jumbotron.seller-booking form label.checkbox-style {
+      font-weight: normal; }
+    #seller .jumbotron.seller-booking form button {
+      margin-top: 15px; }
+
+.jumbotron-container {
+  margin: 0 0 20px 0 !important;
+  padding: 20px !important; }
+  .jumbotron-container .col-lg-4 .carousel {
+    text-align: center;
+    background: #000; }
+  .jumbotron-container .col-lg-5 h1 {
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 24px; }
+  .jumbotron-container .col-lg-5 h2 {
+    font-size: 16px; }
+  .jumbotron-container .col-lg-5 p {
+    font-size: 14px; }
+  .jumbotron-container .col-lg-5 ul {
+    font-size: 14px; }
+  .jumbotron-container .col-lg-5 .stats {
+    font-size: 16px; }
+
+.reviews-section .accordion {
+  margin-bottom: 0px; }
+.reviews-section .accordion-group {
+  border: 0; }
+  .reviews-section .accordion-group .accordion-heading a {
+    color: #99173C;
+    font-size: 14px;
+    font-weight: normal; }
+    .reviews-section .accordion-group .accordion-heading a span.arrow {
+      color: #DCE9BE;
+      font-family: arial;
+      font-size: 16px; }
+  .reviews-section .accordion-group .accordion-heading .accordion-toggle {
+    padding: 0;
+    margin-top: 10px; }
+
+.review-offerings .media img.profile-photo {
+  height: 75px;
+  height: 75px; }
+.review-offerings .media-body {
+  font-size: 12px; }
+.review-offerings .media-body h4 {
+  color: #99173C;
+  font-size: 16px;
+  line-height: 16px;
+  margin-bottom: 0; }
+.review-offerings .media-body p {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 18px;
+  margin-top: 10px; }
+.review-offerings .media-body h4 em {
+  color: #666666;
+  font-size: 10px;
+  font-weight: normal;
+  margin-left: 10px; }
+.review-offerings .review-form {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  border: 1px solid #BCE8F1;
+  border-radius: 0;
+  color: #3a87ad;
+  margin-bottom: 0;
+  padding: 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+  .review-offerings .review-form form {
+    margin: 0; }
+    .review-offerings .review-form form button {
+      margin-top: 10px; }
+  .review-offerings .review-form ul.star-rating {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding-left: 0; }
+    .review-offerings .review-form ul.star-rating li.star-styles {
+      width: 140px !important; }
+    .review-offerings .review-form ul.star-rating li {
+      display: inline-block; }
+      .review-offerings .review-form ul.star-rating li p {
+        font-size: 14px; }
+
+@media (max-width: 1199px) {
+  body .carousel-inner > .item > img, body .carousel-inner > .item > a > img {
+    margin: 0 auto; }
+  body #seller .seller-info .seller-info-header h1 {
+    font-size: 28px;
+    text-align: left; }
+  body #seller .seller-info h1 span.badge-type img {
+    width: 55px; } }
+@media (max-width: 767px) {
+  body #seller .col-6 {
+    width: 100%; }
+  body .jumbotron.jumbotron-container {
+    margin: 15px; } }
+@media (max-width: 600px) {
+  body #seller .seller-info h1 span.badge-type img {
+    margin-right: 5px;
+    width: 36px; } }
+@media (max-width: 547px) {
+  body .review-offerings .review-form {
+    padding: 15px 15px 70px; }
+    body .review-offerings .review-form form button {
+      width: 100%; } }
+@media (max-width: 427px) {
+  body .review-offerings .review-form {
+    padding: 15px 15px 70px; }
+    body .review-offerings .review-form form button {
+      width: 100%; }
+    body .review-offerings .review-form ul.star-rating li.star-styles {
+      margin: 0;
+      padding: 0;
+      line-height: 21px;
+      width: 140px !important; } }
+@media (max-width: 360px) {
+  body #seller .seller-info .seller-info-header.col-xs-6 {
+    margin-bottom: 20px;
+    width: 100%; }
+  body #seller .seller-info .seller-info-header h1 {
+    font-size: 24px;
+    text-align: center; }
+  body #seller .seller-info h1 span.badge-type img {
+    width: 55px; }
+  body #seller .jumbotron-container .col-lg-5 h1 {
+    font-size: 21px;
+    line-height: 24px; }
+  body #seller .review-offerings .media-body {
+    padding-top: 10px;
+    width: 100%; } }
+
+/*# sourceMappingURL=seller.css.map */

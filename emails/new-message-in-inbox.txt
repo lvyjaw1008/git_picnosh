@@ -1,0 +1,10 @@
+There are new messages in Your Inbox
+
+{{client_name}} wrote:
+
+{{message_line}}
+
+Go to {{__url_list__('Message', message_id)}} in order to read this message.
+
+Marketplace ©{{__copyrights_year__}} All rights reserved.
+1-844-GET-MARKETPLACE

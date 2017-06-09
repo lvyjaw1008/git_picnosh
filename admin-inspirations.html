@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = 'inspirations' %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content container">
+
+        <div class="tab-pane active row" id="tab1">
+          {% include "_parts/admin-left-insp-nav.html %}
+          <div class="col-lg-10">
+            <div class="container panel-container">
+              {% if _admin_left_insp_nav_elem == 'all' %}
+              <p>{% raw ' '.join(inspirationStatus2Html()) %} </p>
+              {% end %}
+              <div class="list-group list-group-style panel-wrapper">
+                {% for insp in insps %}
+                <a href="{{__url_list__('Inspiration', insp['url_id'])}}" class="list-group-item">
+                  <div class="row">
+                    <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                      {% if insp['photo'] %}
+                        <img src="{{insp['photo']}}" class="img-responsive">
+                      {% end %}
+                      <p class="status">{% raw inspirationStatus2Html(insp['status']) %}</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-md-10">
+                      <h4 class="list-group-item-heading">{{insp['title']}}</h4>
+                      <ul class="list-inline">
+                        <li><i class="icon-map-marker"></i> {{insp['locationName']}}</li>
+                      </ul>
+                      <p class="list-group-item-text">
+                        <div class="booking-info-wrap">{{insp['description']}}</div>
+                      </p>
+                      <div class="my-inspiration-details">
+                        No. of Sellers <span class="badge">{{insp['no_of_sellers']}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% end %}
+              </div>
+            {% include "_parts/pagination.html" %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

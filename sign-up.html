@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Signup") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/login.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+    <div class="container login-wrapper"><!--start-->
+
+      <div class="">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 jumbotron jumbotron-container login-container">
+          <div class="login-form">
+            <div class="page-header">
+              <h1>Create an Account</h1>
+            </div>
+            <form role="form" action="{{__url_list__('Signup')}}" method="post">
+              <div class="form-group">
+                <label for="exampleInputName">Username</label>
+                {% if error=='name' %}
+                  <font color="#ee2222">
+                    <label for="exampleInputName" id="error_for_username">{{error_text}}</label>
+                  </font>
+                {% end %}
+                <input type="text" class="form-control" id="exampleInputName" name="name"
+                  {% if error=='name' %} style="border-color:#ee2222"
+                    placeholder="{{name}}"
+                  {% elif name %}
+                    value="{{name}}"
+                  {% else %}
+                    placeholder="Type your name"
+                  {% end %}>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail">Email</label>
+                {% if error=='email' %}
+                  <font color="#ee2222">
+                    <label for="exampleInputEmail">{{error_text}}</label>
+                  </font>
+                {% end %}
+                <input type="email" class="form-control" id="exampleInputEmail" name="email"
+                  {% if error=='email' %} style="border-color:#ee2222"
+                    placeholder="{{email}}"
+                  {% elif email %}
+                    value="{{email}}"
+                  {% else %}
+                    placeholder="Enter your email address"
+                  {% end %}>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                {% if error=='password' %}
+                  <font color="#ee2222">
+                    <label for="exampleInputPassword1">{{error_text}}</label>
+                  </font>
+                {% end %}
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                  {% if error=='password' %} style="border-color:#ee2222"{% end %}
+                    placeholder="Type your password">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" name="action" value="signup">Sign up now</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    
+  </body>
+</html>

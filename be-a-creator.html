@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Inspirations") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/be-a-creator.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="add-new-inspiration-landing-banner hidden-xs">
+      <div class="container">
+        <div class="add-new-inspiration">
+          <h1>Share your inspiration!</h1>
+          <h2>It's a great way to profit off your passion and introduce people to amazing inspirations</h2>
+          <p>
+            <a href="{{__url_list__('NewInspiration')}}"><button class="btn btn-lg btn-primary" type="button">List Your Inspiration</button></a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-new-inspiration-landing-banner-sm visible-xs">
+      <div class="container">
+        <div class="add-new-inspiration">
+          <h1>Share your inspiration!</h1>
+          <h2>It's a great way to profit off your passion and introduce people to amazing inspirations</h2>
+          <p>
+            <a href="inspiration-add-new.html"><button class="btn btn-lg btn-primary" type="button">List Your Inspiration</button></a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="blue_strip">
+      <div class="container">
+        <h1>Benefits of Being a Seller</h1>
+      </div>
+    </div>
+
+    <div class="container add-new-inspiration-wrapper"><!--start-->
+      <div class="add-new-inspiration-landing">
+        <div class="container">
+          <div class="row">  
+            <div class="col-lg-4">
+              <img src="/assets/images/icons/discover-black.png">
+              <h2>List a Inspiration</h2>
+              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra.</p>
+            </div>
+            <div class="col-lg-4">
+              <img src="/assets/images/icons/book-black.png">
+              <h2>Add yourself as a Seller</h2>
+              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra.</p>
+            </div>
+            <div class="col-lg-4">
+              <img src="/assets/images/icons/inspiration-black.png">
+              <h2>Offer something great!</h2>
+              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/assets/javascripts/jquery-ui-sliderAccess.js"></script>
+
+  </body>
+</html>

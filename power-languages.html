@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = 'languages' %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="tab3">
+          <form method="post">
+            <div class="container panel-container">
+              <p class="action-button-group">
+                <button type="submit" class="btn btn-default btn-xs" name="action" value="create.languages">Create New Language(s)</button>
+                <button type="submit" class="btn btn-default btn-xs" name="action" value="queue.retranslating.all">Queue retranslating all</button>
+              </p>
+              <p>Translation <span class="label label-success">Complete</span> <span class="label label-warning">In progress</span> <span class="label label-danger">Failed</span></p>
+              <div class="list-group list-group-style panel-wrapper">
+
+                <div class="row">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Language</th>
+                        <th>Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for language in languages %}
+                      <tr>
+                        <td>{{language['language']}} ({{language['lang']}})</td>
+                        <td>{% if language['complete'] %}<span class="label label-success">Complete</span>{% else %}<span class="label label-warning">In progress</span> ({{language['status']}}){% end %}</td>
+                        <td>
+                          <button type="submit" class="btn btn-default btn-xs" name="action" value="translate.{{language['lang']}}.{{language['language']}}">Translate</button>
+                          <button type="submit" class="btn btn-default btn-xs" name="action" value="retranslate.{{language['lang']}}.{{language['language']}}">Retranslate</button>
+                          <button type="submit" class="btn btn-default btn-xs" name="action" value="destroy.{{language['lang']}}">Destroy</button>
+                        </td>
+                      </tr>
+                      {% end %}
+                      {% if 0 %}
+                      <tr>
+                        <td>Stacey Anne Felna Chan</td>
+                        <td>Gastown Tasting Offerings</td>
+                        <td>04/03/13</td>
+                        <td class="hidden-sm hidden-xs"><a class="btn btn-default btn-xs" href="http://www.xe.com/currencyconverter/convert/?Amount=99&From=USD&To=ZWR" data-toggle="tooltip" data-placement="top" title="" id="tooltip_2" data-original-title="Change Currency"><i class="icon-refresh"></i></a> 13:00 local time (PST)</td>
+                        <td><span class="label label-success"><i class="icon-ok icon-white"></i></span></td>
+                        <td><a href="view-offerings-unconfirmed.html"><button class="btn btn-primary btn-xs hidden-sm hidden-xs" type="button">View Booking</button><button class="btn btn-sm btn-default visible-sm visible-xs" type="button"><i class="icon-chevron-right"></i></button></a></td>
+                      </tr>
+                      {% end %}
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

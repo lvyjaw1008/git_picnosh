@@ -1,0 +1,135 @@
+#Destination .carousel {
+  text-align: center;
+  margin-bottom: 20px;
+  background: #000;
+  padding: 0; }
+#Destination .carousel-inner > .item > img, #Destination .carousel-inner > .item > a > img {
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-height: 400px;
+  max-width: 100%; }
+#Destination .fluid-width-video-wrapper iframe {
+  display: none; }
+#Destination h1.Destination-header {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 30px; }
+#Destination .accordion a.accordion-toggle {
+  color: #99173C;
+  font-size: 14px; }
+#Destination .accordion {
+  margin-bottom: 0; }
+#Destination .accordion-heading .accordion-toggle {
+  padding: 0; }
+#Destination .accordion-group {
+  border: 0; }
+#Destination .accordion-inner {
+  padding: 0; }
+
+.fb-comments {
+  margin-bottom: 30px;
+  width: 100% !important; }
+  .fb-comments iframe[style], .fb-comments span {
+    width: 100% !important; }
+
+.fb_edge_widget_with_comment {
+  margin-right: 10px; }
+
+iframe.twitter-share-button.twitter-count-horizontal {
+  width: 85px !important; }
+
+ul.creator {
+  padding: 0 0 0 0; }
+  ul.creator li {
+    display: inline-block; }
+    ul.creator li img {
+      margin-right: 10px; }
+
+ul.creator-details {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  ul.creator-details li {
+    display: block; }
+
+.available-seller {
+  margin-top: 20px; }
+  .available-seller .notone {
+    font-size: 70%;
+    text-align: center; }
+  .available-seller table td {
+    font-size: 16px;
+    padding-top: 10px; }
+  .available-seller table td img {
+    max-height: 35px;
+    max-width: 35px; }
+
+.map-style small a {
+  color: #99173C !important;
+  font-size: 14px !important; }
+
+.map-style iframe {
+  width: 100% !important; }
+
+.places-to-stay-nearby .jumbotron li, .inspirations-nearby .jumbotron li, .trips-nearby .jumbotron li {
+  list-style: none; }
+.places-to-stay-nearby ul.list-of-places, .inspirations-nearby ul.list-of-places, .trips-nearby ul.list-of-places {
+  margin: 20px 0 0 0;
+  padding-left: 0; }
+  .places-to-stay-nearby ul.list-of-places .media, .inspirations-nearby ul.list-of-places .media, .trips-nearby ul.list-of-places .media {
+    margin: 5px 0; }
+    .places-to-stay-nearby ul.list-of-places .media .media-body a h4, .inspirations-nearby ul.list-of-places .media .media-body a h4, .trips-nearby ul.list-of-places .media .media-body a h4 {
+      color: #000;
+      font-size: 14px;
+      line-height: 16px; }
+    .places-to-stay-nearby ul.list-of-places .media .media-body p, .inspirations-nearby ul.list-of-places .media .media-body p, .trips-nearby ul.list-of-places .media .media-body p {
+      font-size: 13px;
+      font-weight: normal;
+      line-height: 18px; }
+
+div.link-ad {
+  background: #fafafa;
+  overflow: hidden;
+  margin: 10px 0; }
+
+.ad-units {
+  text-align: left;
+  margin: 20px 0; }
+
+@media (max-width: 1199px) {
+  body .ad-units {
+    text-align: center; }
+  body .video-wrapper {
+    padding: 0 200px 10px 200px; } }
+@media (min-width: 980px) and (max-width: 1199px) {
+  body h1.Destination-header {
+    font-size: 26px !important; } }
+@media (min-width: 768px) and (max-width: 979px) {
+  body h1.Destination-header {
+    font-size: 24px !important; }
+    body h1.Destination-header span button {
+      margin-bottom: 15px; }
+  body .video-wrapper {
+    padding: 0 100px 10px 100px; } }
+@media (max-width: 767px) {
+  body .row.row-Destination {
+    margin-left: 0;
+    margin-right: 0; }
+    body .row.row-Destination .col-lg-7, body .row.row-Destination .col-lg-5 {
+      padding-left: 0;
+      padding-right: 0; }
+  body .video-wrapper {
+    padding: 0; }
+  body .fb-comments {
+    padding: 0 20px !important; }
+  body #Destination .carousel-inner > .item > img, body #Destination .carousel-inner > .item > a > img {
+    max-height: 300px; } }
+@media (max-width: 360px) {
+  body #Destination h1.Destination-header {
+    font-size: 24px; }
+  body .fb-comments {
+    padding: 0 5px !important; } }
+
+/*# sourceMappingURL=inspiration.css.map */

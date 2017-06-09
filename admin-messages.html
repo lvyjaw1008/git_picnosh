@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body class="admin-bookings">
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = 'messages' %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="5">
+          <div class="container">
+
+            <div class="row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Message party 1</th>
+                  <th>Message party 2</th>
+                  <th>Last message</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <td>
+                    {% if item['between'][0]['user_id'] %}<a href="{{__url_list__('AdminUserSettings', item['between'][0]['user_id'])}}">{% end %}
+                      <img src="{{item['between'][0]['photo']}}" class="img-responsive" height="75" width="75">
+                      {{item['between'][0]['name']}}
+                    {% if item['between'][0]['user_id'] %}</a>{% end %}
+                  </td>
+                  <td>
+                    {% if item['between'][1]['user_id'] %}<a href="{{__url_list__('AdminUserSettings', item['between'][1]['user_id'])}}">{% end %}
+                      <img src="{{item['between'][1]['photo']}}" class="img-responsive" height="75" width="75">
+                      {{item['between'][1]['name']}}
+                    {% if item['between'][1]['user_id'] %}</a>{% end %}
+                  </td>
+                  <td>{{item['last_time']}}: {{item['last_msg']}} </td>
+                  <td>
+                    <a href="{{__url_list__('Message', item['msg_id'])}}">
+                      <button type="submit" class="btn btn-primary btn-xs">View Message</button>
+                    </a>
+                  </td>
+                </tr>
+                {% end %}
+
+              </tbody>
+            </table>
+            </div>
+
+            {% include _parts/pagination.html %}
+          </div>
+        </div>
+
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

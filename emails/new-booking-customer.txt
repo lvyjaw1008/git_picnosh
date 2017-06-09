@@ -1,0 +1,17 @@
+{{_("Thank you for booking!")}}
+
+{{offering_title}}
+{{_("Status")}}: {{booking_status}}
+{{_("Location")}}: {{offering_location}}
+{{_("Date")}}: {{booking_date}}
+{{_("Time")}}: {{booking_time}}
+{{_("Number of Guests")}}: {{booking_no_participants}}
+{{_("Add-ons")}}: {{booking_add_ons}}
+{{_("Seller Name")}}: {{seller_name}}
+
+{{_("Total Price")}}: {{total_price}}
+
+{{_("The complete details of your booking are available on the site at")}} {{booking_url}}
+
+Marketplace ©{{__copyrights_year__}} All rights reserved.
+1-844-GET-MARKETPLACE

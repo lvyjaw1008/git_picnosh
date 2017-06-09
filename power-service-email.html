@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% if __power__ %}
+      {% set admin_top_nav_elem = 'service' %}
+      {% include "_parts/admin-top-nav.html %}
+      {% end %}
+
+      <div class="tab-content container">
+
+        <div class="tab-pane active row" id="tab1">
+          {% include "_parts/power-left-settings-nav.html %}
+          <div class="col-lg-10">
+            <div class="container panel-container">
+            <div id="assertion_result">
+              {% if alert == 'asserted_no_emails' %}
+              <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                Asserted no emails.
+              </div>
+              {% end %}
+              {% if alert == 'asserted_many_emails' %}
+              <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                Asserted many emails.
+              </div>
+              {% end %}
+              {% if alert == 'asserted_email' %}
+              <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                Successfully asserted email.
+              </div>
+              {% end %}
+            </div>
+
+              <div class="container panel-container">
+                <form method="post">
+                  <div id="outgoing_emails_state">
+                    <p>Currently outgoing emails are being kept for: {{keep_outgoing_email_for}} seconds</p>
+                  </div>
+                  <div class="list-group list-group-style panel-wrapper">
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Time in seconds" name="emails_keep_for_seconds">
+                          <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" name="action" value="save">Save changes</button>
+                            <span><a href="#" data-placement="left" title=""></a></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <hr>
+
+                  {% if __development__ %}
+                  <div id="assert_and_clean_email">
+                    <p>Assert and clear outgoing email (DEV ONLY)</p>
+                  </div>
+                  <div class="list-group list-group-style panel-wrapper">
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="[email]; [in subject]; [in content]" name="assert_email_filter" value="{{assertion_value}}">
+                          <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" name="action" value="assert_and_clean">Assert and clear</button>
+                            <span><a href="#" data-placement="left" title=""></a></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <hr>
+                  {% end %}
+
+                  Email outbox
+                  <button class="btn btn-primary btn-xs pull-right" type="submit" name="action" value="clear_outbox">Clear visible items</button>
+
+                  <div class="row">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th nowrap="nowrap">Time</th>
+                          <th>To</th>
+                          <th>Subject</th>
+                          <th>Content</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for item in outbox %}
+                        <tr data-href="?item={{item['job_id']}}">
+                          <td nowrap="nowrap">{{item['sent_at']}}</td>
+                          <td>{{item['to_address']}}</td>
+                          <td>{{item['subject']}}</td>
+                          <td>{{item['content']}}</td>
+                          <td></td>
+                        </tr>
+                        {% end %}
+                      </tbody>
+                    </table>
+                  </div>
+
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  <script>
+    $('tr[data-href]').on("click", function() {
+      document.location = $(this).data('href');
+    });
+  </script>
+  </body>
+</html>

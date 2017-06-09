@@ -1,0 +1,14 @@
+Transaction Receipt
+
+Transaction ID: {{booking_id}}/{{tr_timestamp}}
+Transaction Type: Payment 
+Transaction Time: {{tr_date}}
+PayPal ID: paul.cowles@gmail.com
+Total: {{price}}
+
+Your earnings have been successfully deposited into your Paypal account.
+
+This payment is related to the successful delivery of photography services for the booking {{booking_url}}
+
+Marketplace ©{{__copyrights_year__}} All rights reserved.
+1-844-GET-MARKETPLACE

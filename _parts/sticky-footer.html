@@ -1,0 +1,31 @@
+<div class="sticky_footer">
+  <a href="#myModal" data-toggle="modal" data-target="#myModal">
+    <div class="jumbotron footer-fixed-bottom">
+      <p><i class="icon-gift"></i> {{_("Every offering booked comes with a money back guarantee.")}}</p>
+    </div>
+  </a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="visible-sm visible-xs"><i class="icon-gift"></i></span>
+          <h1>{{_("Every offering booked comes with a money back guarantee.")}}</h1>
+          <img src="/assets/images/social/devices.png" class="img-responsive hidden-sm hidden-xs">
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>{{_("If not completely satisfied, we will refund 100% of your money.")}}</li>
+            <li>{{_("You have up to 48 hours after your offering has finished to request coverage.")}}</li>
+            <li>{{_("All of our sellers are verified using our 3 step process.")}}</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <a href="about-being-a-seller.html"><button class="btn btn-primary">{{_("Learn More")}}</button></a>
+          <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{_("close")}}</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>

@@ -1,0 +1,66 @@
+.leave-review-form {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  border: 1px solid #BCE8F1;
+  border-radius: 4px 4px 4px 4px;
+  color: #3a87ad;
+  margin-bottom: 0;
+  padding: 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+  .leave-review-form form {
+    margin: 0; }
+    .leave-review-form form button {
+      margin-top: 10px; }
+  .leave-review-form ul.star-rating {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 0 0 0;
+    padding-left: 0; }
+    .leave-review-form ul.star-rating li.star-styles {
+      width: 140px !important; }
+    .leave-review-form ul.star-rating li {
+      display: inline-block; }
+      .leave-review-form ul.star-rating li p {
+        font-size: 14px; }
+
+.booking-wrapper table {
+  background-color: white !important;
+  margin-bottom: 0px; }
+  .booking-wrapper table th {
+    background: #EFFFCD;
+    font-size: 14px;
+    font-weight: normal;
+    text-shadow: none; }
+    .booking-wrapper table th ul#currency_converter {
+      margin: 0; }
+      .booking-wrapper table th ul#currency_converter li {
+        list-style: none; }
+    .booking-wrapper table th ul#currency_converter li a {
+      text-decoration: none;
+      margin-left: 0; }
+      .booking-wrapper table th ul#currency_converter li a:hover {
+        color: #ffffff; }
+  .booking-wrapper table td.center-align, .booking-wrapper table th.center-align {
+    text-align: center; }
+  .booking-wrapper table td.right-align, .booking-wrapper table th.right-align {
+    text-align: right; }
+  .booking-wrapper table tr.total-price-summary {
+    border-top: 3px solid #555152; }
+
+@media (max-width: 547px) {
+  body .leave-review-form {
+    padding: 15px 15px 70px; }
+    body .leave-review-form form button {
+      width: 100%; } }
+@media (max-width: 427px) {
+  body .leave-review-form {
+    padding: 15px 15px 70px; }
+    body .leave-review-form form button {
+      width: 100%; }
+    body .leave-review-form ul.star-rating li.star-styles {
+      margin: 0;
+      padding: 0;
+      line-height: 21px;
+      width: 140px !important; } }
+
+/*# sourceMappingURL=my-bookings.css.map */

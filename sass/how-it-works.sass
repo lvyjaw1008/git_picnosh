@@ -1,0 +1,265 @@
+// About Marketplace CSS
+
+.about-video
+  padding: 30px 100px  
+  text-align: center
+
+// How it works CSS
+
+.how-it-works-wrapper
+  margin-top: 40px
+
+
+.about-banner
+  background: url('../images/banner/about.jpg') no-repeat center center fixed
+.how-it-works-banner
+  background: url('../images/banner/bookings.jpg') no-repeat center center fixed
+.team-banner
+  background: url('../images/banner/profile.jpg') no-repeat center center fixed
+.sellers-banner
+  background: url('../images/banner/sellers.jpg') no-repeat center center fixed
+.inspirations-banner
+  background: url('../images/banner/inspirations.jpg') no-repeat center center fixed
+.faq-banner
+  background: url('../images/banner/about.jpg') no-repeat center center fixed
+.about-banner, .how-it-works-banner, .team-banner, .sellers-banner, .inspirations-banner, .faq-banner
+  -webkit-background-size: contain
+  -moz-background-size: contain
+  -o-background-size: contain
+  background-size: contain
+  height: 300px
+  width: 100%
+  background-position: top center
+  margin-top: 50px
+  h1
+    color: #ffffff
+    font-size: 50px
+    line-height: 50px
+    letter-spacing: 0.03em
+    text-align: center
+    text-shadow: 0 1px 8px rgba(0,0,0,0.8)
+    padding-top: 135px
+
+
+.about-banner-sm
+  background: url('../images/banner/about.jpg') no-repeat center center
+.how-it-works-banner-sm
+  background: url('../images/banner/bookings.jpg') no-repeat center center
+.team-banner-sm
+  background: url('../images/banner/profile.jpg') no-repeat center center
+.sellers-banner-sm
+  background: url('../images/banner/sellers.jpg') no-repeat center center
+.inspirations-banner-sm
+  background: url('../images/banner/inspirations.jpg') no-repeat center center
+.faq-banner-sm
+  background: url('../images/banner/about.jpg') no-repeat center center
+.about-banner-sm, .how-it-works-banner-sm, .team-banner-sm, .sellers-banner-sm, .inspirations-banner-sm, .faq-banner-sm
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  height: 100px
+  width: 100%
+  margin-top: 50px
+  h1
+    color: #ffffff
+    font-size: 28px
+    line-height: 50px
+    letter-spacing: 0.03em
+    text-align: center
+    text-shadow: 0 1px 8px rgba(0,0,0,0.8)
+    padding-top: 20px
+    
+
+
+.how-it-works
+  hr
+    margin: 20px 0
+    border: 0
+    border-top: 1px dotted #ddd
+    border-bottom: 1px solid transparent
+  .page-header
+    text-align: center
+    border-bottom: 0
+    padding: 0
+    margin: 0 0 20px
+    h1 
+      color: #333333
+      font-size: 24px
+      letter-spacing: 0.01em
+      line-height: 26px
+      margin: 0
+      margin-top: 10px
+      font-weight: bold
+  .about-section, .how-it-works-section, .team-section, .sellers-section, .inspirations-section, .faq-section
+    margin: 0 !important
+    h2
+      font-size: 18px
+      line-height: 26px
+      font-weight: bold
+    h3
+      font-size: 14px
+      font-weight: normal
+      line-height: 1.5em
+      margin-top: 0
+    p 
+      font-size: 14px
+      font-weight: normal
+      line-height: 1.5em
+  .form-actions
+    background: transparent
+    border-top: 1px dotted #ddd
+    margin-top: 30px
+    text-align: center
+    padding: 15px 0 0
+    button
+      margin: 5px
+  .how-it-works-section, .sellers-section, .inspirations-section
+    margin: 50px 0
+  .how-it-works-section
+    i 
+      color: #FF6700
+  .team-section
+    margin: 40px 0 !important
+    img 
+      width: 100%
+    h2
+      small
+        color: #99173C
+  .how-it-works-section, .sellers-section, .inspirations-section
+    margin: 20px 0
+    i
+      color: #99173C
+      font-size: 100px
+    .col-lg-4
+      margin-top: 30px
+      text-align: center
+  .faq-section
+    h2
+      color: #666666
+      line-height: 28px
+    .accordion-group
+      border: 0
+      margin-bottom: 6px
+      .accordion-inner
+        border-top: 0
+        font-size: 16px
+        font-weight: normal
+        line-height: 24px
+        margin: 25px 15px
+      .accordion-heading
+        line-height: 28px 
+        a
+          color: #99173C
+      .accordion-heading .accordion-toggle
+        color: #99173C
+        font-size: 18px
+        font-weight: normal
+        padding: 0
+
+// Media Queries
+
+@media (min-width: 980px) and (max-width: 1199px)
+  body 
+    .how-it-works .how-it-works-section .col-lg-4 img
+      width: 50%
+    .how-it-works-wrapper 
+      .col-lg-2
+        width: 20%
+        float: left
+      .col-lg-10
+        width: 80%
+        float: left
+
+@media (max-width: 1199px)
+  body 
+    .how-it-works .how-it-works-section .col-lg-4 img
+      width: 50%
+    .how-it-works .how-it-works-section
+      margin-top: 0
+      margin-bottom: 20px
+      h2 
+        text-align: center
+      .how-it-works-section-wrapper
+        margin-top: 20px
+        margin-bottom: 0
+    .how-it-works 
+      .team-section, .sellers-section, .inspirations-section
+        h2, .col-lg-4 i
+          text-align: center !important
+    .how-it-works .team-section
+      text-align: center !important
+      p 
+        text-align: left
+
+@media (max-width: 767px)
+  body 
+    .about-banner, .how-it-works-banner, .team-banner, .sellers-banner, .inspirations-banner, .faq-banner
+      height: 150px
+      h1
+        font-size: 36px
+        line-height: 36px
+        padding-top: 75px
+    .how-it-works-wrapper
+      margin-top: 20px
+    .how-it-works .how-it-works-section .col-lg-4 img
+      width: 70%
+    .about-video
+      padding: 30px  
+
+@media (max-width: 500px)
+  body 
+    .about-banner, .how-it-works-banner, .team-banner, .sellers-banner, .inspirations-banner, .faq-banner
+      height: 150px
+      h1
+        font-size: 28px
+        line-height: 28px
+        padding-top: 75px
+    .how-it-works
+      .about-section, .how-it-works-section, .team-section, .sellers-section, .inspirations-section, .faq-section
+        h3
+          text-align: left
+    .how-it-works
+      .about-section, .how-it-works-section, .team-section, .sellers-section, .inspirations-section, .faq-section
+        p 
+          text-align: center
+
+@media (max-width: 494px)
+  body 
+    .about-video
+      padding: 0px  
+      margin-bottom: 20px
+
+@media (max-width: 360px)
+  body 
+    .how-it-works .form-actions button
+      margin: 5px 0
+      width: 100%
+    .how-it-works .page-header h1
+      font-size: 16px
+      line-height: 16px
+    .how-it-works .faq-section .accordion-group .accordion-heading .accordion-toggle
+      font-size: 16px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

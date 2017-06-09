@@ -1,0 +1,373 @@
+@font-face
+  font-family: 'acmeregular'
+  src: url('../fonts/acme-regular-webfont.eot')
+  src: url('../fonts/acme-regular-webfont.eot?#iefix') format("embedded-opentype"), url('../fonts/acme-regular-webfont.woff') format("woff"), url('../fonts/acme-regular-webfont.ttf') format("truetype"), url('../fonts/acme-regular-webfont.svg#acmeregular') format("svg")
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: 'skiplegdaymedium'
+  src: url('../fonts/skiplegday-webfont.eot')
+  src: url('../fonts/skiplegday-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/skiplegday-webfont.woff') format('woff'), url('../fonts/skiplegday-webfont.ttf') format('truetype'), url('../fonts/skiplegday-webfont.svg#skiplegdaymedium') format('svg')
+  font-weight: normal
+  font-style: normal
+
+@font-face 
+  font-family: 'Covered By Your Grace'
+  src: url("../fonts/Covered_By_Your_Grace/CoveredByYourGrace.ttf") format("truetype")
+
+body 
+  background-color: #2E2633 !important
+  color: #fff
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif
+  p 
+    font-weight: normal
+  
+  nav
+    padding: 20px 0
+    .nav
+      >li
+        >a
+          color: #fff
+          &.btn-reserve
+            border: 1px solid #fff
+          &:focus, &:hover 
+            background-color: transparent
+      .open
+        >a
+          background-color: transparent
+          &:focus, &:hover
+            background-color: transparent
+    .navbar-header
+      .navbar-brand
+        padding: 0
+        height: 50px
+        .img-logo
+          height: 100%
+          width: auto
+
+.full-height
+  height: 100%
+
+.modal, .dw-modal
+  color: #555152
+
+@-moz-document url-prefix()
+  a.navbar-brand img 
+    margin-top: -1px
+    margin-right: 1px
+
+.jumbotron.jumbotron-container
+  background: #dce9be
+  color: #2E2633
+  display: block
+  margin: 0 0 20px 0
+  padding: 20px
+  -webkit-border-radius: 0
+  -moz-border-radius: 0
+  border-radius: 0
+  h1.center-header
+    color: #99173C
+    letter-spacing: 0.1em
+    text-transform: uppercase
+    font-size: 20px
+    line-height: 20px
+    margin-bottom: 10px
+    text-align: center
+  hr 
+    border: none
+    border-bottom: 1px dotted #2E2633
+
+// Breadcrumb style
+
+.breadcrumb-style
+  .breadcrumb
+    padding: 5px
+    background-color: transparent
+  ol.all-breadcrumb-style
+    color: #DCE9BE
+    border-bottom: 1px dotted #DCE9BE
+    border-radius: 0
+    font-size: 14px
+    font-weight: normal
+    padding: 5px 10px
+    li a 
+      &:hover
+        text-decoration: underline !important
+        color: #dce9be
+
+// ads
+
+.add-this-social
+  margin-bottom: 20px
+  margin-top: 20px
+  a
+    width: 32px
+    height: 32px
+    display: inline-block
+    margin: 0 0 0 2px
+    &:hover
+      background-color: #99173C
+    img
+      width: 32px
+  //a:first-of-type
+  //  margin-left: 0
+  a:last-of-type
+    margin-right: 0
+
+// ul
+
+ul.list-inline
+  display: inline-block
+
+ul.no-style
+  list-style: none
+  padding-left: 20px
+
+ul.ratings-wrapper
+  li 
+    padding-left: 0
+    padding-right: 0
+
+// Pagination
+
+#pagination-style
+  text-align: center
+
+// date and time picker css
+
+.form-control.datetimepicker_style 
+  cursor: pointer !important
+
+#ui-datepicker-div
+  border: 1px solid #99173C !important
+  background: #ffffff
+  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-widget-header
+    border: 1px solid #99173C !important
+    background: #99173C !important
+    font-weight: normal !important
+    color: rgb(255, 255, 255) !important
+    text-shadow: none !important
+  dl 
+    margin-bottom: 0px !important
+    padding: 0 10px
+    dt.ui_tpicker_time_label
+      display: none
+    dd.ui_tpicker_time
+      display: none
+  button.ui-datepicker-current
+    display: none
+  .ui-widget-content
+    border: none
+    margin: 0
+    
+.apply-seller-form fieldset .datetime-input
+  margin-bottom: 0 !important
+.img_datepicker, .img_timepicker
+  padding-left: 30px !important
+  padding-top: 8px !important
+  padding-bottom: 8px !important
+  background-repeat: no-repeat
+  background-position: 4px -2px
+.img_datepicker
+  background-image: url("../images/icons/calendar.indexed.png")
+.img_timepicker
+  background-image: url("../images/icons/clock.indexed.png")
+.img_paypal-icon
+  background-image: url("../images/icons/paypal-icon.indexed.png")
+  padding-left: 50px !important
+  background-repeat: no-repeat
+  background-position: 4px 4px
+  margin-top: 5px
+.img_youtube-icon
+  background-image: url("../images/social/youtube-logo.png")
+  padding-left: 35px !important
+  background-repeat: no-repeat
+  background-position: 4px 4px
+  margin-bottom: 5px
+
+hr.dotted 
+  border: none
+  border-bottom: 1px dotted #CCCCCC
+
+// form actions style
+
+.send-message
+  background-color: #EFFFCD
+  border: 1px solid #e5e5e5
+  margin-top: 10px
+  button
+    margin-top: 10px
+    float: right
+
+// headers
+
+h2.header-divider
+  background: #EFFFCD
+  color: #666666
+  font-size: 15px
+  padding: 0 20px
+
+
+.google-maps-embed
+  position: relative
+  margin-bottom: 20px
+  // This is the aspect ratio
+  padding-bottom: 75% 
+  height: 0
+  overflow: hidden
+  iframe 
+    position: absolute
+    top: 0
+    left: 0
+    width: 100% !important
+    height: 100% !important
+    
+
+// Pagination
+
+#pagination-style
+  ul.pagination
+    background: transparent
+    box-shadow: none
+    border-radius: 0
+    font-size: 14px !important
+    font-weight: normal !important
+  ul.pagination > li > a
+    background: transparent
+    border: 0
+  ul.pagination > li > a:hover, ul.pagination > .active a
+    background: #555152
+    color: #2E2633
+
+// arrow
+
+span.arrow
+  color: #DCE9BE
+  font-family: arial
+  font-size: 16px
+
+// selectors
+
+select.sm-select
+  margin-top: 5px
+  width: 20%
+
+// request Inspiration
+
+.thumbnail.request-inspiration
+  background: #555152 !important
+  text-align: center
+  img 
+    margin-bottom: 10px
+    border-radius: 2px
+  p 
+    color: #ffffff
+    padding: 12px
+    text-shadow: none
+  button 
+    margin-bottom: 28px
+
+// panel styles for offerings, bookings and admin
+
+p.status
+  margin-top: 10px
+
+p.admin-button-group
+  font-size: 12px
+  font-weight: 500
+  text-align: right
+  button 
+    color: #ffffff
+    margin: 0 3px
+  span 
+    margin: 5px 0 
+    float: right
+
+.panel-container .panel-wrapper .list-group-item
+  padding-bottom: 0 !important
+  background-color: #2e2633
+  border: 1px solid #2E2633
+  color: #DCE9BE
+  a
+    color: #DCE9BE
+    &:hover
+      color: #DCE9BE
+      text-decoration: none
+    &:focus
+      color: #DCE9BE
+  .list-group-item-text
+    color: #DCE9BE
+  .booking-info-wrap
+    color: #DCE9BE
+.panel-container .panel-wrapper .list-group-item:nth-child(odd)
+  background-color: rgba(255,255,255,0.05)
+//.panel-container .panel-wrapper .list-group-item:hover
+//  background-color: #99173C
+
+.panel-container
+  .panel-body
+    h3 
+      font-size: 21px
+      margin-top: 10px
+
+
+// alerts
+
+.alert-add-wrapper
+  font-size: 14px
+  margin-bottom: 0
+  margin-top: 10px
+  padding: 3px 5px
+  .alert-ellipsis
+    font-size: 14px
+    line-height: 22px
+    text-overflow: ellipsis !important
+    white-space: nowrap !important
+    overflow: hidden !important
+    padding-left: 0
+    padding-right: 0
+
+// banners
+
+.banner-img-sm
+  background: url("../images/banner/inspirations.jpg") no-repeat center center
+.banner-offerings-sm
+  background: url("../images/banner/offerings.jpg") no-repeat center center
+.new-Destination-banner-sm
+  background: url("../images/banner/inspirations.jpg") no-repeat center center
+.banner-location-search-sm
+  background: url('../images/banner/search.jpg') no-repeat center center
+.banner-location-sm
+  background: url('../images/banner/search.jpg') no-repeat center center
+.banner-location-canada-sm
+  background: url('../images/banner/search.jpg') no-repeat center center
+.edit-offering-sm
+  background: url("../images/banner/sellers.jpg") no-repeat center center
+
+.banner-img-sm, .banner-offerings-sm, .new-Destination-banner-sm, .banner-location-search-sm, .banner-location-sm, .banner-location-canada-sm, .edit-offering-sm
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  height: 100px
+  width: 100%
+  margin-top: 50px
+  h1
+    color: #ffffff
+    font-size: 28px
+    line-height: 50px
+    letter-spacing: 0.03em
+    text-align: center
+    text-shadow: 0 1px 8px rgba(0,0,0,0.8)
+    padding-top: 20px
+
+@media (max-width: 991px)  
+  body
+    a.navbar-brand
+      width: 234px !important
+
+//@media (max-width: 360px)
+
+
+    

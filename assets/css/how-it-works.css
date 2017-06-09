@@ -1,0 +1,224 @@
+.about-video {
+  padding: 30px 100px;
+  text-align: center; }
+
+.how-it-works-wrapper {
+  margin-top: 40px; }
+
+.about-banner {
+  background: url("../images/banner/about.jpg") no-repeat center center fixed; }
+
+.how-it-works-banner {
+  background: url("../images/banner/bookings.jpg") no-repeat center center fixed; }
+
+.team-banner {
+  background: url("../images/banner/profile.jpg") no-repeat center center fixed; }
+
+.sellers-banner {
+  background: url("../images/banner/sellers.jpg") no-repeat center center fixed; }
+
+.inspirations-banner {
+  background: url("../images/banner/inspirations.jpg") no-repeat center center fixed; }
+
+.faq-banner {
+  background: url("../images/banner/about.jpg") no-repeat center center fixed; }
+
+.about-banner, .how-it-works-banner, .team-banner, .sellers-banner, .inspirations-banner, .faq-banner {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  height: 300px;
+  width: 100%;
+  background-position: top center;
+  margin-top: 50px; }
+  .about-banner h1, .how-it-works-banner h1, .team-banner h1, .sellers-banner h1, .inspirations-banner h1, .faq-banner h1 {
+    color: #ffffff;
+    font-size: 50px;
+    line-height: 50px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+    padding-top: 135px; }
+
+.about-banner-sm {
+  background: url("../images/banner/about.jpg") no-repeat center center; }
+
+.how-it-works-banner-sm {
+  background: url("../images/banner/bookings.jpg") no-repeat center center; }
+
+.team-banner-sm {
+  background: url("../images/banner/profile.jpg") no-repeat center center; }
+
+.sellers-banner-sm {
+  background: url("../images/banner/sellers.jpg") no-repeat center center; }
+
+.inspirations-banner-sm {
+  background: url("../images/banner/inspirations.jpg") no-repeat center center; }
+
+.faq-banner-sm {
+  background: url("../images/banner/about.jpg") no-repeat center center; }
+
+.about-banner-sm, .how-it-works-banner-sm, .team-banner-sm, .sellers-banner-sm, .inspirations-banner-sm, .faq-banner-sm {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100px;
+  width: 100%;
+  margin-top: 50px; }
+  .about-banner-sm h1, .how-it-works-banner-sm h1, .team-banner-sm h1, .sellers-banner-sm h1, .inspirations-banner-sm h1, .faq-banner-sm h1 {
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 50px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+    padding-top: 20px; }
+
+.how-it-works hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px dotted #ddd;
+  border-bottom: 1px solid transparent; }
+.how-it-works .page-header {
+  text-align: center;
+  border-bottom: 0;
+  padding: 0;
+  margin: 0 0 20px; }
+  .how-it-works .page-header h1 {
+    color: #333333;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    line-height: 26px;
+    margin: 0;
+    margin-top: 10px;
+    font-weight: bold; }
+.how-it-works .about-section, .how-it-works .how-it-works-section, .how-it-works .team-section, .how-it-works .sellers-section, .how-it-works .inspirations-section, .how-it-works .faq-section {
+  margin: 0 !important; }
+  .how-it-works .about-section h2, .how-it-works .how-it-works-section h2, .how-it-works .team-section h2, .how-it-works .sellers-section h2, .how-it-works .inspirations-section h2, .how-it-works .faq-section h2 {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: bold; }
+  .how-it-works .about-section h3, .how-it-works .how-it-works-section h3, .how-it-works .team-section h3, .how-it-works .sellers-section h3, .how-it-works .inspirations-section h3, .how-it-works .faq-section h3 {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5em;
+    margin-top: 0; }
+  .how-it-works .about-section p, .how-it-works .how-it-works-section p, .how-it-works .team-section p, .how-it-works .sellers-section p, .how-it-works .inspirations-section p, .how-it-works .faq-section p {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5em; }
+.how-it-works .form-actions {
+  background: transparent;
+  border-top: 1px dotted #ddd;
+  margin-top: 30px;
+  text-align: center;
+  padding: 15px 0 0; }
+  .how-it-works .form-actions button {
+    margin: 5px; }
+.how-it-works .how-it-works-section, .how-it-works .sellers-section, .how-it-works .inspirations-section {
+  margin: 50px 0; }
+.how-it-works .how-it-works-section i {
+  color: #FF6700; }
+.how-it-works .team-section {
+  margin: 40px 0 !important; }
+  .how-it-works .team-section img {
+    width: 100%; }
+  .how-it-works .team-section h2 small {
+    color: #99173C; }
+.how-it-works .how-it-works-section, .how-it-works .sellers-section, .how-it-works .inspirations-section {
+  margin: 20px 0; }
+  .how-it-works .how-it-works-section i, .how-it-works .sellers-section i, .how-it-works .inspirations-section i {
+    color: #99173C;
+    font-size: 100px; }
+  .how-it-works .how-it-works-section .col-lg-4, .how-it-works .sellers-section .col-lg-4, .how-it-works .inspirations-section .col-lg-4 {
+    margin-top: 30px;
+    text-align: center; }
+.how-it-works .faq-section h2 {
+  color: #666666;
+  line-height: 28px; }
+.how-it-works .faq-section .accordion-group {
+  border: 0;
+  margin-bottom: 6px; }
+  .how-it-works .faq-section .accordion-group .accordion-inner {
+    border-top: 0;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 24px;
+    margin: 25px 15px; }
+  .how-it-works .faq-section .accordion-group .accordion-heading {
+    line-height: 28px; }
+    .how-it-works .faq-section .accordion-group .accordion-heading a {
+      color: #99173C; }
+  .how-it-works .faq-section .accordion-group .accordion-heading .accordion-toggle {
+    color: #99173C;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 0; }
+
+@media (min-width: 980px) and (max-width: 1199px) {
+  body .how-it-works .how-it-works-section .col-lg-4 img {
+    width: 50%; }
+  body .how-it-works-wrapper .col-lg-2 {
+    width: 20%;
+    float: left; }
+  body .how-it-works-wrapper .col-lg-10 {
+    width: 80%;
+    float: left; } }
+@media (max-width: 1199px) {
+  body .how-it-works .how-it-works-section .col-lg-4 img {
+    width: 50%; }
+  body .how-it-works .how-it-works-section {
+    margin-top: 0;
+    margin-bottom: 20px; }
+    body .how-it-works .how-it-works-section h2 {
+      text-align: center; }
+    body .how-it-works .how-it-works-section .how-it-works-section-wrapper {
+      margin-top: 20px;
+      margin-bottom: 0; }
+  body .how-it-works .team-section h2, body .how-it-works .team-section .col-lg-4 i, body .how-it-works .sellers-section h2, body .how-it-works .sellers-section .col-lg-4 i, body .how-it-works .inspirations-section h2, body .how-it-works .inspirations-section .col-lg-4 i {
+    text-align: center !important; }
+  body .how-it-works .team-section {
+    text-align: center !important; }
+    body .how-it-works .team-section p {
+      text-align: left; } }
+@media (max-width: 767px) {
+  body .about-banner, body .how-it-works-banner, body .team-banner, body .sellers-banner, body .inspirations-banner, body .faq-banner {
+    height: 150px; }
+    body .about-banner h1, body .how-it-works-banner h1, body .team-banner h1, body .sellers-banner h1, body .inspirations-banner h1, body .faq-banner h1 {
+      font-size: 36px;
+      line-height: 36px;
+      padding-top: 75px; }
+  body .how-it-works-wrapper {
+    margin-top: 20px; }
+  body .how-it-works .how-it-works-section .col-lg-4 img {
+    width: 70%; }
+  body .about-video {
+    padding: 30px; } }
+@media (max-width: 500px) {
+  body .about-banner, body .how-it-works-banner, body .team-banner, body .sellers-banner, body .inspirations-banner, body .faq-banner {
+    height: 150px; }
+    body .about-banner h1, body .how-it-works-banner h1, body .team-banner h1, body .sellers-banner h1, body .inspirations-banner h1, body .faq-banner h1 {
+      font-size: 28px;
+      line-height: 28px;
+      padding-top: 75px; }
+  body .how-it-works .about-section h3, body .how-it-works .how-it-works-section h3, body .how-it-works .team-section h3, body .how-it-works .sellers-section h3, body .how-it-works .inspirations-section h3, body .how-it-works .faq-section h3 {
+    text-align: left; }
+  body .how-it-works .about-section p, body .how-it-works .how-it-works-section p, body .how-it-works .team-section p, body .how-it-works .sellers-section p, body .how-it-works .inspirations-section p, body .how-it-works .faq-section p {
+    text-align: center; } }
+@media (max-width: 494px) {
+  body .about-video {
+    padding: 0px;
+    margin-bottom: 20px; } }
+@media (max-width: 360px) {
+  body .how-it-works .form-actions button {
+    margin: 5px 0;
+    width: 100%; }
+  body .how-it-works .page-header h1 {
+    font-size: 16px;
+    line-height: 16px; }
+  body .how-it-works .faq-section .accordion-group .accordion-heading .accordion-toggle {
+    font-size: 16px; } }
+
+/*# sourceMappingURL=how-it-works.css.map */

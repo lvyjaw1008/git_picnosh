@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Offerings") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/my-bookings.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper"><!--start-->
+
+      {% set dashboard_top_nav_elem = 'offerings' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="tab3">
+          <form method="post" action="{{__url_list__('MyOfferings')}}">
+            <div class="container panel-container">
+              <div class="list-group list-group-style panel-wrapper">
+
+                {% for tr in trs %}
+                <div class="list-group-item">
+                  <div class="row">
+                    <a href="{{__url_list__('Offering', tr['url_id'])}}">
+                      <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                        {% if tr['photo'] %}
+                          <img src="{{tr['photo']}}" class="img-responsive">
+                        {% end %}
+                      <p class="status">{% raw inspirationStatus2Html(tr['status']) %}</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-10 col-md-10">
+                        <h4 class="list-group-item-heading">{{tr['title']}}</h4>
+                        {% if 0 %}
+                        commented this out as Offerings has no location, inspiration has!
+                        <ul class="list-inline">
+                          <li><i class="icon-map-marker"></i> tr['locationName']</li>
+                        </ul>
+                        {% end %}
+                        <p class="list-group-item-text">
+                          <div class="booking-info-wrap">{{tr['description']}}</div>
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                  <p class="action-button-group">
+                    <button type="submit" class="btn btn-default btn-xs" name="action" value="edit.{{tr['url_id']}}">{{_("Edit")}}</button>
+                    <button type="submit" class="btn btn-danger btn-xs" name="action" value="delete.{{tr['url_id']}}">{{_("Delete")}}</button>
+                  </p>
+                </div>
+                {% end %}
+
+              </div>
+            {% include "_parts/pagination.html" %}
+            </div>
+          </form>
+        </div>
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

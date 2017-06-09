@@ -1,0 +1,41 @@
+<div class="navtabs-main visible-lg visible-md visible-sm hidden-xs">
+  <div class="tabbable">
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li class="{% if dashboard_top_nav_elem == 'profile' %} active {% end %}"><a href="{{__url_list__('Profile')}}">{{_("Profile")}}</a></li>
+        {% if __showInspirations__ %}
+        <li class="{% if dashboard_top_nav_elem == 'inspirations' %} active {% end %}"><a href="{{__url_list__('ListMyInspirations')}}">{{_("Inspirations")}}</a></li>
+        {% end %}
+        {% if __showOfferings__ %}
+        <li class="{% if dashboard_top_nav_elem == 'offerings' %} active {% end %}"><a href="{{__url_list__('MyOfferings')}}">{{_("Offerings")}}</a></li>
+        {% end %}
+        {% if __showBookings__ %}
+        <li class="{% if dashboard_top_nav_elem == 'bookings' %} active {% end %}"><a href="{{__url_list__('ListMyBookings')}}">{{_("Bookings")}}</a></li>
+        <li class="{% if dashboard_top_nav_elem == 'transactions' %} active {% end %}"><a href="{{__url_list__('MyTransactions')}}">{{_("Transactions")}}</a></li>
+        {% end %}
+        <li class="{% if dashboard_top_nav_elem == 'message' %} active {% end %}"><a href="{{__url_list__('Message')}}">{{_("Messages")}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-info hidden-lg hidden-md hidden-sm visible-xs navtabs-main-bg">
+  <div class="container navtabs-main-sm">
+    <form name="menuform">
+    <select name="menu2" onchange="top.location.href = this.form.menu2.options[this.form.menu2.selectedIndex].value;return false;" class="form-control">
+      <option value="{{__url_list__('Profile')}}" {% if dashboard_top_nav_elem == 'profile' %} selected {% end %}>{{_("Profile")}}</option>
+      {% if __showInspirations__ %}
+      <option value="{{__url_list__('ListMyInspirations')}}" {% if dashboard_top_nav_elem == 'inspirations' %} selected {% end %}>{{_("Inspirations")}}</option>
+      {% end %}
+      {% if __showOfferings__ %}
+      <option value="{{__url_list__('MyOfferings')}}" {% if dashboard_top_nav_elem == 'offerings' %} selected {% end %}>{{_("Offerings")}}</option>
+      {% end %}
+      {% if __showBookings__ %}
+      <option value="{{__url_list__('ListMyBookings')}}" {% if dashboard_top_nav_elem == 'bookings' %} selected {% end %}>{{_("Bookings")}}</option>
+      <option value="{{__url_list__('MyTransactions')}}" {% if dashboard_top_nav_elem == 'transactions' %} selected {% end %}>{{_("Transactions")}}</option>
+      {% end %}
+      <option value="{{__url_list__('Message')}}" {% if dashboard_top_nav_elem == 'message' %} selected {% end %}>{{_("Messages")}}</option>
+    </select>
+    </form>
+  </div>
+</div>

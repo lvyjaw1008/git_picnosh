@@ -1,0 +1,10 @@
+<div class="col-lg-2">
+  <div class="list-group">
+    <a href="{{__url_list__('PowerServiceDemo')}}" class="list-group-item {%if _power_settings_nav_elem=='demo' %}active{%end%}">
+    	{{_("Demo")}}
+    </a>
+    <a href="{{__url_list__('PowerService', 'email')}}" class="list-group-item {%if _power_settings_nav_elem=='email' %}active{%end%}">
+    	{{_("Email")}}
+    </a>
+  </div>
+</div>

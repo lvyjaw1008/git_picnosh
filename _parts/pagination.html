@@ -1,0 +1,11 @@
+{% if len(pagination['pages']) > 1 %}
+    <div id="pagination-style">
+      <ul class="pagination">
+        <li{% if pagination['prev'] == '#' %} class="disabled"{% end %}><a href="{{urlWoPage}}page={{pagination['prev']}}">«</a></li>
+        {% for p in pagination['pages'] %}
+        <li{% if p['active'] %} class="active"{% end %}><a href="{{urlWoPage}}page={{str(p['page'])}}">{{p['text']}}</a></li>
+        {% end %}
+        <li{% if pagination['next'] == '#' %} class="disabled"{% end %}><a href="{{urlWoPage}}page={{pagination['next']}}">»</a></li>
+     </ul>
+    </div>
+{% end %}

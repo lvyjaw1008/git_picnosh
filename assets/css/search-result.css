@@ -1,0 +1,65 @@
+.banner-location-search {
+  background: url("../images/banner/search.jpg") no-repeat top center fixed;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  height: 300px;
+  width: 100%;
+  background-position: top center;
+  margin-top: 50px; }
+  .banner-location-search h1 {
+    color: #ffffff;
+    font-size: 50px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    line-height: 270px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); }
+
+.banner-location-canada {
+  background: url("../images/banner/search.jpg") no-repeat top center fixed;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  height: 300px;
+  width: 100%;
+  background-position: top center;
+  margin-top: 50px; }
+  .banner-location-canada h1 {
+    color: #ffffff;
+    font-size: 50px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    line-height: 270px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); }
+
+.jumbotron.jumbotron-search {
+  border-radius: 0;
+  padding: 25px 20px 20px 20px; }
+  .jumbotron.jumbotron-search ul li {
+    color: #555152;
+    font-size: 16px; }
+    .jumbotron.jumbotron-search ul li i {
+      color: #555152;
+      margin-right: 5px; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  body .thumbnail.request-Destination p {
+    padding: 21px; } }
+@media (max-width: 767px) {
+  body .banner-location-search, body .banner-location, body .banner-location-canada {
+    height: 150px; }
+    body .banner-location-search h1, body .banner-location h1, body .banner-location-canada h1 {
+      font-size: 36px;
+      line-height: 36px;
+      padding-top: 75px; } }
+@media (max-width: 500px) {
+  body .banner-location-search, body .banner-location, body .banner-location-canada {
+    height: 150px; }
+    body .banner-location-search h1, body .banner-location h1, body .banner-location-canada h1 {
+      font-size: 28px;
+      line-height: 28px;
+      padding-top: 75px; } }
+
+/*# sourceMappingURL=search-result.css.map */

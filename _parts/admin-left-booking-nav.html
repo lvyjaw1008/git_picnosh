@@ -1,0 +1,8 @@
+<div class="col-lg-2">
+  <div class="list-group">
+    <a href="{{__url_list__('AdminAllBookings')}}" class="list-group-item {%if _admin_left_booking_nav_elem=='all' %}active{%end%}">{{_("All")}}</a>
+    {% for st in possibleStatuses %}
+      <a href="{{__url_list__('AdminAllBookings')}}?status={{st['text']}}" class="list-group-item {%if _admin_left_booking_nav_elem==st['text'] %}active{%end%}">{{ st['text'] }}</a>
+    {% end %}
+  </div>
+</div>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+
+    {% if enable_socket %}
+    <link href="/assets/css/home-blocker.css" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/socket.io.js"></script>
+    <script>
+    window.onload = function() {
+
+        var s = new io.Socket(window.location.hostname, {
+            port: {{socket_port}},
+            rememberTransport: false,
+            resource: 'demo_start',
+            transports: ['websocket',]
+        });
+        s.addEvent('connect', function() {s.send('{{hello_echo}}');});
+        s.connect();
+        s.addEvent('message', function(data) {
+            var cnsl = $("#progress_console");
+            var stts = $("#progress_status");
+            if (data['status']) {
+                stts.val(data['status']);
+            }
+            if (data['progress']) {
+                cnsl.append(data['progress'] + '\n');
+                cnsl.scrollTop(cnsl[0].scrollHeight - cnsl.height());
+            }
+            if (data['ended_text']) {
+                $("#ended_text").text(data['ended_text']);
+                $("#action_buttons").append('<a href=""><button class="btn btn-primary" type="submit">Close this popup</button></a>');
+            }
+        });
+
+        $('#cancel_demo_start').submit(function (evt) {
+            s.send('{"cancel": true}');
+            return false;
+        });
+    };
+    </script>
+    {% end %}
+  </head>
+
+  <body {% if enable_socket %} id="home-blocker" {% end %}>
+    {% include "_parts/top-navigation.html" %}
+
+    {% if enable_socket %}
+      <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h2 id="ended_text">Operation in progress...</h2>
+              <p>Preparing data for the demo to start up.</p>
+              <input readonly class="form-control input-lg" id="progress_status" style="height: 100%; font-family: monospace; font-size: 12px" value="">
+              <!--p>Console</p-->
+              <textarea readonly rows="12" class="form-control" id="progress_console" style="height: 100%; font-family: monospace; font-size: 12px">
+              </textarea>
+            </div>
+            <div id="action_buttons">
+
+            </div>
+            <!--form id="cancel_demo_start">
+              <button class="btn btn-primary" type="submit">Cancel</button>
+            </form-->
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div>
+      <div class="modal-backdrop fade in"></div>
+    {% end %}
+
+    <div class="dashboard-wrapper">
+      {% if __power__ %}
+      {% set admin_top_nav_elem = 'service' %}
+      {% include "_parts/admin-top-nav.html %}
+      {% end %}
+
+      <div class="tab-content container">
+
+        <div class="tab-pane active row" id="tab1">
+          {% include "_parts/power-left-settings-nav.html %}
+          <div class="col-lg-10">
+            <div class="container panel-container">
+
+            {% if alert == 'demo_started' %}
+            <div class="alert alert-success" id="demo_started_alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              The demo was started successfully.
+            </div>
+            {% elif alert == 'demo_stopped' %}
+            <div class="alert alert-success" id="demo_stopped_alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              The demo was terminated.
+            </div>
+            {% elif alert is not None %}
+            <div class="alert alert-warning" id="demo_alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              {{alert}}
+            </div>
+            {% end %}
+            {% if success is not None %}
+            <div class="alert alert-success" id="demo_success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              {{success}}
+            </div>
+            {% end %}
+
+              <div class="container panel-container">
+                <form method="post" action="{{__url_list__('PowerServiceDemo')}}">
+                  <div id="demo_state">
+                    <h3>The demo mode is: {{demo_status}}</h3>
+                  </div>
+                  <hr>
+                  <div class="list-group list-group-style panel-wrapper">
+
+                    <h4>From Google Spreadsheet</h4>
+
+                    <div class="row">
+                      <div class="col-lg-10">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="google spreadsheet name" name="spreadsheet_input">
+                          <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" name="action" value="start_demo_from_spreadsheet">Start demo</button>
+                            <button class="btn btn-primary" type="submit" name="action" value="restart_demo_from_spreadsheet">Restart demo</button>
+                            <button class="btn btn-primary" type="submit" name="action" value="sample_spreadsheet">Fill spreadsheet with samples</button>
+                            <span><a href="#" data-placement="left" title=""></a></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <br>
+
+                    <h4>From JSON file</h4>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="json file name" name="demo_input">
+                          <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" name="action" value="start_demo">Start demo</button>
+                            <button class="btn btn-primary" type="submit" name="action" value="restart_demo">Restart demo</button>
+                            <span><a href="#" data-placement="left" title=""></a></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="checkbox-wrapper">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="delete_translations" name="yes">Delete cached translations too
+                        </label>
+                      </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" name="action" value="stop_demo">Stop the demo</button>
+                            <span><a href="#" data-placement="left" title=""></a></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                            <button {% if not can_create_power %}disabled {% end %}class="btn btn-primary" type="submit" name="action" value="create_power_user">Create {{_("Owner")}} User Account</button>
+                            {% if not can_create_power %} If you wish to vanish all the data (in order to start the demo mode), please contact service provider.{% end %}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

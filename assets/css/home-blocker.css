@@ -1,0 +1,64 @@
+body#home-blocker #myModal {
+  top: 0;
+  padding-top: 75px;
+  position: fixed; }
+  body#home-blocker #myModal .modal-header {
+    border-bottom: 0;
+    margin: 0;
+    text-align: center; }
+    body#home-blocker #myModal .modal-header h1 {
+      color: #99173C !important;
+      font-size: 36px;
+      font-weight: 200;
+      height: 20px;
+      letter-spacing: 0.07em; }
+      body#home-blocker #myModal .modal-header h1 img {
+        margin-right: 3px;
+        height: 60px; }
+  body#home-blocker #myModal .modal-content {
+    padding: 20px; }
+  body#home-blocker #myModal .modal-body {
+    text-align: center; }
+    body#home-blocker #myModal .modal-body h2 {
+      font-weight: bold;
+      margin-top: 0; }
+    body#home-blocker #myModal .modal-body h3 {
+      font-size: 18px;
+      margin-top: 0; }
+    body#home-blocker #myModal .modal-body p {
+      font-size: 16px;
+      margin: 20px 0; }
+
+@media (max-width: 767px) {
+  body#home-blocker {
+    top: 0;
+    position: fixed; }
+    body#home-blocker nav.navbar {
+      position: fixed; }
+    body#home-blocker #myModal {
+      padding-top: 0;
+      position: fixed; } }
+@media (max-width: 494px) {
+  body#home-blocker #myModal {
+    top: 70px; }
+    body#home-blocker #myModal .modal-content {
+      padding: 10px; }
+    body#home-blocker #myModal .modal-body {
+      text-align: center; }
+      body#home-blocker #myModal .modal-body h2 {
+        font-size: 21px; }
+      body#home-blocker #myModal .modal-body p {
+        font-size: 15px;
+        margin: 20px 0; } }
+@media (max-width: 360px) {
+  body#home-blocker #myModal {
+    top: 50px; }
+    body#home-blocker #myModal .modal-body {
+      text-align: center; }
+      body#home-blocker #myModal .modal-body h2 {
+        font-size: 16px; }
+      body#home-blocker #myModal .modal-body p {
+        font-size: 12px;
+        margin: 20px 0; } }
+
+/*# sourceMappingURL=home-blocker.css.map */

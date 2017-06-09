@@ -1,0 +1,15 @@
+Transaction Receipt
+
+Transaction ID: {{booking_id}}/{{tr_timestamp}}
+Transaction Type: {{tr_type}}
+Transaction Time: {{tr_date}}
+Card Number: **** **** **** {{cc_last4}}
+Card Type: {{cc_brand}}
+Total: {{price}}
+
+Thank you, your {{tr_type}} has been processed.
+
+The complete details of your booking are available on the site at {{booking_url}}
+
+Marketplace ©{{__copyrights_year__}} All rights reserved.
+1-844-GET-MARKETPLACE

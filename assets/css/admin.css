@@ -1,0 +1,42 @@
+.admin-jumbotron-search {
+  padding: 20px 30px !important;
+  line-height: 1.14286; }
+  .admin-jumbotron-search .col-lg-6 {
+    padding-left: 0;
+    padding-right: 0; }
+    .admin-jumbotron-search .col-lg-6 button.btn-primary {
+      border-radius: 0px 4px 4px 0px !important; }
+    .admin-jumbotron-search .col-lg-6 span a i {
+      color: #818181;
+      margin-left: 10px; }
+      .admin-jumbotron-search .col-lg-6 span a i:hover {
+        text-decoration: none; }
+  .admin-jumbotron-search ul li {
+    color: #EFFFCD;
+    font-size: 16px; }
+    .admin-jumbotron-search ul li i {
+      color: #EFFFCD;
+      margin-right: 5px; }
+
+.my-Destination-details {
+  text-align: right;
+  padding-bottom: 10px; }
+  .my-Destination-details button {
+    color: #99173C;
+    font-size: 12px; }
+  .my-Destination-details span {
+    background: #99173C; }
+  .my-Destination-details .badge-waiting {
+    background: red; }
+  .my-Destination-details .badge-booked {
+    background: #5cb85c; }
+
+.admin-bookings .statuses label {
+  display: inline-block;
+  margin: 0 0 5px 0; }
+
+@media (max-width: 767px) {
+  body .list-group-adjust {
+    width: 100%; } }
+
+/*# sourceMappingURL=admin.css.map */

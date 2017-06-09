@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body class="admin-bookings">
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = 'bookings' %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content container">
+        <div class="tab-pane active" id="tab1">
+          {% include "_parts/admin-left-booking-nav.html %}
+          <div class="col-lg-10">
+            <div class="container panel-container">
+
+              <p class="statuses">
+                {% for st in possibleStatuses %}
+                  <a href="{{__url_list__('AdminAllBookings')}}?status={{st['text']}}">{% raw st['full'] %}</a>
+                {% end %}
+              </p>
+
+              <div class="list-group list-group-style panel-wrapper">
+
+                {% for item in items %}
+                <a href="{{__url_list__('Booking', item['booking']['id'])}}" class="list-group-item">
+                  <div class="row">
+                    <div class="list-group-adjust col-xs-6 col-sm-3">
+                      {% if item['offering']['photo'] is not None %}<img src="{{item['offering']['photo']}}" class="img-responsive">{% end %}
+                      <p class="status">{% raw item['booking']['status'] %}</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                      <h4 class="list-group-item-heading">{{item['offering']['title']}}</h4>
+                      <ul class="list-inline">
+                        <li><i class="icon-map-marker"></i> {{item['offering']['locationName']}}</li>
+                        <li><i class="icon-calendar"></i> {{item['booking']['date']}}</li>
+                        <li><i class="icon-time"></i> {{item['booking']['time']}}</li>
+                        <li><i class="icon-user"></i> No. of Guests: {{item['booking']['participants']}}</li>
+                      </ul>
+                      <p class="list-group-item-text">
+                        <div class="booking-info-wrap">{{item['offering']['description']}}</div>
+                      </p>
+                      <p class="admin-button-group">
+                        <span> Booked by:<button class="btn btn-xs btn-link">{{item['client_name']}}</button></span>
+                        <span> Photographed by:<button class="btn btn-xs btn-link">{{item['seller_name']}}</button></span>
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                {% end %}
+              </div>
+            {% include "_parts/pagination.html" %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

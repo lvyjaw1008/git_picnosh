@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Inspiration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/how-it-works.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="hidden-sm hidden-xs">
+      <div class="how-it-works-banner">
+        <h1>{{_("How it works")}}</h1>
+      </div>
+    </div>
+
+    <div class="visible-sm visible-xs">
+      <div class="how-it-works-banner-sm">
+        <h1>{{_("How it works")}}</h1>
+      </div>
+    </div>
+
+    <div class="container how-it-works-wrapper"><!--start-->
+
+      <div class="row">
+        {% set _how_it_works_nav_active_ = 'how-it-works' %}
+        {% include "_parts/how-it-works-navigation.html" %}
+        <div class="col-lg-10">
+          <div class="jumbotron jumbotron-container how-it-works">
+            <div class="page-header">
+              <h1>Capture your Story</h1>
+            </div>
+            <hr>
+            <div class="row how-it-works-section clearfix">
+              <div class="col-xs-12">
+                <p>Our local sellers provide you with an invaluable opportunity to capture candid travel memories to last a lifetime. Marketplace connects you to the things you love, the moments you never want to lose.</p>
+              </div>
+            </div>
+            <div class="row how-it-works-section clearfix">
+              <div class="col-lg-4">
+                <i class="icon-search"></i>
+              </div>
+              <div class="col-lg-8">
+                <h2>Find or Request a Custom Photo Offerings</h2>
+                <p>Marketplace is a community marketplace of authentic local sellers. Hiring a local Seller on vacation is sweet because they capture you exploring new locations and are able to introduce the hidden or not so hidden gems. Need some travel inspiration? Check out our Inspirations (hyperlink to inspirations) or Browse our Photography Offerings (hyperlink to offerings). Not finding a Seller for your travel inspiration? Request a Custom Offerings (hyperlink to request).</p>
+              </div>
+            </div>
+            <div class="row how-it-works-section clearfix">
+              <div class="col-lg-4">
+                <i class="icon-calendar"></i>
+              </div>
+              <div class="col-lg-8">
+                <h2>Book a Seller</h2>
+                <p>Once you’ve found the Seller for your trip, connect with the Seller, confirm Offerings details, and pay - all through Marketplace reservation service. Booking online through Marketplace is easy and alleviates the stress of information security or day of travel stress. Worried about service or quality? Try Marketplace risk-free with our 120% money-back guarantee. If you’re not satisfied, we’ll refund you completely and give you 20% off your next time!</p>
+              </div>
+            </div>
+            <div class="row how-it-works-section clearfix">
+              <div class="col-lg-4">
+                <i class="icon-camera"></i>
+              </div>
+              <div class="col-lg-8">
+                <h2>Offerings Inspiration</h2>
+                <p>Meet up with your Seller and begin exploring, discovering, enjoying, indulging, or whatever it is your heart desires. Your Seller will candidly capture your priceless moments and memories. Think of the Offerings as fun and informal, but if you have specific ideas in mind for shots just ask.</p>
+                <p>Within 10 days of your Offerings we’ll send you a link to download the high resolution images. Prints and photo book orders are shipped 10 - 15 days post Offerings.</p>
+              </div>
+            </div>
+            <div class="form-actions">
+              <a href="{{__url_list__('RequestInspiration')}}"><button type="submit" class="btn btn-md btn-primary">Request A Custom Offerings</button></a>
+              <button type="button" class="btn btn-md btn-default">Browse Photography Offerings</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    
+  </body>
+</html>

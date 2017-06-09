@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Bookings") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/my-bookings.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper"><!--start-->
+
+      {% set dashboard_top_nav_elem = 'bookings' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="{% if __seller_or_applicant__ %}tab4{% else %}tab3{% end %}">
+          <div class="container">
+
+            <!-- TODO PAUL: If booking cancelled, client will be at that booking, not at the list of bookings - where I have just added an alert. Agree?
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              Your booking is successfully cancelled.
+            </div>
+            -->
+            
+            <div class="row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>{% if iAmClient %}Seller {% end %}{% if iAmClient and iAmSeller %}or {% end %}{% if iAmSeller %}Guest {% end %}Name</th>
+                  <th>Offerings</th>
+                  <th>Date</th>
+                  <th class="hidden-sm hidden-xs">Time</th>
+                  <th class="hidden-sm hidden-xs">Status</th>
+                  <th></th>
+                  <th class="visible-sm visible-xs"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <td>{{item['seller_or_client_name']}}</td>
+                  <td>{{item['offering_title']}}</td>
+                  <td>{{item['booking']['date']}} </td>
+                  <td class="hidden-sm hidden-xs">{{item['booking']['time']}}</td>
+                  <td><span class="btn btn-{{item['booking']['status_label']}} btn-xs"><i class="icon-{% if item['booking']['status_label']=='danger' %}flag{% elif item['booking']['status_label']=='refund' %}shopping-cart{% elif item['booking']['status_label']=='warning' %}time{% else %}ok{% end %} icon-white"></i></span></td>
+                  <td><a href="{{__url_list__('Booking', item['booking']['id'])}}"><button class="btn btn-primary btn-xs hidden-sm hidden-xs" type="button">View Booking</button><button class="btn btn-xs btn-primary visible-sm visible-xs" type="button"><i class="icon-chevron-right"></i></button></a></td>
+                </tr>
+                {% end %}
+              </tbody>
+            </table>
+            </div>
+
+            {% include _parts/pagination.html %}
+          </div>
+        </div>
+
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

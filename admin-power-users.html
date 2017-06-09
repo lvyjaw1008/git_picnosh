@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = 'users' %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content container">
+
+        <div class="tab-pane active row" id="tab1">
+          {% include "_parts/admin-left-users-nav.html %}
+          <div class="col-lg-10">
+            <div class="container panel-container">
+              <div class="list-group list-group-style panel-wrapper" id="admin-power-user-list">
+
+                {% for user in our_users %}
+                <div class="row list-group-item">
+                  <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                    {% if user['seller_or_applicant'] %} <a href="{{__url_list__('Seller', user['url_id'])}}"> {% end %}
+                    <img src="{{user['picture']}}" class="img-responsive" height="75" width="75">
+                    {% if user['seller_or_applicant'] %} </a> {% end %}
+                  </div>
+                  <div class="col-xs-12 col-sm-10 col-md-10">
+                    <h4 class="list-group-item-heading"><i class="icon-{% if user['seller_type'] == 'Company' %}group{% else %}user{% end %}"></i> {{user['name']}}</h4>
+                    {% if user['address'] %}
+                    <ul class="list-inline">
+                      <li><i class="icon-globe"></i>{{user['address']}}</li>
+                      </ul>
+                    {% end %}
+                    <p class="list-group-item-text">
+                      <ul class="list-inline">
+                        <li>{% if user['age'] or user['gender'] %}<i class="icon-{% if user['gender'] == 'female' %}female{% else %}male{% end %}"></i> {% end %}{% if user['age'] %}{{user['age']}}{% if user['gender'] in ['female', 'male'] %}, {% end %}{% end %}{% if user['gender'] == 'female' %}Female{% elif user['gender'] == 'male' %}Male{% end %}</li>
+                      </ul>
+                    </p>
+                  </div>
+                  <div class="action-button-group">
+                    {% if user['power'] %}
+                      <span class="label label-info" style="background: #b3b3b3; color: #333;"><i class="icon-asterisk"></i></span>
+                    {% end %}
+                    {% if user['admin'] %}
+                      <span class="label label-info" style="background: #8ab2ee; color: #333;"><i class="icon-cogs"></i></span>
+                    {% end %}
+                    {% if user['seller_applicant'] %}
+                      <form method="post" style="display: inline-block;">
+                        <button type="submit" class="btn btn-primary btn-xs" name="action" value="seller_approve|{{user['user_id']}}">Approve Seller</button>
+                      </form>
+                    {% end %}
+                    {% if user['seller_or_applicant'] %}
+                    <form method="get" action="{{__url_list__('Seller', user['url_id'])}}" style="display: inline-block;">
+                      <button type="submit" class="btn btn-primary btn-xs"> <i class="icon-plane"></i> </button>
+                    </form>
+                    {% end %}
+                    <form method="post" action="{{__url_list__('Message')}}" style="display: inline-block;">
+                      <button type="submit" class="btn btn-primary btn-xs" name="action" value="message|{{user['user_id']}}"><i class="icon-envelope"></i> Message</button>
+                    </form>
+                    <form method="post" style="display: inline-block;">
+                      <button type="submit" class="btn btn-primary btn-xs" name="action" value="settings|{{user['url_id']}}"><i class="icon-gears"></i> Settings</button>
+                    </form>
+                  </div>
+                </div>
+                {% end %}
+
+              </div>
+              {% include "_parts/pagination.html" %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

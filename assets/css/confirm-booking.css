@@ -1,0 +1,83 @@
+.confirm-booking-page {
+  color: #2e2633; }
+  .confirm-booking-page h1.confirm-header {
+    border-radius: 10px 10px 0 0;
+    background-color: #EFFFCD;
+    border: 1px solid #EFFFCD;
+    border-bottom: 0;
+    font-size: 21px;
+    letter-spacing: 0.05em;
+    line-height: 24px;
+    margin: 0;
+    padding: 20px 30px 10px 30px;
+    text-shadow: none; }
+  .confirm-booking-page .offering-details-section {
+    background: #FAFAFA;
+    border-top: 1px solid #EFFFCD;
+    padding: 30px;
+    margin-bottom: 10px; }
+    .confirm-booking-page .offering-details-section form fieldset {
+      margin-top: 20px;
+      text-align: center; }
+
+.confirm-booking-wrapper table {
+  background-color: white !important;
+  margin-bottom: 0px; }
+  .confirm-booking-wrapper table th {
+    background: #EFFFCD;
+    font-size: 14px;
+    font-weight: normal;
+    text-shadow: none; }
+    .confirm-booking-wrapper table th ul#currency_converter {
+      margin: 0; }
+      .confirm-booking-wrapper table th ul#currency_converter li {
+        list-style: none; }
+    .confirm-booking-wrapper table th ul#currency_converter li a {
+      text-decoration: none;
+      margin-left: 0; }
+      .confirm-booking-wrapper table th ul#currency_converter li a:hover {
+        color: #ffffff; }
+  .confirm-booking-wrapper table td.center-align, .confirm-booking-wrapper table th.center-align {
+    text-align: center; }
+  .confirm-booking-wrapper table td.right-align, .confirm-booking-wrapper table th.right-align {
+    text-align: right; }
+  .confirm-booking-wrapper table tr.total-price-summary {
+    border-top: 3px solid #555152; }
+
+.panel-header-confirm-booking {
+  color: #ffffff;
+  background-color: #333;
+  border-color: transparent;
+  box-shadow: none;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 20px; }
+  .panel-header-confirm-booking .panel-body {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 10px 15px; }
+    .panel-header-confirm-booking .panel-body span {
+      background: #DCE9BE;
+      border-radius: 50px 50px 50px 50px;
+      color: #555152;
+      float: left;
+      font-size: 16px;
+      height: 24px;
+      line-height: 24px;
+      margin-right: 10px;
+      text-align: center;
+      text-shadow: none;
+      width: 24px; }
+
+@media (max-width: 494px) {
+  body .confirm-booking-page .offering-details-section {
+    padding: 10px; }
+  body .panel-header-confirm-booking {
+    font-size: 18px;
+    line-height: 35px; }
+  body td.item-wrapper {
+    width: 20%; } }
+
+/*# sourceMappingURL=confirm-booking.css.map */

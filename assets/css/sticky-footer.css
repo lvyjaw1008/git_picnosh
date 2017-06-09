@@ -1,0 +1,73 @@
+body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+  margin-right: 0 !important; }
+
+.sticky_footer {
+  bottom: 0 !important; }
+  .sticky_footer .footer-fixed-bottom {
+    padding: 10px;
+    border-radius: 0;
+    bottom: 0 !important;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin-bottom: 0;
+    text-align: center;
+    background-color: #99173C;
+    border-top: 3px solid #eee; }
+    .sticky_footer .footer-fixed-bottom p {
+      color: #ffffff;
+      font-size: 21px;
+      font-weight: bold;
+      text-shadow: none;
+      margin: 0; }
+      .sticky_footer .footer-fixed-bottom p i {
+        font-size: 25px;
+        margin-right: 5px; }
+  .sticky_footer .modal-header {
+    border-bottom: none;
+    padding: 40px 40px 0 40px; }
+    .sticky_footer .modal-header h1 {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 28px;
+      text-align: center;
+      color: #99173C; }
+    .sticky_footer .modal-header img {
+      margin: 0 auto;
+      height: 80%;
+      width: 80%; }
+    .sticky_footer .modal-header span {
+      text-align: center; }
+      .sticky_footer .modal-header span i {
+        color: #99173C;
+        font-size: 70px; }
+  .sticky_footer .modal-body {
+    margin: 0 40px; }
+  .sticky_footer .modal-footer {
+    padding: 10px 20px 10px;
+    margin-top: 0; }
+
+@media (max-width: 494px) {
+  body .sticky_footer .footer-fixed-bottom p {
+    font-size: 16px; }
+  body .sticky_footer .modal-header img {
+    margin: 0; }
+  body .sticky_footer .modal-body {
+    margin: 0 10px; }
+  body .sticky_footer .modal-footer {
+    margin-top: 0; } }
+@media (max-width: 320px) {
+  body .sticky_footer .modal-header {
+    padding: 20px 10px 0 10px; }
+    body .sticky_footer .modal-header h1 {
+      font-size: 18px;
+      line-height: 21px;
+      margin: 10px 0; }
+  body .sticky_footer .modal-body {
+    margin: 0; }
+    body .sticky_footer .modal-body ul {
+      margin-bottom: 0; }
+      body .sticky_footer .modal-body ul li {
+        font-size: 12px; } }
+
+/*# sourceMappingURL=sticky-footer.css.map */

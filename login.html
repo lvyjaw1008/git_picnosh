@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Login") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/login.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="container login-wrapper">
+
+      <div class="">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 jumbotron jumbotron-container login-container">
+          <div class="">
+            <ul>
+              <li><a {% if login_with_fb_disabled %}style="opacity: 0.5; pointer-events: none; cursor: default" {% end %}href="{{__url_list__('FacebookLogin')}}"><img src="/assets/images/social/fb-login.indexed.png"></a></li>
+              <li><a {% if login_with_tw_disabled %}style="opacity: 0.5; pointer-events: none; cursor: default" {% end %}href="{{__url_list__('TwitterLogin')}}"><img src="/assets/images/social/twitter-login.indexed.png"></a></li>
+              <li><a {% if login_with_li_disabled %}style="opacity: 0.5; pointer-events: none; cursor: default" {% end %}href="{{__url_list__('LinkedInLogin')}}"><img src="/assets/images/social/in-login.indexed.png"></a></li>
+            </ul>
+            <div class="login-double-line">
+              <h1><span>{{_("or the usual way")}}</span></h1>
+            </div>  
+          </div>
+          <div class="login-form">
+            <form role="form" action="{{__url_list__('Login')}}" method="post">
+              <div class="form-group">
+                {% if error == 'login fail' %}
+                  <font color="#ee2222">
+                    <label>{{_("The login credentials you have entered are not correct.")}}</label>
+                  </font>
+                {% end %}
+                <label for="email_or_username">{{_("Email / Username")}}</label>
+                <input type="text" class="form-control" id="email_or_username" name="name"
+                   {% if name %}
+                     value="{{name}}"
+                   {% else %}
+                      placeholder="Enter email"
+                   {% end %}>
+              </div>
+              <div class="form-group">
+                <label for="password">{{_("Password")}}</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" name="action" value="login">{{_("Login")}}</button>
+              <p><em>{{_("Help")}}: </em><a href="{{__url_list__('ForgotPassword')}}">{{_("I can't login. I forgot my password.")}}</a></p>
+            </form>
+            <div class="alert alert-info">
+              <h3>{{_("No account yet?")}}</h3>
+              <p>
+                <a href="{{__url_list__('Signup')}}" class="btn btn-lg btn-danger">{{_("Sign up now")}}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+
+    </div>
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    
+  </body>
+</html>

@@ -1,0 +1,66 @@
+        
+      <div class="navtabs-main visible-lg visible-md visible-sm hidden-xs">
+        <div class="tabbable">
+          <div class="container">
+            <ul class="nav nav-tabs">
+              <li class="{% if admin_top_nav_elem == 'profile' %}active{% end %}"><a href="{{__url_list__('Profile')}}">{{_("Profile")}}</a></li>
+              <li class="{% if admin_top_nav_elem == 'users' %}active{% end %}"><a href="{% if __power__ %}{{__url_list__('PowerUsers')}}{% else %}{{__url_list__('AdminUsers')}}{% end %}">{{_("Users")}}</a></li>
+              {% if __admin__ %}<li class="{% if admin_top_nav_elem == 'inspirations' %}active{% end %}"><a href="{{__url_list__('AdminAllInspirations')}}">{{_("Inspirations")}}</a></li>{% end %}
+              {% if __admin__ %}<li class="{% if admin_top_nav_elem == 'offerings' %}active{% end %}"><a href="{{__url_list__('AdminAllOfferings')}}">{{_("Offerings")}}</a></li>{% end %}
+              {% if __admin__ %}<li class="{% if admin_top_nav_elem == 'bookings' %}active{% end %}"><a href="{{__url_list__('AdminAllBookings')}}">{{_("Bookings")}}</a></li>{% end %}
+              {% if __admin__ %}<li class="{% if admin_top_nav_elem == 'transactions' %}active{% end %}"><a href="{{__url_list__('AdminTransactions')}}">{{_("Transactions")}}</a></li>{% end %}
+              {% if __admin__ %}<li class="{% if admin_top_nav_elem == 'reviews' %}active{% end %}"><a href="{{__url_list__('AdminReviews')}}">{{_("Reviews")}}</a></li>{% end %}
+              {% if __admin__ %}<li class="{% if admin_top_nav_elem == 'messages' %}active{% end %}"><a href="{{__url_list__('AdminMessages')}}">{{_("Messages")}}</a></li>{% end %}
+              {% if __power__ %}<li class="{% if admin_top_nav_elem == 'messages' %}active{% end %}"><a href="{{__url_list__('Message')}}">{{_("Messages")}}</a></li>{% end %}
+              {% if __power__ %}<li class="{% if admin_top_nav_elem == 'languages' %}active{% end %}"><a href="{{__url_list__('PowerLanguages')}}">{{_("Languages")}}</a></li>{% end %}
+              {% if __power__ %}<li class="{% if admin_top_nav_elem == 'service' %}active{% end %}"><a href="{{__url_list__('PowerServiceDemo')}}">{{_("Service")}}</a></li>{% end %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info hidden-lg hidden-md hidden-sm visible-xs navtabs-main-bg">
+        <div class="container navtabs-main-sm">
+          <form name="menuform">
+          <select name="menu2" onchange="top.location.href = this.form.menu2.options[this.form.menu2.selectedIndex].value;return false;" class="form-control">
+            <option value="{{__url_list__('Profile')}}" {% if admin_top_nav_elem == 'profile' %}selected{% end %}>{{_("Profile")}}</option>
+            <option value="{% if __power__ %}{{__url_list__('PowerUsers')}}{% else %}{{__url_list__('AdminUsers')}}{% end %}" {% if admin_top_nav_elem == 'users' %}selected{% end %}>{{_("Users")}}</option>
+            {% if __admin__ %}<option value="{{__url_list__('AdminAllInspirations')}}" {% if admin_top_nav_elem == 'inspirations' %}selected{% end %}>{{_("Inspirations")}}</option>{% end %}
+            {% if __admin__ %}<option value="{{__url_list__('AdminAllOfferings')}}" {% if admin_top_nav_elem == 'offerings' %}selected{% end %}>{{_("Offerings")}}</option>{% end %}
+            {% if __admin__ %}<option value="{{__url_list__('AdminAllBookings')}}" {% if admin_top_nav_elem == 'bookings' %}selected{% end %}>{{_("Bookings")}}</option>{% end %}
+            {% if __admin__ %}<option value="{{__url_list__('AdminTransactions')}}" {% if admin_top_nav_elem == 'transactions' %}selected{% end %}>{{_("Transactions")}}</option>{% end %}
+            {% if __admin__ %}<option value="{{__url_list__('AdminReviews')}}" {% if admin_top_nav_elem == 'reviews' %}selected{% end %}>{{_("Reviews")}}</option>{% end %}
+            {% if __admin__ %}<option value="{{__url_list__('AdminMessages')}}" {% if admin_top_nav_elem == 'messages' %}selected{% end %}>{{_("Messages")}}</option>{% end %}
+            {% if __power__ %}<option value="{{__url_list__('Message')}}" {% if admin_top_nav_elem == 'messages' %}selected{% end %}>{{_("Messages")}}</option>{% end %}
+            {% if __power__ %}<option value="{{__url_list__('PowerLanguages')}}" {% if admin_top_nav_elem == 'languages' %}selected{% end %}>{{_("Languages")}}</option>{% end %}
+            {% if __power__ %}<option value="{{__url_list__('PowerServiceDemo')}}" {% if admin_top_nav_elem == 'service' %}selected{% end %}>{{_("Service")}}</option>{% end %}
+          </select>
+          </form>
+        </div>
+      </div>
+      
+      {% if query is not None %}
+      <div class="container">
+        <div class="jumbotron admin-jumbotron-search">
+          <div class="row">
+            <div class="col-lg-6">
+              <form method="post">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="search_query" value="{{query}}">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" name="action" value="search">
+                      {{_("Search")}}
+                    </button>
+                    <span>
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="" id="tooltip_a" data-original-title="{{_("This page is only for sellers.")}}"><i class="icon-question-sign"></i></a>
+                    </span>
+                  </span>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-6">
+            </div>
+          </div>
+        </div>
+      </div>
+      {% end %}

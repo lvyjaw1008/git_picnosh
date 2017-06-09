@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = None %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane" id="tab1">
+        </div>
+
+        <div class="tab-pane" id="tab2">
+        </div>
+      </div>
+
+      <form method="post" action="{{__url_list__('AdminApproveInspiration', insp['url_id'])}}">
+        <div class="container panel-container">
+          <p>{{_("You are about to approve this inspiration")}}:</p>
+          <div class="list-group list-group-style panel-wrapper">
+
+            {% if insp %}
+            <a href="{{__url_list__('Inspiration', insp['url_id'])}}" class="list-group-item" target="_blank">
+              <div class="row">
+                <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                  {% if insp['photo'] %}
+                    <img src="{{insp['photo']}}" class="img-responsive">
+                  {% end %}
+                  <p class="status">{% raw inspirationStatus2Html(insp['status']) %}</p>
+                </div>
+                <div class="col-xs-12 col-sm-10 col-md-10">
+                  <h4 class="list-group-item-heading">{{insp['title']}}</h4>
+                  <ul class="list-inline">
+                    <li><i class="icon-map-marker"></i> {{insp['locationName']}}</li>
+                  </ul>
+                  <p class="list-group-item-text">
+                    <div class="booking-info-wrap">{{insp['description']}}</div>
+                  </p>
+                  <div class="my-inspiration-details">
+                    {{_("No. of Sellers")}} <span class="badge">99</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <br><br>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <p>{{_("If you wish to change the URL, choose a new one now")}}:</p>
+                {% if error %}
+                  <div class="label-danger">
+                    <p>{{error}}</p>
+                  </div>
+                {% end %}
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="{{insp['url_id']}}" name="new_id">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" name="action" value="approve">{{_("Approve Inspiration")}}</button>
+                    <button class="btn btn-primary" type="submit" name="action" value="reject">{{_("Reject Inspiration")}}</button>
+                    <span><a href="#" data-placement="left" title=""></a></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <a href="{{__url_list__('AdminNewInspirations')}}">{{_("Cannot load this inspiration. Click here to get back to list of inspirations.")}}</a>
+            {% end %}
+
+          </div>
+        </div>
+      </form>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

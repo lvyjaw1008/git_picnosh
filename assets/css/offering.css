@@ -1,0 +1,150 @@
+.jumbotron.my-offering-actions {
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 0;
+  margin-top: 50px;
+  padding: 20px 0; }
+  .jumbotron.my-offering-actions .view-message-actions {
+    text-align: center; }
+
+#offering .carousel {
+  text-align: center;
+  background: #000;
+  padding: 0; }
+#offering .carousel-inner > .item > img, #offering .carousel-inner > .item > a > img {
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-height: 400px;
+  max-width: 100%; }
+#offering .fluid-width-video-wrapper iframe {
+  display: none; }
+#offering h1.offering-header {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 30px; }
+#offering .accordion a.accordion-toggle {
+  color: #99173C;
+  font-size: 14px; }
+#offering .accordion {
+  margin-bottom: 0; }
+#offering .accordion-heading .accordion-toggle {
+  padding: 0; }
+#offering .accordion-group {
+  border: 0; }
+#offering .accordion-inner {
+  padding: 0; }
+#offering ul.creator {
+  padding: 0 0 0 0; }
+  #offering ul.creator li {
+    display: inline-block; }
+    #offering ul.creator li img {
+      margin-right: 10px; }
+#offering ul.creator-details {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  #offering ul.creator-details li {
+    display: block; }
+#offering .map-style small a {
+  color: #99173C !important;
+  font-size: 14px !important; }
+#offering .map-style iframe {
+  width: 100% !important; }
+#offering .places-to-stay-nearby .jumbotron li, #offering .inspirations-nearby .jumbotron li, #offering .trips-nearby .jumbotron li {
+  list-style: none; }
+#offering .places-to-stay-nearby ul.list-of-places, #offering .inspirations-nearby ul.list-of-places, #offering .trips-nearby ul.list-of-places {
+  margin: 20px 0 0 0;
+  padding-left: 0; }
+  #offering .places-to-stay-nearby ul.list-of-places .media, #offering .inspirations-nearby ul.list-of-places .media, #offering .trips-nearby ul.list-of-places .media {
+    margin: 5px 0; }
+    #offering .places-to-stay-nearby ul.list-of-places .media .media-body a h4, #offering .inspirations-nearby ul.list-of-places .media .media-body a h4, #offering .trips-nearby ul.list-of-places .media .media-body a h4 {
+      color: #000;
+      font-size: 14px;
+      line-height: 16px; }
+    #offering .places-to-stay-nearby ul.list-of-places .media .media-body p, #offering .inspirations-nearby ul.list-of-places .media .media-body p, #offering .trips-nearby ul.list-of-places .media .media-body p {
+      font-size: 13px;
+      font-weight: normal;
+      line-height: 18px; }
+#offering .jumbotron.seller-booking-price {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background-color: #99173C;
+  color: #ffffff; }
+  #offering .jumbotron.seller-booking-price .btn {
+    margin-bottom: 5px; }
+  #offering .jumbotron.seller-booking-price h4 {
+    font-size: 25px;
+    margin: 0; }
+#offering .jumbotron.seller-booking {
+  background-color: #dce9be !important;
+  color: #333333;
+  line-height: 18px;
+  padding: 10px !important;
+  text-shadow: none;
+  border-radius: 0; }
+  #offering .jumbotron.seller-booking form label {
+    font-size: 14px;
+    width: 100%; }
+  #offering .jumbotron.seller-booking form label.checkbox-style {
+    font-weight: normal; }
+  #offering .jumbotron.seller-booking form button {
+    margin-top: 15px; }
+#offering .reviews-section {
+  color: #2E2633; }
+  #offering .reviews-section .review-offerings .media img.profile-photo {
+    height: 75px;
+    height: 75px; }
+  #offering .reviews-section .review-offerings .media-body {
+    font-size: 12px; }
+  #offering .reviews-section .review-offerings .media-body h4 {
+    color: #99173C;
+    font-size: 16px; }
+  #offering .reviews-section .review-offerings .media-body p {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 18px;
+    margin-top: 10px; }
+  #offering .reviews-section .review-offerings .media-body h4 em {
+    color: #666666;
+    font-size: 10px;
+    font-weight: normal;
+    margin-left: 10px; }
+
+@media (max-width: 1199px) {
+  body #offering .video-wrapper {
+    padding: 0 200px 10px 200px; } }
+@media (min-width: 980px) and (max-width: 1199px) {
+  body #offering h1.offering-header {
+    font-size: 26px !important; } }
+@media (min-width: 768px) and (max-width: 979px) {
+  body #offering h1.offering-header {
+    font-size: 24px !important; }
+    body #offering h1.offering-header span button {
+      margin-bottom: 15px; }
+  body #offering .video-wrapper {
+    padding: 0 100px 10px 100px; } }
+@media (max-width: 767px) {
+  body #offering .row.row-offering {
+    margin-left: 0;
+    margin-right: 0; }
+    body #offering .row.row-offering .col-lg-7, body #offering .row.row-offering .col-lg-5 {
+      padding-left: 0;
+      padding-right: 0; }
+  body #offering .video-wrapper {
+    padding: 0; }
+  body #offering .carousel-inner > .item > img, body #offering .carousel-inner > .item > a > img {
+    max-height: 300px; } }
+@media (max-width: 360px) {
+  body #offering h1.offering-header {
+    font-size: 24px; }
+  body #offering h2 {
+    font-size: 21px; }
+  body #offering h3 {
+    font-size: 18px; }
+  body #offering h4 {
+    font-size: 15px; } }
+
+/*# sourceMappingURL=offering.css.map */

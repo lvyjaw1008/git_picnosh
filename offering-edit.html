@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+{% set page_title = "" %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": '',
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/seller-apply.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <link href="/assets/css/jquery-ui-timepicker-addon.css" type="text/css">
+    <link href="/assets/css/inspiration-new.css" rel="stylesheet" type="text/css" />
+    {% if __rich_front_end__ %} <link href="/assets/css/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" /> {% end %}
+    <link href="/assets/css/mobiscroll.custom-2.13.0.min.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="hidden-sm hidden-xs">
+      <div class="edit-offering">
+        <h1>Edit Offerings</h1>
+      </div>
+    </div>
+
+    <div class="visible-sm visible-xs edit-offering-sm">
+      <h1>Edit Offerings</h1>
+    </div>
+
+    <div class="container apply-seller-container"><!--start-->
+      <div class="">
+
+        <div class="heading-wrapper">
+          <h1><i class="icon-edit"></i> Edit Offerings</h1>
+          <hr>
+          <p>Sed laoreet nulla eu orci viverra ultricies. Quisque massa ipsum, volutpat eget diam non, aliquet tincidunt eros. Morbi vel ipsum eu nisi viverra cursus non et diam. Nunc cursus pellentesque laoreet. Etiam elementum euismod orci, vitae venenatis ante pharetra sed. Nam a iaculis est, ac fringilla erat. 
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+          <div class="container offerings-container offerings-container-sm">
+            <div class="row offerings">
+              <div class="">
+                <a href="inspiration.html" class="thumbnail" style="background-image: url(images/offerings/3.jpg);">
+                  <div class="caption">
+                    <h2>Public Speaking / öffentlichen sprechen</h2>
+                    <h3>Rome, Italy</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-md-8 col-lg-9 apply-seller-form-wrapper">
+          <div class="jumbotron jumbotron-container">
+            <h1 class="apply-seller-main-header"><i class="icon-plane"></i> Offerings Details</h1>
+            <div class="panel panel-style">
+              <div class="panel-heading">
+                <h3 class="panel-title ">Describe your Offerings</h3>
+              </div>
+              <div class="panel-body">
+                <label><span>*</span> Title</label>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <input type="text" class="form-control" placeholder="" value="Offerings in Paris">
+                  </div>
+                </div>
+                <label><span>*</span> Tell us about your Offerings</label>
+                {% if __rich_front_end__ %} <div class="wysiwyg-editor"> {% end %}
+                  <textarea class="form-control textarea-3" rows="12" placeholder="">Fusce at ipsum felis. Nunc id elit mi. Nulla vel sagittis dolor. Nam ipsum nulla, commodo eu consectetur rhoncus, venenatis et erat. Vivamus quis orci quis ligula ornare feugiat. Nunc et orci sit amet diam tristique laoreet. Vestibulum sit amet est dignissim, rhoncus lorem nec, lobortis dolor. Aliquam nunc augue, scelerisque ac scelerisque quis, imperdiet gravida felis. Praesent placerat lectus in orci eleifend posuere. Duis est metus, placerat sed pulvinar eu, placerat non nulla. Nam tellus libero, vestibulum sed porttitor vitae, tempor quis justo.</textarea>
+                {% if __rich_front_end__ %} </div> {% end %}
+                <label><span>*</span> Itinerary</label>
+                {% if __rich_front_end__ %} <div class="wysiwyg-editor"> {% end %}
+                  <textarea class="form-control textarea-3" rows="12" placeholder="">Vestibulum sit amet est dignissim, rhoncus lorem nec, lobortis dolor. Aliquam nunc augue, scelerisque ac scelerisque quis, imperdiet gravida felis. Praesent placerat lectus in orci eleifend posuere. Duis est metus, placerat sed pulvinar eu, placerat non nulla. Nam tellus libero, vestibulum sed porttitor vitae, tempor quis justo.</textarea>
+                {% if __rich_front_end__ %} </div> {% end %}
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">Add Photos</h3>
+              </div>
+              <div class="panel-body">
+                <div class="alert alert-success alert-add-wrapper clearfix">
+                  <div class="col-xs-8 alert-ellipsis">
+                    DSC_0215.JPG
+                  </div>
+                  <div class="col-xs-4 alert-ellipsis">
+                    <button type="button" class="btn btn-xs btn-default pull-right">Remove</button>
+                  </div>
+                </div>
+                <div class="alert alert-success alert-add-wrapper clearfix">
+                  <div class="col-xs-8 alert-ellipsis">
+                    DSC_0216.JPG
+                  </div>
+                  <div class="col-xs-4 alert-ellipsis">
+                    <button type="button" class="btn btn-xs btn-default pull-right">Remove</button>
+                  </div>
+                </div>
+                <div class="alert alert-success alert-add-wrapper clearfix">
+                  <div class="col-xs-8 alert-ellipsis">
+                    DSC_0217.JPG
+                  </div>
+                  <div class="col-xs-4 alert-ellipsis">
+                    <button type="button" class="btn btn-xs btn-default pull-right">Remove</button>
+                  </div>
+                </div>
+                <label>Add Photo</label>
+                <button type="file" class="btn btn-default">Upload Photo</button>
+                <hr>
+                <a href="#" class="add-more"><p>Add more photos</p></a>
+              </div>
+
+              <div class="panel-heading add-video-style">
+                <h3 class="panel-title">Add Videos</h3>
+              </div>
+              <div class="panel-body add-video-style">
+                <div class="alert alert-success alert-add-wrapper clearfix">
+                  <div class="col-xs-8 alert-ellipsis">
+                    http://youtu.be/IWysdUiydgk
+                  </div>
+                  <div class="col-xs-4 alert-ellipsis">
+                    <button type="button" class="btn btn-xs btn-default pull-right">Remove</button>
+                  </div>
+                </div>
+                <div class="alert alert-success alert-add-wrapper clearfix">
+                  <div class="col-xs-8 alert-ellipsis">
+                    http://youtu.be/IWysdUiydgkrdftdghjklhngb/sdsadsd
+                  </div>
+                  <div class="col-xs-4 alert-ellipsis">
+                    <button type="button" class="btn btn-xs btn-default pull-right">Remove</button>
+                  </div>
+                </div>
+                <form class="form-inline" role="form">
+                  <label>Add Video</label>
+                  <button type="submit" class="btn btn-default">Upload Video</button>
+                  <label>or submit Youtube url</label>
+                  <div class="form-group">
+                    <input type="email" class="form-control img_youtube-icon" placeholder="Youtube URL">
+                  </div>
+                </form>
+                <hr>
+                <a href="#" class="add-more"><p>Add more videos</p></a>
+              </div>
+
+              <div class="panel-heading">
+                <h3 class="panel-title">Schedule</h3>
+              </div>
+              <div class="panel-body">
+                <div class="schedule-details">
+<!--                   <form class="form-vertical form-inline" role="form">
+                    <fieldset> -->
+                  <form role="form" class="form-vertical form-inline">
+                    <fieldset>
+                      <!--Desktop View-->
+                      <div class="offering-schedule-desktop-view hidden-sm hidden-xs">
+                        <div class="start-date-wrapper">
+                          <label><i class="icon-calendar"></i> Starts at</label>
+                          <div class="form-group">
+                            <input type="text" class="form-control  img_datepicker" id="datepicker-e" data-format="yyyy-MM-dd" placeholder="Select Date">
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control img_timepicker" name="basic_example_2" id="timepicker-e" placeholder="Select Time">
+                          </div>
+                        </div>
+                        <div class="end-date-wrapper">
+                          <label><i class="icon-calendar"></i> Ends at&nbsp;&nbsp;</label>
+                          <div class="form-group">
+                            <input type="text" class="form-control img_datepicker" id="datepicker-f" data-format="yyyy-MM-dd" placeholder="Select Date">
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control img_timepicker" name="basic_example_2" id="timepicker-f" placeholder="Select Time">
+                          </div>
+                        </div>                    
+                      </div>
+
+                      <!--Mobile View-->
+                      <div class="offering-schedule-desktop-view visible-sm visible-xs">
+                        <div class="start-date-wrapper">
+                          <label><i class="icon-calendar"></i> Starts at</label>
+                          <div class="form-group">
+                            <input type="text" class="form-control datetimepicker_style img_datepicker" placeholder="Select Date and Time" id="scroller" name="scroller"/>
+                          </div>
+                        </div>
+                        <div class="end-date-wrapper">
+                          <label><i class="icon-calendar"></i> Ends at</label>
+                          <div class="form-group">
+                            <input type="text" class="form-control datetimepicker_style img_datepicker" placeholder="Select Date and Time" id="scroller_2" name="scroller_2"/>
+                          </div>
+                        </div>
+                      </div> 
+
+                      <div class="repeat-schedule clearfix">
+                        <label>And repeats on days:</label>
+                        <br>
+                        <ul class="list-inline repeat-schedule-list">
+                          <li>
+                            <label class="checkbox">
+                              <input type="checkbox"> Sun
+                            </label>
+                          </li>
+                          <li>
+                            <label class="checkbox">
+                              <input type="checkbox"> Mon
+                            </label>
+                          </li>
+                          <li>
+                            <label class="checkbox">
+                              <input type="checkbox"> Tue
+                            </label>
+                          </li>
+                          <li>
+                            <label class="checkbox">
+                              <input type="checkbox"> Wed
+                            </label>
+                          </li>
+                          <li>
+                            <label class="checkbox">
+                              <input type="checkbox"> Thu
+                            </label>
+                          </li>
+                          <li>
+                            <label class="checkbox">
+                              <input type="checkbox"> Fri
+                            </label>
+                          </li>
+                          <li>
+                            <label class="checkbox">
+                              <input type="checkbox"> Sat
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+                      <hr>
+                      <a href="#" class="add-more"><p>Optional: Add another schedule</p></a>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+
+              <div class="panel-heading">
+                <h3 class="panel-title">Price</h3>
+              </div>
+
+              <div class="panel-body form-adjust-wrapper">
+                <label><span>*</span> Price</label>
+                <form class="form-inline form-adjust" role="form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <select class="form-control sm-select">
+                    <option>USD$</option>
+                    <option>AUD$</option>
+                    <option>EUR€</option>
+                    <option>NZD$</option>
+                  </select>
+                </form>
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">More Details</h3>
+              </div>
+              <div class="panel-body">
+                <label><span>*</span> Max No. of Participants</label>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <label>Promo Code <span class="muted">(Optional)</span></label>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="panel-heading">
+                <h3 class="panel-title">Add-ons</h3>
+              </div>
+              <div class="panel-body">
+                <label>Add-on Details</label>
+                <form class="form-inline form-adjust" role="form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Price">
+                  </div>
+                  <select class="form-control sm-select">
+                    <option>USD$</option>
+                    <option>AUD$</option>
+                    <option>EUR€</option>
+                    <option>NZD$</option>
+                  </select>
+                </form>
+                <hr>
+                <a href="#" class="add-more"><p>Add more videos</p></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="jumbotron terms-and-condition">
+            <h1>Confirm Terms and Condition</h1>
+            <hr>
+            <ul>
+              <li>I agree to the <a href="#">Terms of Use</a>, <a href="#">Terms of Business</a> and the <a href="#">Cooperation Agreement</a>.</li>
+              <li>I may receive important notifications (e.g. booking details) from Marketplace.</li>
+            </ul>
+            <div class="checkbox-wrapper">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                    <p>I have read the above terms and agree.</p>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                    <p>I agree to reply to all booking communications within 24 hours.</p>
+                </label>
+              </div>
+            </div>
+            <p class="form-action-button">
+              <button type="button" class="btn btn-primary">Save Changes</button>
+              <button type="button" class="btn btn-default">Cancel</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/assets/javascripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="/assets/javascripts/jquery-ui-sliderAccess.js"></script>
+    {% if __rich_front_end__ %}
+      <script src="/assets/javascripts/wysihtml5-0.3.0.js"></script>
+      <script src="/assets/javascripts/bootstrap-wysihtml5.js"></script>
+    {% end %}
+    <script src="/assets/javascripts/mobiscroll.custom-2.13.0.min.js" type="text/javascript"></script>
+
+    <script>
+      if(navigator.userAgent.match(/iPad/i)){
+        var now = new Date();
+        $('#scroller').mobiscroll().datetime({
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            theme: 'ios7',
+            display: 'bottom',
+            mode: 'scroller'
+        });
+        $('#scroller_2').mobiscroll().datetime({
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            theme: 'ios7',
+            display: 'bottom',
+            mode: 'scroller'
+        }); 
+      }
+
+      else if(navigator.userAgent.match(/iPhone/i)){
+        var now = new Date();
+        $('#scroller').mobiscroll().datetime({
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            theme: 'ios7',
+            display: 'bottom',
+            mode: 'scroller'
+        }); 
+        $('#scroller_2').mobiscroll().datetime({
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            theme: 'ios7',
+            display: 'bottom',
+            mode: 'scroller'
+        }); 
+      }
+
+      else if(navigator.userAgent.match(/Android/i)){
+        var now = new Date();
+        $('#scroller').mobiscroll().datetime({
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            theme: 'android',
+            display: 'bottom',
+            mode: 'scroller'
+        }); 
+        $('#scroller_2').mobiscroll().datetime({
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            theme: 'android',
+            display: 'bottom',
+            mode: 'scroller'
+        }); 
+      }
+
+      else if(navigator.userAgent.match(/BlackBerry/i)){
+        var now = new Date();
+        $('#scroller').mobiscroll().datetime({
+            minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+            theme: 'android',
+            display: 'bottom',
+            mode: 'scroller'
+        }); 
+      }
+
+      else {
+        $(function() {
+          var now = new Date();
+          $('#scroller').mobiscroll().datetime({
+              minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+              theme: 'ios7',
+              display: 'modal',
+              mode: 'scroller'
+          }); 
+          $('#scroller_2').mobiscroll().datetime({
+              minDate: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+              theme: 'ios7',
+              display: 'modal',
+              mode: 'scroller'
+          }); 
+        });
+      }
+
+      $(function() {
+        $( "#datepicker-e" ).datepicker({
+          closeText: "Close",
+          showButtonPanel: true,
+        });
+        $( "#datepicker-f" ).datepicker({ 
+          minDate: 1, 
+          maxDate: "+2M",
+          closeText: "Close",
+          showButtonPanel: true, 
+        });
+      });
+
+      $(function() {
+        $('#timepicker-e').timepicker({
+          altField: "#alt_example_1_alt",
+          controlType: 'select',
+          timeFormat: 'hh:mm tt',
+          closeText: "Close",
+          hourMin: 8,
+          hourMax: 14,
+          showTime: 0,
+          showMinute: 0
+        });
+        $('#timepicker-f').timepicker({
+          altField: "#alt_example_1_alt",
+          controlType: 'select',
+          timeFormat: 'hh:mm tt',
+          closeText: "Close",
+          hourMin: 8,
+          hourMax: 14,
+          showTime: 0,
+          showMinute: 0
+        });
+      });
+      {% if __rich_front_end__ %}
+      $('.textarea-3').wysihtml5({
+        "image": false, 
+      });
+      {% end %}
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+{% set page_title = "" %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": '',
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/my-bookings.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set dashboard_top_nav_elem = 'bookings' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="{% if __seller_or_applicant__ %}tab4{% else %}tab3{% end %}">
+           <div class="container panel-container">
+            <div class="col-lg-1 hidden-sm hidden-xs"></div>
+            <div class="col-lg-10 request-refund-form">
+              <h1><i class="icon-exclamation-sign"></i> Request Refund</h1>
+              <hr>
+              <!-- TODO PAUL: Tune the text below -->
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div class="form-actions-wrapper cancel-booking">
+                <form method="post" action="{{__url_list__('RequestRefundBooking', booking_id)}}">
+                  <button type="submit" class="btn btn-danger" name="action" value="confirm_request_refund">Confirm Request Refund</button>
+                  <button type="submit" class="btn btn-default" name="action" value="cancel">Cancel</button>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-1 hidden-sm hidden-xs"></div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

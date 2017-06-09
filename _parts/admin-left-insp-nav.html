@@ -1,0 +1,8 @@
+<div class="col-lg-2">
+  <div class="list-group">
+    <a href="{{__url_list__('AdminAllInspirations')}}" class="list-group-item {%if _admin_left_insp_nav_elem=='all' %}active{%end%}">{{_("All")}}</a>
+    <a href="{{__url_list__('AdminNewInspirations')}}" class="list-group-item {%if _admin_left_insp_nav_elem=='new' %}active{%end%}">{{_("On Review")}}</a>
+    <a href="{{__url_list__('AdminRejectedInspirations')}}" class="list-group-item {%if _admin_left_insp_nav_elem=='rejected' %}active{%end%}">{{_("Rejected")}}</a>
+    <a href="{{__url_list__('AdminPublishedInspirations')}}" class="list-group-item {%if _admin_left_insp_nav_elem=='published' %}active{%end%}">{{_("Published")}}</a>
+  </div>
+</div>

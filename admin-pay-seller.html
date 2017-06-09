@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = None %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane" id="tab1">
+        </div>
+
+        <div class="tab-pane" id="tab2">
+        </div>
+      </div>
+
+      <form method="post">
+        <div class="container panel-container">
+          <p>For <a href="{{__url_list__('Booking', this_booking['id'])}}" target="_blank">this booking</a>:</p>
+          <div class="list-group list-group-style panel-wrapper">
+            <div class="row">
+              <div class="col-lg-6" id="pay-seller-details">
+                <div class="input-group">
+                  Seller earns: <input type="text" class="form-control" name="amount" readonly value="{{this_booking['seller_earns']}}">
+                </div>
+                <br>
+                <div class="input-group">
+                  <a href="{{__url_list__('Seller', creator_url_id)}}" target="_blank">Seller</a>'s PayPal: <input type="text" name="paypal" class="form-control" readonly value="{{creators_paypal}}">
+                </div>
+              </div>
+            </div>
+
+            <br>
+            <div class="row">
+              <div class="col-lg-6">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit" name="action" value="paid">Mark as paid and update Booking status</button>
+                </span>
+              </div>
+            </div>
+            <br>
+
+          </div>
+        </div>
+      </form>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

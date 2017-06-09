@@ -1,0 +1,49 @@
+{% if object_type == 'booking' %}
+A booking for {{offering_title}} has been updated to {{booking_status}}
+
+Location: {{offering_location}}
+Date: {{booking_date}}
+Time: {{booking_time}}
+No. of Guests: {{booking_no_participants}}
+Add-ons: {{booking_add_ons}}
+Photographer Name: {{seller_name}}
+Customer Name: {{client_name}}
+Total: {{total_price}}
+Status: {{booking_status}}
+
+View or Cancel Booking: {{booking_url}}
+
+Message Photographer: {{message_seller_url}}
+
+Message Customer: {{message_client_url}}
+{% end %}
+{% if object_type == 'offering' %}
+A {{__obj_name__['offering']}} has changed status to {{status}}
+
+Title: {{title}}
+Location: {{location}}
+Photographer Name: {{seller_name}}
+Base price: {{price}}
+Status: {{status}}
+
+View or Edit Shoot: {{object_url}}
+Approve or Reject Shoot: {{approve_url}}
+
+Message Photographer: {{message_seller_url}}
+{% end %}
+{% if object_type == 'inspiration' %}
+A {{__obj_name__['inspiration']}} has changed status to {{status}}
+
+Title: {{title}}
+Location: {{location}}
+Writer Name: {{creator_name}}
+Status: {{status}}
+
+View or Edit Destination: {{object_url}}
+Approve or Reject Destination: {{approve_url}}
+
+Message Photographer: {{message_creator_url}}
+{% end %}
+
+Marketplace ©{{__copyrights_year__}} All rights reserved.
+1-844-GET-MARKETPLACE

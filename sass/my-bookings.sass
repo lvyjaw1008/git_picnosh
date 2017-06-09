@@ -1,0 +1,71 @@
+.leave-review-form
+  background-color: #d9edf7
+  border-color: #bce8f1
+  border: 1px solid #BCE8F1
+  border-radius: 4px 4px 4px 4px
+  color: #3a87ad
+  margin-bottom: 0
+  padding: 14px
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  form
+    margin: 0
+    button
+      margin-top: 10px
+  ul.star-rating
+    display: inline-block
+    list-style: none
+    margin: 10px 0 0 0
+    padding-left: 0
+    li.star-styles
+      width: 140px !important
+    li 
+      display: inline-block
+      p 
+        font-size: 14px
+
+.booking-wrapper
+  table 
+    background-color: rgba(255, 255, 255, 1) !important
+    margin-bottom: 0px
+    th 
+      background: #EFFFCD
+      font-size: 14px
+      font-weight: normal
+      text-shadow: none
+      ul#currency_converter 
+        margin: 0
+        li
+          list-style: none
+      ul#currency_converter li a
+        text-decoration: none
+        margin-left: 0
+        &:hover 
+          color: #ffffff
+    td.center-align, th.center-align
+      text-align: center
+    td.right-align, th.right-align
+      text-align: right
+    tr.total-price-summary
+      border-top: 3px solid #555152
+      
+// media queries
+
+@media (max-width: 547px)
+  body 
+    .leave-review-form
+      padding: 15px 15px 70px
+      form button 
+        width: 100%
+
+@media (max-width: 427px)
+  body 
+    .leave-review-form
+      padding: 15px 15px 70px
+      form button 
+        width: 100%
+      ul.star-rating
+        li.star-styles
+          margin: 0
+          padding: 0
+          line-height: 21px
+          width: 140px !important

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Messages") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/socket.io.js"></script>
+    <script>
+    window.onload = function() {
+
+        var socketConnectionEstablished = false;
+        displayAlert = function() {
+            if (socketConnectionEstablished == false){
+                $("#inbox").empty();
+                $("#inbox").append("<div class=\"media\">We can not connect our web socket with your browser in order to present the inbox.</div>");
+            }
+        }
+        setTimeout(function (){displayAlert()}, 5000);
+
+        var s = new io.Socket(window.location.hostname, {
+            port: {{socket_port}},
+            rememberTransport: false,
+            resource: 'chat',
+            transports: [
+                'websocket',
+            ]
+        });
+        s.connect();
+
+        s.addEvent('message', function(data) {
+            socketConnectionEstablished = true;
+            var content = "<a href=\"{{__url_list__('Message')}}/" + data.msg_id+ "\" class=\"list-group-item\">\
+                            <div class=\"media\">\
+                              <div class=\"pull-left\" href=\"#\">\
+                                <img src=\"" + data.profile_photo + "\" class=\"img-responsive\">\
+                              </div>\
+                              <div class=\"media-body\">\
+                                <h4 class=\"media-heading\">" + data.name + "<em>" + data.last_time + "</em></h4>" + data.last_msg + "\
+                              </div>\
+                            </div>\
+                          </a>"
+            if (data.clear) {
+                $("#inbox").empty();
+            }
+            if (data.no_messages) {
+                $("#inbox").append("<div class=\"media\">No messages to be displayed.</div>");
+            }
+            if (data.replace) {
+                $("a[href=\"{{__url_list__('Message')}}/" + data.msg_id + "\"]").remove();
+            }
+            if (data.msg_id && data.last_msg) {
+                $("#inbox").prepend(content);
+            }
+            if (data.page_prev_show || data.page_next_show) {
+                var pages_div = "\
+                  <ul class=\"pager\">\
+                    <li class=\"previous\"><a href=\""+data.page_prev_show+"\">&larr; Older</a></li>\
+                    <li class=\"next\"><a href=\""+data.page_next_show+"\">Newer &rarr;</a></li>\
+                  </ul>";
+                $("#pages").append(pages_div);
+            }
+        });
+    };
+    </script>
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper"><!--start-->
+      {% set dashboard_top_nav_elem = 'message' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+        {% if __seller_or_applicant__ %}
+        <div class="tab-pane active" id="tab5">
+        {% else %}
+        <div class="tab-pane active" id="tab4">
+        {% end %}
+
+          <div class="container view-message">
+            <div class="row">
+              <div class="col-xs-12 message-list-sm">
+                <div class="list-group">
+                  <div id="inbox">
+                    <div class="media">Loading your messages...</div>
+                  </div>
+                </div>
+                <div id="pages">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

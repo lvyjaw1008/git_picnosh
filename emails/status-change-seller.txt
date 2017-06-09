@@ -1,0 +1,21 @@
+{% if object_type == 'booking' %}Your booking for {{offering_title}} has been updated to {{booking_status}}{% end %}
+
+Location: {{offering_location}}
+Date: {{booking_date}}
+Time: {{booking_time}}
+No. of Guests: {{booking_no_participants}}
+Add-ons: {{booking_add_ons}}
+Customer Name: {{client_name}}
+Total: {{total_price}}
+Status: {{booking_status}}
+
+View or Cancel Booking: {{booking_url}}
+
+Message Customer: {{message_client_url}}
+
+If you are unsure of how to deal with a customer or situation on Marketplace please contact our concierge using the button below or phone us on our toll-free number.
+
+Message Concierge: {{message_concierge_url}}
+
+Marketplace ©{{__copyrights_year__}} All rights reserved.
+1-844-GET-MARKETPLACE

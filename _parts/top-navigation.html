@@ -1,0 +1,140 @@
+    <nav class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!--Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">{{_("Toggle navigation")}}</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{__url_list__('Main')}}">
+            <img src="/assets/images/icons/white-side-logo.png" alt="{{_("PicturesAway Logo")}}">
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <form class="navbar-form navbar-left hidden-sm hidden-xs" role="search" action="{{__url_list__('Main')}}" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control topsearch" placeholder="{{_("Where are you going?")}}" name="total_search_query">
+            </div>
+            <button type="submit" class="btn btn-primary" name="action" value="total_search">
+              <i class="icon-search"></i>
+            </button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            {% if __demo_mode__ or __development__ %}
+              {% if __demo_mode__ %}
+                <li>
+                  <a href="{{__url_list__('PowerServiceDemo')}}">
+                    <span class="label label-info" style="background: #71b046; color: #333;"><i class="icon-film"></i> DEMO</span>
+                  </a>
+                </li>
+              {% end %}
+              {% if __development__ %}
+                <li>
+                  <a href="/dev-mode-on">
+                    <span id="dev_object_id" class="label label-info" style="background: #442ba2; color: #efefef;"><i class="icon-wrench"></i> {% if __object_id__ %}{{__object_id__}}{% else %}DEV{% end %}</span>
+                  </a>
+                </li>
+              {% end %}
+            {% end %}
+            {% if __actAsName__ %}
+              <li>
+                <a href="{{__url_list__('StopActingAs')}}">
+                  <span class="label label-info" style="background: #b30000; color: #f7f7f7;">
+                    <i class="icon-unlock"></i> You act as someone else. Stop here.
+                  </span>
+                </a>
+              </li>
+            {% else %}
+              <li><p class="phone-number"><i class="icon-phone"></i> 1-844-GET-MARKETPLACE </p></li>
+            {% end %}
+            <li><a href="{{__url_list__('HowItWorks')}}">{{_("How it works")}}</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{__language_orig__}}<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{__url_list__('Language', 'en')}}">English</a></li>
+                {% for l in __languages_available__ %}
+                  <li><a href="{{__url_list__('Language', l['lang'])}}">{{l['original']}}</a></li>
+                {% end %}
+              </ul>
+            </li>
+            {% if __user_logged_in__ %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="login_name">
+                {% if __power__ %} <!-- if changing icons below, change them in admin-user-settings.html too -->
+                <span class="label label-info" style="background: #b3b3b3; color: #333;"><i class="icon-asterisk"></i></span>
+                {% end %}
+                {% if __admin__ %}
+                <span class="label label-info" style="background: #8ab2ee; color: #333;"><i class="icon-cogs"></i></span>
+                {% end %}
+                {% if __seller_or_applicant__ %}
+                {% if __seller__ %}
+                <span class="label label-info" style="background: #DCE9BE; color: #333;"><i class="icon-plane"></i> Seller</span>
+                {% else %}
+                <span class="label label-info" style="background: #DCE9BE; color: #333;"><i class="icon-plane"></i> Seller Applicant</span>
+                {% end %}
+                {% end %}
+                {% if __i_am_concierge__ %}
+                <span class="label label-info" style="background: #a875aa; color: #333;"><i class="icon-comment"></i> Concierge</span>
+                {% end %}
+                {{__name__}}<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="{{__url_list__('Profile')}}">{{_("Profile")}}</a></li>
+                  {% if __see_translation__ %}
+                  <li><a href="?template_translation=yes">This page translation</a></li>
+                  {% end %}
+                  {% if __see_content_translation__ and __able_to_see_content_translation__ %}
+                  <li><a href="?content_translation=yes">This content translation</a></li>
+                  {% end %}
+                  {% if __power__ %}
+                  <li><a href="{{__url_list__('PowerUsers')}}">{{_("Users")}}</a></li>
+                  {% elif __admin__ %}
+                  <li><a href="{{__url_list__('AdminUsers')}}">{{_("Users")}}</a></li>
+                  {% end %}
+                  {% if __showInspirations__ %}
+                  {% if __admin__ %}
+                  <li><a href="{{__url_list__('AdminAllInspirations')}}">{{_("Inspirations")}}</a></li>
+                  {% else %}
+                  <li><a href="{{__url_list__('ListMyInspirations')}}">{{_("Inspirations")}}</a></li>
+                  {% end %}
+                  {% end %}
+                  {% if __showOfferings__ %}
+                  {% if __admin__ %}
+                  <li><a href="{{__url_list__('AdminAllOfferings')}}">{{_("Offerings")}}</a></li>
+                  {% else %}
+                  <li><a href="{{__url_list__('MyOfferings')}}">{{_("Offerings")}}</a></li>
+                  {% end %}
+                  {% end %}
+                  {% if __showBookings__ %}
+                  {% if __admin__ %}
+                  <li><a href="{{__url_list__('AdminAllBookings')}}">{{_("Bookings")}}</a></li>
+                  <li><a href="{{__url_list__('AdminTransactions')}}">{{_("Transactions")}}</a></li>
+                  {% else %}
+                  <li><a href="{{__url_list__('ListMyBookings')}}">{{_("Bookings")}}</a></li>
+                  <li><a href="{{__url_list__('MyTransactions')}}">{{_("Transactions")}}</a></li>
+                  {% end %}
+                  {% end %}
+                  {% if __admin__ %}
+                  <li><a href="{{__url_list__('AdminReviews')}}">{{_("Reviews")}}</a></li>
+                  <li><a href="{{__url_list__('AdminMessages')}}">{{_("Messages")}}</a></li>
+                  {% else %}
+                  <li><a href="{{__url_list__('Message')}}">{{_("Messages")}}</a></li>
+                  {% end %}
+                  {% if __power__ %}
+                  <li><a href="{{__url_list__('PowerLanguages')}}">{{_("Languages")}}</a></li>
+                  <li><a href="{{__url_list__('PowerService')}}">{{_("Service")}}</a></li>
+                  {% end %}
+                  <li><a href="{{__url_list__('Logout')}}">{{_("Logout")}}</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li><a href="{{__url_list__('Signup')}}">{{_("Sign up")}}</a></li>
+              <li><a href="{{__url_list__('Login')}}">{{_("Login")}}</a></li>
+            {% end %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>

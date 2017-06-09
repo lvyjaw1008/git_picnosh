@@ -1,0 +1,18 @@
+<div class="col-lg-2">
+  <div class="list-group">
+    <a href={% if __power__ %}"{{__url_list__('PowerUsers')}}"{% else %}"{{__url_list__('AdminUsers')}}"{% end %} class="list-group-item {%if _admin_left_users_nav_elem=='users' %}active{%end%}">
+    	{{_("All Users")}}
+    </a>
+    <a href={% if __power__ %}"{{__url_list__('PowerUsers', __obj_name__('seller_applicants'))}}"{% else %}"{{__url_list__('AdminUsers', __obj_name__('seller_applicants'))}}"{% end %} class="list-group-item {%if _admin_left_users_nav_elem=='seller_applicants' %}active{%end%}">
+    	{{_("Seller Applicants")}}
+    </a>
+    <a href={% if __power__ %}"{{__url_list__('PowerUsers', __obj_name__('sellers'))}}"{% else %}"{{__url_list__('AdminUsers', __obj_name__('sellers'))}}"{% end %} class="list-group-item {%if _admin_left_users_nav_elem=='sellers' %}active{%end%}">
+    	{{_("Sellers")}}
+    </a>
+    {% if __power__ %}
+    <a href="{{__url_list__('PowerUsers', __obj_name__('concierge'))}}" class="list-group-item {%if _admin_left_users_nav_elem=='concierge' %}active{%end%}">
+    	Concierge
+    </a>
+    {% end %}
+  </div>
+</div>

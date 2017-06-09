@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Transactions") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/my-bookings.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper"><!--start-->
+
+      {% set admin_top_nav_elem = 'transactions' %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="tab{% if __seller_or_applicant__ %}6{% else %}5{% end %}">
+
+          <div class="container panel-container">
+
+            {% if not items %}
+              <p class="lead" style="margin-top: 20px;">You have no past transactions to report.</p>
+            {% else %}
+
+              <!-- TODO in table below, status green means paid (in both guest and seller cases), orange means pending (until 48 hours after booking, sellers see pending, but guests only see pending if refund is in process), red means cancelled or refunded so that no money is transferred as part of the booking -->
+              <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>{% if iAmClient %}Seller {% end %}{% if iAmClient and iAmSeller %}or {% end %}{% if iAmSeller %}Guest {% end %}Name</th>
+                    <th>Offerings</th>
+                    <th><a href="?sort=date{%if snd=='date'%}&desc=no{%end%}">
+                      <span>Date{%if sort=='date'%} <i class="icon-sort-by-attributes{%if desc%}-alt{%end%}"></i>{%end%}</span>
+                    </a></th>
+                    <th class="hidden-sm hidden-xs"><a href="?sort=price{%if snd=='price'%}&desc=no{%end%}">
+                      <span>Price{%if sort=='price'%} <i class="icon-sort-by-attributes{%if desc%}-alt{%end%}"></i>{%end%}</span>
+                    </a></th>
+                    <th class="hidden-sm hidden-xs"><a href="?sort=status{%if snd=='status'%}&desc=no{%end%}">
+                      <span>Status{%if sort=='status'%} <i class="icon-sort-by-attributes{%if desc%}-alt{%end%}"></i>{%end%}</span>
+                    </a></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in items %}
+                  <tr>
+                    <td>{{item['seller_or_client_name']}}</td>
+                    <td>{{item['offering_title']}}</td>
+                    <td>{{item['transaction']['date_time']}} </td>
+                    <td class="hidden-sm hidden-xs">{{item['transaction']['price']}}</td>
+                    <td><span class="btn btn-{{item['booking']['status_label']}} btn-xs"><i class="icon-{% if item['booking']['status_label']=='danger' %}flag{% elif item['booking']['status_label']=='warning' %}time{% else %}ok{% end %} icon-white"></i></span></td>
+                    <td><a href="{{__url_list__('Booking', item['booking']['id'])}}"><button class="btn btn-primary btn-xs hidden-sm hidden-xs" type="button">View Booking</button><button class="btn btn-xs btn-primary visible-sm visible-xs" type="button"><i class="icon-chevron-right"></i></button></a></td>
+                  </tr>
+                  {% end %}
+                </tbody>
+              </table>
+              </div>
+
+              {% include _parts/pagination.html %}
+
+            {% end %}
+          </div>
+        </div>
+
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

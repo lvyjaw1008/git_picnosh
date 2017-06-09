@@ -1,0 +1,15 @@
+<div class="col-lg-2">
+  <div class="list-group">
+    <a href="{{__url_list__('PolicyTermsOfUse')}}" class="list-group-item
+      {%if _policy_nav_active_=='terms-of-use' %}active{%end%}
+      ">{{_("Terms of Use")}}</a>
+
+    <a href="{{__url_list__('PolicyPrivacy')}}" class="list-group-item
+      {%if _policy_nav_active_=='privacy' %}active{%end%}
+      ">{{_("Privacy Policy")}}</a>
+
+    <a href="{{__url_list__('PolicyCopyright')}}" class="list-group-item
+      {%if _policy_nav_active_=='copyright' %}active{%end%}
+      ">{{_("Copyright Policy")}}</a>
+  </div>
+</div>

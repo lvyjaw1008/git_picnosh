@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+{% set page_title = inspirationPageCustomTitle if inspirationPageCustomTitle else _("Inspiration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": inspirationPageCustomDescription if inspirationPageCustomDescription else "",
+                    "keywords": inspirationPageCustomKeywords if inspirationPageCustomKeywords else "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article">
+  <head>
+    {% include "_parts/head.html" %}
+    <meta property="og:type" content="activity"/>
+    {% for photo in inspirationPhotos %}
+    <link rel="image_src" href="{{photo['url']}}" />
+    {% end %}
+    <link href="/assets/css/inspiration.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/sticky-footer.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    {% if canEdit %}
+    <div class="jumbotron my-inspiration-actions">
+      <div class="container">
+        <div class="view-message-actions">
+          <form method="post" action="{{__url_list__('Inspiration', inspirationId)}}">
+            {% if canQuickApprove %}<button type="submit" class="btn btn-danger" name="action" value="quick_approve">{{_("Quick Approve")}}</button>{% end %}
+            {% if canQuickReject %}<button type="submit" class="btn btn-danger" name="action" value="quick_reject">{{_("Quick Reject")}}</button>{% end %}
+            <button type="submit" class="btn btn-default" name="action" value="edit">{{_("Edit")}} {{_("Inspiration")}}</button>
+            <button type="submit" class="btn btn-danger" name="action" value="delete">{{_("Delete")}} {{_("Inspiration")}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% end %}
+
+    {% if 'inspiration_submitted' in alerts2show %}
+    <div class="alert alert-success" style="margin-top: 30px;">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      Your inspiration has been submitted to our editors. If it is approved for the site, you will receive an email with confirmation and then be able to list yourself as a Seller.
+    </div>
+    {% end %}
+
+    <div class="container" id="inspiration" {% if not canEdit %}style="margin-top: 50px;"{% end %}>
+      <div class="row inspiration-view">
+        <div class="col-lg-12">
+          <h1 class="inspiration-header">{{inspirationTitle}}</h1>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-lg-7">
+
+            {% if inspirationPhotos %}
+            <div id="carousel-inspiration-media" class="carousel slide videos" data-interval="false">
+              <ol class="carousel-indicators">
+                {% set carousel_counter = 0 %}
+                {% for i in range(len(inspirationPhotos)) %}
+                  <li data-target="#carousel-inspiration-media" data-slide-to="{{str(i)}}" class="{% if i==frontPhotoNumber %}active{% end %}"></li>
+                  {% set carousel_counter = carousel_counter + 1 %}
+                {% end %}
+                {% for video in inspirationVideos %}
+                  <li data-target="#carousel-inspiration-media" data-slide-to="{{str(carousel_counter)}}" class="{% if carousel_counter==frontPhotoNumber %}active{% end %}"></li>
+                  {% set carousel_counter = carousel_counter + 1 %}
+                {% end %}
+                {% for youtube in inspirationYoutubes %}
+                  <li data-target="#carousel-inspiration-media" data-slide-to="{{str(carousel_counter)}}" class="{% if carousel_counter==frontPhotoNumber %}active{% end %}"></li>
+                  {% set carousel_counter = carousel_counter + 1 %}
+                {% end %}
+              </ol>
+              <div class="carousel-inner video-container">
+                {% set carousel_counter = 0 %}
+                {% for i in range(len(inspirationPhotos)) %}
+                  <div class="item {% if i==frontPhotoNumber %}active{% end %}">
+                    <img src="{{inspirationPhotos[i]['url']}}">
+                    {% if inspirationPhotos[i].has_key('caption') %}
+                    <div class="carousel-caption">
+                      <h3></h3>
+                      <p>{{ inspirationPhotos[i]['caption']}}</p>
+                    </div>
+                    {% end %}
+                  </div>
+                  {% set carousel_counter = carousel_counter + 1 %}
+                {% end %}
+                {% for video in inspirationVideos %}
+                  {% if video.has_key('formats') %}
+                    <div style="min-height: 300px;" class="item {% if carousel_counter==frontPhotoNumber %}active{% end %}">
+                      <video controls id="movie" preload="metadata" width="100%" height="auto" poster="{{video['formats']['poster']}}">
+                        <source src="{{video['formats']['webm']}}" type='video/webm;codecs="vp8, vorbis"' />
+                        <source src="{{video['formats']['mp4']}}" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'/>
+                      </video>
+                    </div>
+                  {% elif video.has_key('offering') %}
+                    <div class="item {% if carousel_counter==frontPhotoNumber %}active{% end %}">
+                      <img src="/assets/images/icons/image_loading.png"/>
+                    </div>
+                  {% else %}
+                    <!-- Sorry. There is a problem with your video. Please contact support. -->
+                  {% end %}
+                  {% set carousel_counter = carousel_counter + 1 %}
+                {% end %}
+                {% for youtube in inspirationYoutubes %}
+                  <div class="item {% if carousel_counter==frontPhotoNumber %}active{% end %}">
+                    <iframe src="{% raw youtube['url'] %}" frameborder="0" width="560" height="315" allowfullscreen></iframe>
+                  </div>
+                  {% set carousel_counter = carousel_counter + 1 %}
+                {% end %}
+              </div>
+              <a class="left carousel-control" href="#carousel-inspiration-media" data-slide="prev">
+                <span class="icon-prev"></span>
+              </a>
+              <a class="right carousel-control" href="#carousel-inspiration-media" data-slide="next">
+                <span class="icon-next"></span>
+              </a>
+            </div>
+            {% end %}
+
+            <p style="text-align: justify;">{% raw inspirationDescription %}</p>
+
+            <!--
+            <ul class="creator">
+              <li><img src="{{creatorPicture}}" class="img-responsive" height="75" width="75"></li>
+              <li>
+                <ul class="creator-details">
+                  <li><i class="icon-user"></i> {{creatorName}}</li>
+                  <li><i class="icon-map-marker"></i> United States</li>
+                </ul>
+              </li>
+            </ul>
+            -->
+
+            <div class="available-seller">
+              <div class="jumbotron jumbotron-container">
+                <h1 class="center-header">Book a Personal Seller</h1>
+                <hr>
+                
+                <a href="{{__url_list__('RequestInspiration')}}" style="text-decoration: none;">
+                  <button class="btn btn-default btn-large btn-block" type="button">Want a personalized Offerings?<span class="hidden-xs"> <i class="icon-heart"></i> Contact our concierge.</span></button>
+                </a>
+
+                <table class="table table-striped" {% if offeringsForIt %}style="margin-top: 20px;"{% end %}>
+                  <tbody>
+                  {% for offering in offeringsForIt %}
+                    <tr>
+                      <td><img src="{{offering['creators_picture']}}" class="img-responsive"></td>
+                      <td class="hidden-xs">{{offering['creators_name']}}</td>
+                      <td class="hidden-sm hidden-xs">United States</td>
+                      <td><a class="btn btn-default btn-xs" href="http://www.xe.com/currencyconverter/convert/?Amount={{offering['offering_price'].number}}&From={{offering['offering_price'].currency}}&To={{currency['current']}}" data-toggle="tooltip" data-placement="top" title="" id="tooltip_1" data-original-title="Change Currency"><i class="icon-refresh"></i></a> {{Offerings['offering_price']}}</td>
+                      <td>
+                        <a href="{{__url_list__('Offering', offering['offering_id'])}}">
+                          <button class="btn btn-primary btn-sm" type="button"><i class="icon-chevron-right"></i></button>
+                        </a>
+                      </td>
+                    </tr>
+                  {% end %}
+                  </tbody>
+                </table>
+
+                <a href="{{__url_list__('NewOffering', inspirationId)}}" style="text-decoration: none;">
+                  <button class="btn btn-default btn-large btn-block" type="button"><i class="icon-plane"></i> Join our photography team!<span class="hidden-xs"> Learn more.</span></button>
+                </a>
+                
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-5">
+            <h4><i class="icon-map-marker"></i> {{inspirationLocationName}}</h4>
+
+            <div class="google-maps-embed">
+              <iframe
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCatO2hfnqS6yCgXcUWAMBfB9hhdaUuKw8&q={{gmapLatitude}},{{gmapLongitude}}&zoom={{gmapZoom}}&maptype=satellite">
+              </iframe>
+            </div>
+
+            <div class="inspirations-nearby">
+              <div class="jumbotron jumbotron-container">
+                <h1 class="center-header">More Inspirations nearby</h1>
+                <hr>
+                <ul class="list-of-places">
+                  {% for insp in nearbyInspirations %}
+                  <li>
+                    <div class="media row">
+                      <a class="col-xs-6" href="{{__url_list__('Inspiration', insp['url_id'])}}">
+                        <img src="{{insp['photo']}}" class="img-responsive">
+                      </a>
+                      <div class="col-xs-6 media-body">
+                        <a href="{{__url_list__('Inspiration', insp['url_id'])}}"><h4 class="media-heading">{{insp['title']}}</h4></a>
+                        <p>{{insp['locationName']}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  {% end %}
+                </ul>
+              </div>
+            </div>    
+
+            <div class="trips-nearby">
+              <div class="jumbotron jumbotron-container">
+                <h1 class="center-header">Other Seller Offerings Nearby</h1>
+                <hr>
+                <ul class="list-of-places">
+                  {% for tr in nearbyOfferings[:2] %}
+                  <li>
+                    <div class="media">
+                      <a class="pull-left col-xs-6" href="{{__url_list__('Offering', tr['url_id'])}}">
+                        <img src="{{tr['photo']}}" class="img-responsive">
+                      </a>
+                      <div class="media-body">
+                        <a href="{{__url_list__('Offering', tr['url_id'])}}"><h4 class="media-heading">{{tr['title']}}</h4></a>
+                        <p>{{tr['description']}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  {% end %}
+                </ul>
+                {% if len(nearbyOfferings) > 2 %}
+                <div class="accordion" id="accordion3">
+                  <div class="accordion-group">
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo">
+                        Show more sellers nearby <span class="arrow">»</span>
+                      </a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <ul class="list-of-places">
+                          {% for tr in nearbyOfferings[2:] %}
+                          <li>
+                            <div class="media">
+                              <a class="pull-left" href="#">
+                                <img src="/assets/images/inspiration/trips-3.jpg" class="img-responsive">
+                              </a>
+                              <div class="media-body">
+                                <a href="#"><h4 class="media-heading">New Orleans Cooking Class</h4></a>
+                                <p>Fun is a primary ingredient in the kitchen! The Creole/Cajun experts teach you New Orleans specialties such as Gumbo, Jambalaya and Pralines, and season them ...0.44 miles away via New Orleans.</p>
+                              </div>
+                            </div>
+                          </li>
+                          {% end %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% end %}
+              </div>
+            </div>
+
+            <div class="add-this-social">
+              <h4 class="pull-right">Share this on 
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{escape(__pageUrl__)}}&t={{escape(page_title)}}" title="Share on Facebook"><img src="/assets/images/sharing/facebook.png"/></a>
+              
+              <a href="https://twitter.com/share?url={{escape(__pageUrl__)}}&via=marketplace&text={{escape(page_title)}}" title="Share on Twitter"><img src="/assets/images/sharing/twitter.png"/></a>
+
+              <a href="https://plus.google.com/share?url={{escape(__pageUrl__)}}" title="Share on Google+"><img src="/assets/images/sharing/googleplus.png"/></a>
+
+              <a href="http://www.linkedin.com/shareArticle?mini=true&url={{escape(__pageUrl__)}}&title={{escape(page_title)}}&summary={{escape(meta_data['description'])}}&source=marketplace.com" title="Share on Linkedin"><img src="/assets/images/sharing/linkedin.png"/></a>
+
+              <a href="http://pinterest.com/pin/create/link/?url={{escape(__pageUrl__)}}" title="Share on Pinterest"><img src="/assets/images/sharing/pinterest.png"/></a></h4>
+
+            </div>
+
+          </div><!--end col-lg-5-->
+
+        </div><!--end row-->
+
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    {% include "_parts/sticky-footer.html" %}
+
+    <script src="/assets/javascripts/youtube.js"></script>
+    <script src="/assets/javascripts/jquery.fitvids.js"></script>
+
+    <script>
+      var is_touch_device = 'ontouchstart' in document.documentElement;
+
+      $(document).ready(function() {
+        // Target your .container, .wrapper, .post, etc.
+        $(".videos .video-container").fitVids();
+        setTimeout(function(){
+          $(".videos iframe").fadeIn();
+        },0);
+
+        $('#carousel-inspiration-media').on('slide.bs.carousel', function (event) {
+
+          if (!is_touch_device) {
+            // stop all videos, whether youtube or HTML5
+            $( ".videos .video-container iframe" ).each( function( index, element ){
+                callPlayer($(this).attr("id"), "pauseVideo");
+            });
+
+            $( "video" ).each( function( index, element ){
+                $(this).get(0).pause();
+            });
+
+            setTimeout(function(){
+              var $currentSlideIframe = $('#carousel-inspiration-media').find(".active iframe");
+              var $currentSlideVideo = $('#carousel-inspiration-media').find(".active video");
+              // start the video in the active frame, whether youtube or HTML5
+              if ($currentSlideIframe.length>0) { 
+                  callPlayer($currentSlideIframe.first().attr("id"), "playVideo");
+                
+              } else if ($currentSlideVideo.length>0) {
+                $currentSlideVideo.first().get(0).play();
+              } else {
+                return;
+              }  
+            }, 1000);
+          }
+          
+        });
+
+        {% if canEdit %}window.scrollTo(0,100);{% end %}
+      });
+    </script>
+    
+  </body>
+</html>

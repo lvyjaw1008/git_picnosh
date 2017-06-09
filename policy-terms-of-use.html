@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Policy") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/how-it-works.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="hidden-sm hidden-xs">
+      <div class="about-banner">
+        <h1>Marketplace {{_("Terms of Use")}}</h1>
+      </div>
+    </div>
+
+    <div class="visible-sm visible-xs">
+      <div class="about-banner-sm">
+        <h1>Marketplace {{_("Terms of Use")}}</h1>
+      </div>
+    </div>
+
+    <div class="container how-it-works-wrapper">
+
+      <div class="row">
+        {% set _policy_nav_active_ = 'terms-of-use' %}
+        {% include "_parts/policy-navigation.html" %}
+        <div class="col-lg-10">
+          <div class="jumbotron jumbotron-container how-it-works">
+            <div class="page-header">
+              <h1>{{_("How it Started")}}</h1>
+            </div>
+            <hr>
+            <div class="about-section">
+              
+              <p>{{_("Maybe you’ve been here before, you get home from your relaxing vacation only to learn that the beautiful pictures you took, didn’t turn out so wonderful after all. Or perhaps like me, you have a hard time actually getting into a picture! Being a somewhat incessant travel junkie, these issues were a big problem for me. I love my travel memories too much not to be able to captures these precious memories for all that they are worth.")}}</p>
+              
+              <p>{{_("So out of subpar photo frustration and a love for vivid travel memories the idea of PicturesAway was hatched. A local photography marketplace providing on location services tailored to your travel itinerary. No more selfies, no more stress, no more disappointment, just beautifully captured travel memories.")}}</p>
+              
+              <p>{{_("You invest so much money and often so little time into travel. Doesn’t it make sense to ensure you’re capturing those valuable memories at the richest level?")}}</p>
+
+              <p>Kristin Cowles<br/>{{_("co-Founder")}}, Marketplace</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    
+  </body>
+</html>

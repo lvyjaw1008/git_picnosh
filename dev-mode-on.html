@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+{% set page_title = "Test Mode ON" %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "Test Mode is ON",
+                    "keywords": '',
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/how-it-works.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="container how-it-works-wrapper"><!--start-->
+
+      <div class="row">
+        <div class="jumbotron jumbotron-container how-it-works">
+          <div class="page-header">
+            <h1>Development Mode</h1>
+          </div>
+          <hr>
+          <div class="about-section">
+
+            <p>
+              Site is now being used for automated testing and some features may be disabled or altered.
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+    <script src="/assets/javascripts/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        // Target your .container, .wrapper, .post, etc.
+        $(".about-video .video-container").fitVids();
+      });
+    </script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+{% set page_title = _("FAQ") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/Article">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/how-it-works.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="hidden-sm hidden-xs">
+      <div class="faq-banner">
+        <h1>{{_("FAQ")}}</h1>
+      </div>
+    </div>
+
+    <div class="visible-sm visible-xs">
+      <div class="faq-banner-sm">
+        <h1>{{_("FAQ")}}</h1>
+      </div>
+    </div>
+
+    <div class="container how-it-works-wrapper"><!--start-->
+
+      <div class="row">
+        {% set _how_it_works_nav_active_ = 'faq' %}
+        {% include "_parts/how-it-works-navigation.html" %}
+        <div class="col-lg-10">
+          <div class="jumbotron jumbotron-container how-it-works">
+          <div class="page-header">
+            <h1>Frequently Asked Questions</h1>
+          </div>
+          <hr>
+
+          {% include "_parts/faq.html" %}
+          
+        </div>
+      </div>
+    </div>
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    
+  </body>
+</html>

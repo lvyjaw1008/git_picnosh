@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+{% set page_title = "Translation of page content" %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+
+      {% include "_parts/translate-page-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="{% if __seller_or_applicant__ %}tab4{% else %}tab3{% end %}">
+          <div class="container">
+            <div class="row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Original Paragraph</th>
+                  <th>Translation</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for k in sorted([t for t in translations.keys() if not t.startswith('obj')]) %}
+                <tr>
+                  <td><b>{{k}}</b></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                {% for m in translations[k] %}
+                <tr>
+                  <td>({{m['source_lang']}} -> {{m['target_lang']}})</td>
+                  <td>{{m['source_text']}}</td>
+                  <td>{{m['target_text']}}</td>
+                  <td>
+                    {% if m['module'] %}
+                    <a href="{{__url_list__('AdminTranslationByChecksum', m['source_lang'], m['string_checksum'], m['target_lang'], translations['obj_type'], translations['obj_id'])}}">
+                      <button class="btn btn-primary btn-xs" type="button">Adjust manually</button>
+                    </a>
+                    {% end %}
+                  </td>
+                </tr>
+                {% end %}
+                {% end %}
+              </tbody>
+            </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

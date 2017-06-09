@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Marketplace Receipt ({{booking_id}})</title>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		/* Based on The MailChimp Reset INLINE: Yes. */  
+		/* Client-specific Styles */
+		#outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
+		body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;} 
+		/* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/ 
+		.ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */  
+		.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+		/* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */ 
+		#backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+		/* End reset */
+
+		/* Outlook 07, 10 Padding issue fix
+		Bring inline: No.*/
+		table td {border-collapse: collapse;}
+
+		@media only screen and (max-device-width: 480px) {
+
+			a[href^="tel"], a[href^="sms"] {
+						text-decoration: none;
+						color: #EFFFCD; 
+						pointer-events: none;
+						cursor: default;
+					}
+
+			.mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+						text-decoration: default;
+						color: #EFFFCD !important;
+						pointer-events: auto;
+						cursor: default;
+					}
+
+		}
+
+
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+			a[href^="tel"], a[href^="sms"] {
+						text-decoration: none;
+						color: #EFFFCD; 
+						pointer-events: none;
+						cursor: default;
+					}
+
+			.mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+						text-decoration: default;
+						color: #EFFFCD !important;
+						pointer-events: auto;
+						cursor: default;
+					}
+		}
+
+	</style>
+
+</head>
+<body style="background-color: #2E2633; color: #ffffff; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;">
+
+<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+	<tr>
+		<td valign="top"> 
+
+		<table cellpadding="0" cellspacing="0" border="0" align="center" style="border: 1px solid #ffffff;border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+			<tr>
+				<td colspan="3" width="558" style="padding: 20px; text-align: center; background-color: #ffffff;">
+					<img src="{{__url_list__()}}/assets/images/icons/white-side-logo.png" alt="Marketplace" title="Marketplace" width="300" height="70" style="display:block; margin: 0 auto;outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;border: none;"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" width="558" style="padding: 20px;">
+					<h1 style="font-family: 'Lato'; font-weight: 900; color: white !important; margin-bottom: 40px;">Transaction Receipt</h1>
+
+					<table cellpadding="5" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+						<tr><td width="125"><span style="color: #DCE9BE">Transaction ID:</span></td><td>{{booking_id}}/{{tr_timestamp}}</td></tr>
+						<tr><td width="125"><span style="color: #DCE9BE">Transaction Type:</span></td><td>{{tr_type}}</td></tr>
+						<tr><td width="125"><span style="color: #DCE9BE">Transaction Time:</span></td><td>{{tr_date}}</td></tr>
+						<tr><td width="125"><span style="color: #DCE9BE">Card Number:</span></td><td>**** **** **** {{cc_last4}}</td></tr>
+						<tr><td width="125"><span style="color: #DCE9BE">Card Type:</span></td><td>{{cc_brand}}</td></tr>
+						<tr><td width="125"><span style="color: #DCE9BE">Total:</span></td><td>{{price}}</td></tr>
+						
+
+					</table>
+
+					<h3 style="font-family: 'Lato'; font-weight: 400; color: white !important;">Thank you, your {{tr_type}} has been processed.</h3>
+
+					<form action="{{booking_url}}" method="GET" style="margin-top: 10px;"/>
+						<button type="submit" style="width: 100%;display: inline-block;padding: 6.5px 12px;margin-bottom: 0;font-size: 14px;font-weight: normal;line-height: 1.42857;text-align: center;white-space: nowrap;vertical-align: middle;cursor: pointer;border: 1px solid transparent;border-radius: 4px;-webkit-user-select: none;color: white;background-color: #99173c;border-color: #efffcd;">
+							View Booking
+						</button>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" width="558" style="padding: 20px; text-align:center;">
+					<p style="margin: 1em 0;line-height:1.5em;">
+						Marketplace &copy;{{__copyrights_year__}} All rights reserved.<br/>
+						<span class="mobile_link"><a href="tel:1-844-GET-MARKETPLACE" target ="_blank" title="Telephone" style="color: #EFFFCD; text-decoration: none;">1-844-GET-MARKETPLACE</a></span>
+					</p>
+				</td>
+			</tr>
+		</table>
+
+		</td>
+	</tr>
+</table>  
+
+</body>
+</html>

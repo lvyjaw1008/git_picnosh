@@ -1,0 +1,154 @@
+.apply-seller-banner {
+  background: url("../images/banner/offerings.jpg") no-repeat top center fixed; }
+
+.edit-offering {
+  background: url("../images/banner/offerings.jpg") no-repeat top center fixed; }
+
+.edit-offering, .apply-seller-banner {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  height: 300px;
+  width: 100%;
+  background-position: top center;
+  margin-top: 50px; }
+  .edit-offering h1, .apply-seller-banner h1 {
+    color: #ffffff;
+    font-size: 50px;
+    line-height: 50px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+    padding-top: 135px; }
+
+.inspiration_ref {
+  border: 1px solid #99173c !important; }
+  .inspiration_ref:after {
+    width: 0;
+    height: 0;
+    border-left: 50px inset transparent;
+    border-right: 50px inset transparent;
+    position: absolute;
+    content: "";
+    bottom: -50px;
+    right: 0;
+    z-index: 2;
+    border-top-color: #99173c;
+    border-style: solid;
+    border-top-width: 50px;
+    border-bottom-width: 0; }
+
+.apply-seller-container {
+  margin-top: 20px; }
+  .apply-seller-container .col-lg-3, .apply-seller-container .col-lg-9 {
+    padding: 0; }
+  .apply-seller-container .offerings-container {
+    margin-right: 20px; }
+  .apply-seller-container .panel {
+    box-shadow: none !important; }
+
+h1.apply-seller-main-header {
+  color: #99173C;
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  line-height: 45px;
+  margin-top: 0;
+  text-align: center;
+  text-transform: uppercase; }
+
+form.form-wrapper-apply label {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 0; }
+
+span.alert-red {
+  color: red; }
+
+.repeat-schedule ul.repeat-schedule-list {
+  margin-bottom: 0;
+  line-height: 0px; }
+
+.schedule-details div {
+  padding: 5px; }
+  .schedule-details div .start-date-wrapper label, .schedule-details div .end-date-wrapper label {
+    min-width: 65px; }
+  .schedule-details div .form-vertical {
+    margin: 20px 20px 0; }
+
+.form-adjust {
+  margin-top: -10px; }
+
+.panel-title-bg {
+  background: none repeat scroll 0 0 #DCE9BE;
+  border-bottom: 0 none transparent;
+  border-color: transparent;
+  border-radius: 3px 3px 3px 3px;
+  color: #EFFFCD;
+  font-weight: bold;
+  margin: 20px 0 0; }
+
+body .radio-button-wrapper ul.list-inline {
+  line-height: normal; }
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  body .radio-button-wrapper {
+    margin-top: 15px; } }
+@media (min-width: 991px) {
+  .inspiration_ref:after {
+    width: 0;
+    height: 0;
+    border-top: 50px inset transparent;
+    border-bottom: 50px inset transparent;
+    position: absolute;
+    content: "";
+    top: 5px;
+    right: -30px;
+    z-index: 2;
+    border-left-color: #99173c;
+    border-style: solid;
+    border-left-width: 30px;
+    border-right-width: 0; } }
+@media (max-width: 991px) {
+  body .offerings-container-sm {
+    margin: 0 auto !important; } }
+@media (max-width: 800px) {
+  body .offerings-container-sm {
+    margin: 0 auto !important; } }
+@media (max-width: 767px) {
+  body .apply-seller-banner {
+    height: 150px; }
+    body .apply-seller-banner h1 {
+      font-size: 36px;
+      line-height: 36px;
+      padding-top: 75px; }
+  body .repeat-schedule ul.repeat-schedule-list li label {
+    line-height: 20px !important;
+    margin: 0 !important; }
+  body select.sm-select {
+    margin-top: 5px;
+    width: 100%; }
+  body .form-adjust {
+    margin-top: 0px; }
+  body .radio-button-wrapper ul.list-inline {
+    display: block; } }
+@media (max-width: 568px) {
+  body .offerings-container-sm {
+    margin: 0 auto !important;
+    width: 100%; } }
+@media (max-width: 500px) {
+  body .apply-seller-banner {
+    height: 150px; }
+    body .apply-seller-banner h1 {
+      font-size: 28px;
+      line-height: 28px;
+      padding-top: 75px; } }
+@media (max-width: 494px) {
+  body .apply-seller-container .offerings-container {
+    margin-right: 0; } }
+@media (max-width: 494px) {
+  body .radio-button-wrapper {
+    margin-top: 10px !important; } }
+
+/*# sourceMappingURL=seller-apply.css.map */

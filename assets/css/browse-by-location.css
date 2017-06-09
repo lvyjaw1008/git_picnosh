@@ -1,0 +1,86 @@
+.banner-location {
+  background: url("../images/banner/search.jpg") no-repeat center center fixed;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  height: 250px;
+  width: 100%;
+  background-position: top center;
+  margin-top: 50px; }
+  .banner-location h1 {
+    color: #ffffff;
+    font-size: 50px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    line-height: 50px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+    padding: 120px; }
+
+#location-countries a.thumbnail {
+  padding: 0;
+  margin-bottom: 20px;
+  text-decoration: none; }
+  #location-countries a.thumbnail img {
+    border-radius: 2px; }
+#location-countries .location-name {
+  padding: 0;
+  margin-top: -27px; }
+  #location-countries .location-name h1 {
+    position: relative;
+    text-transform: uppercase;
+    bottom: 80px;
+    font-size: 24px;
+    color: white;
+    letter-spacing: 0.04em;
+    margin: 0;
+    text-shadow: 3px 3px 10px black;
+    text-align: center; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  body #location-countries .location-name h1 {
+    bottom: 60px; } }
+@media (min-width: 767px) and (max-width: 992px) {
+  body #location-countries .location-name h1 {
+    bottom: 100px; } }
+@media (max-width: 767px) {
+  body .banner-location h1 {
+    padding: 100px; }
+  body #location-countries a.thumbnail {
+    margin: 0 auto;
+    max-width: 49%;
+    margin-bottom: 20px; }
+  body #location-countries .location-name h1 {
+    bottom: 120px; } }
+@media (min-width: 495px) and (max-width: 650px) {
+  body #location-countries a.thumbnail {
+    max-width: 60%; }
+  body #location-countries .location-name h1 {
+    bottom: 90px; } }
+@media (min-width: 361px) and (max-width: 494px) {
+  body .banner-location h1 {
+    padding: 100px 30px; }
+  body #location-countries a.thumbnail {
+    margin: 0 auto;
+    max-width: 79%;
+    margin-bottom: 20px; }
+  body #location-countries .location-name h1 {
+    bottom: 120px; } }
+@media (min-width: 361px) and (max-width: 410px) {
+  body #location-countries a.thumbnail {
+    max-width: 100%; }
+  body #location-countries .location-name h1 {
+    bottom: 100px; } }
+@media (max-width: 360px) {
+  body .banner-location h1 {
+    font-size: 38px;
+    line-height: 42px;
+    padding: 100px 20px; }
+  body #location-countries a.thumbnail {
+    margin: 0 auto;
+    max-width: 100%;
+    margin-bottom: 20px; }
+  body #location-countries .location-name h1 {
+    bottom: 100px; } }
+
+/*# sourceMappingURL=browse-by-location.css.map */

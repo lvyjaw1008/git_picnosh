@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Messages") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/socket.io.js"></script>
+    <script>
+    window.onload = function() {
+
+        var s = new io.Socket(window.location.hostname, {
+            port: {{socket_port}},
+            rememberTransport: false,
+            resource: 'chat',
+            transports: [
+                'websocket',
+            ]
+        });
+        s.connect();
+
+        //s.addEvent('connect', function() {
+        //    s.send('WELCOME!');
+        //});
+
+        s.addEvent('message', function(data) {
+            var translation = '';
+            if (data['src_body']) {
+                translation = '<h4 class="media-heading"><em>{{_("Translated")}}: "' + data['src_body'] + '"</em></h4>';
+            }
+            $("#chat").append("<div class=\"media\">\
+              <div class=\"pull-left\" href=\"#\">\
+                <img src=\"" + data.profile_photo + "\" class=\"img-responsive\">\
+              </div>\
+              <div class=\"media-body\">\
+                <h4 class=\"media-heading\">" + data['name'] + "<em>" + data['date'] + "</em></h4>" +
+                data['body'].split("\n").join("<br>") + translation + "\
+              </div>\
+            </div>\
+            <hr>");
+        });
+
+        {% if canMessage %}
+        //send the message when submit is clicked
+        $('#chatform').submit(function (evt) {
+            var line = $('#chatform [type=text]').val()
+            $('#chatform [type=text]').val('')
+            s.send(line);
+            return false;
+        });
+        {% end %}
+    };
+    </script>
+
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper"><!--start-->
+      {% set dashboard_top_nav_elem = 'message' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane" id="tab1">
+        </div>
+
+        <div class="tab-pane" id="tab2">
+        </div><!--tab pane 2-->
+
+        {% if __seller_or_applicant__ %}
+        <div class="tab-pane" id="tab3">
+        </div>
+
+        <div class="tab-pane active" id="tab4">
+        {% else %}
+        <div class="tab-pane active" id="tab3">
+        {% end %}
+
+          <div class="container view-message">
+            <div class="row">
+              <div class="message-list message-list-sm col-xs-12">
+                <div id="chat">
+                  <div class="breadcrumb-style">
+                    <ol class="breadcrumb all-breadcrumb-style">
+                      <li><a href="{{__url_list__('Message')}}">Back to Messages</a></li>
+                      <li class="active">{{friend_name}}</li>
+                    </ol>
+                  </div>
+                </div>
+                {% if canMessage %}
+                <div class="alert alert-info send-message clearfix">
+                  <form id="chatform">
+                    <textarea type="text" class="form-control" rows="3"></textarea>
+                    <button class="btn btn-primary" type="submit">Send Message</button>
+                  </form>
+                </div>
+                {% end %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

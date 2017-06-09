@@ -1,0 +1,49 @@
+<div class="start-date-wrapper">{{temp_eol}}
+<label>Starting</label>{{temp_eol}}
+<div class="form-group">{{temp_eol}}
+<input type="text" {% if __rich_front_end__ %}class="form-control datetimepicker_style img_datepicker"{% end %} placeholder="Select Date" {% if temp_start_date %}{{temp_readonly}} value="{{temp_start_date}}" {% else %}name="start_date{{temp_counter}}" id="date_scroller_e{{temp_counter}}"{% end %}/>{{temp_eol}}
+</div>{{temp_eol}}
+</div>{{temp_eol}}
+<div class="end-date-wrapper">{{temp_eol}}
+<label>Ending</label>{{temp_eol}}
+<div class="form-group">{{temp_eol}}
+<input type="text" {% if __rich_front_end__ %}class="form-control datetimepicker_style img_datepicker"{% end %} placeholder="Select Date" {% if temp_stop_date %}{{temp_readonly}} value="{{temp_stop_date}}" {% else %}name="end_date{{temp_counter}}" id="date_scroller_f{{temp_counter}}"{% end %}/>{{temp_eol}}
+</div>{{temp_eol}}
+</div>{{temp_eol}}
+<div class="start-date-wrapper">{{temp_eol}}
+<label>Offerings can be booked between</label>{{temp_eol}}
+<div class="form-group">{{temp_eol}}
+<input type="text" {% if __rich_front_end__ %}class="form-control datetimepicker_style img_datepicker"{% end %} placeholder="Select Time" {% if temp_start_time %}{{temp_readonly}} value="{{temp_start_time}}" {% else %}name="start_time{{temp_counter}}" id="time_scroller_e{{temp_counter}}" onchange="start_time_eq(this.value, {{temp_counter}})"{% end %}/>{{temp_eol}}
+</div>{{temp_eol}}
+</div>{{temp_eol}}
+<div class="end-date-wrapper">{{temp_eol}}
+<label>and</label>{{temp_eol}}
+<div class="form-group">{{temp_eol}}
+<input type="text" {% if __rich_front_end__ %}class="form-control datetimepicker_style img_datepicker"{% end %} placeholder="Select Time" {% if temp_stop_time %}{{temp_readonly}} value="{{temp_stop_time}}" {% else %}name="end_time{{temp_counter}}" id="time_scroller_f{{temp_counter}}"{% end %}/>{{temp_eol}}
+</div>{{temp_eol}}
+</div>{{temp_eol}}
+{{temp_eol}}
+<div class="clearfix">{{temp_eol}}
+<label>The Offerings duration is at most</label>{{temp_eol}}
+<select class="form-control sm-select" name="duration{{temp_counter}}" {% if temp_duration %}{{temp_disabled}}{% end %}>{{temp_eol}}
+<option value="30" {% if int(temp_duration) == 30 %}selected{% end %}>30 minutes</option>{{temp_eol}}
+<option value="60" {% if int(temp_duration) == 60 or not temp_duration %}selected{% end %}>1 hour</option>{{temp_eol}}
+<option value="90" {% if int(temp_duration) == 90 %}selected{% end %}>1.5 hour</option>{{temp_eol}}
+<option value="120" {% if int(temp_duration) == 120 %}selected{% end %}>2 hours</option>{{temp_eol}}
+<option value="180" {% if int(temp_duration) == 180 %}selected{% end %}>3 hours</option>{{temp_eol}}
+<option value="240" {% if int(temp_duration) == 240 %}selected{% end %}>4 hours</option>{{temp_eol}}
+</select>{{temp_eol}}
+</div>{{temp_eol}}
+<div class="repeat-schedule clearfix">{{temp_eol}}
+<label>Between the start and end dates, offerings are available only on days:</label>{{temp_eol}}
+<br>{{temp_eol}}
+<ul class="list-inline repeat-schedule-list">{{temp_eol}}
+<li><label class="checkbox"><input type="checkbox" {% if temp_week_days %} {{temp_disabled}} {% if temp_week_days[6] %}checked{% end %}{% else %}checked name="repeats_Sun{{temp_counter}}"{% end %}> Sun </label></li>{{temp_eol}}
+<li><label class="checkbox"><input type="checkbox" {% if temp_week_days %} {{temp_disabled}} {% if temp_week_days[0] %}checked{% end %}{% else %}checked name="repeats_Mon{{temp_counter}}"{% end %}> Mon </label></li>{{temp_eol}}
+<li><label class="checkbox"><input type="checkbox" {% if temp_week_days %} {{temp_disabled}} {% if temp_week_days[1] %}checked{% end %}{% else %}checked name="repeats_Tue{{temp_counter}}"{% end %}> Tue </label></li>{{temp_eol}}
+<li><label class="checkbox"><input type="checkbox" {% if temp_week_days %} {{temp_disabled}} {% if temp_week_days[2] %}checked{% end %}{% else %}checked name="repeats_Wed{{temp_counter}}"{% end %}> Wed </label></li>{{temp_eol}}
+<li><label class="checkbox"><input type="checkbox" {% if temp_week_days %} {{temp_disabled}} {% if temp_week_days[3] %}checked{% end %}{% else %}checked name="repeats_Thu{{temp_counter}}"{% end %}> Thu </label></li>{{temp_eol}}
+<li><label class="checkbox"><input type="checkbox" {% if temp_week_days %} {{temp_disabled}} {% if temp_week_days[4] %}checked{% end %}{% else %}checked name="repeats_Fri{{temp_counter}}"{% end %}> Fri </label></li>{{temp_eol}}
+<li><label class="checkbox"><input type="checkbox" {% if temp_week_days %} {{temp_disabled}} {% if temp_week_days[5] %}checked{% end %}{% else %}checked name="repeats_Sat{{temp_counter}}"{% end %}> Sat </label></li>{{temp_eol}}
+</ul>{{temp_eol}}
+</div>{{temp_eol}}

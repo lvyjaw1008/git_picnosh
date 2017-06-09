@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+{% set page_title = _("My Inspiration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set dashboard_top_nav_elem = 'inspirations' %}
+      {% include "_parts/dashboard-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="tab2">
+          <form method="post" action="{{__url_list__('ListMyInspirations')}}">
+            <div class="container panel-container">
+              <p class="clearfix">
+                <button type="submit" class="btn btn-primary pull-right" name="action" value="create">{{_("Create New Inspiration")}}</button>
+              </p>
+              <div class="list-group list-group-style panel-wrapper">
+
+                {% for insp in insps %}
+                <div class="list-group-item">
+                  <div class="row">
+                    <a href="{{__url_list__('Inspiration', insp['url_id'])}}">
+                      <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                        {% if insp['photo'] %}
+                          <img src="{{insp['photo']}}" class="img-responsive">
+                        {% end %}
+                      <p class="status">{% raw inspirationStatus2Html(insp['status']) %}</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-10 col-md-10">
+                        <h4 class="list-group-item-heading">{{insp['title']}}</h4>
+                        <ul class="list-inline">
+                          <li><i class="icon-map-marker"></i> {{insp['locationName']}}</li>
+                        </ul>
+                        <p class="list-group-item-text">
+                          <div class="booking-info-wrap">{{insp['description']}}</div>
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                  <p class="action-button-group">
+                    <button type="submit" class="btn btn-default btn-xs" name="action" value="edit.{{insp['url_id']}}">{{_("Edit")}}</button>
+                    <button type="submit" class="btn btn-danger btn-xs" name="action" value="delete.{{insp['url_id']}}">{{_("Delete")}}</button>
+                  </p>
+                </div>
+                {% end %}
+                {% include "_parts/pagination.html" %}
+              </div>
+            </div>
+          </form>
+        </div>
+        
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

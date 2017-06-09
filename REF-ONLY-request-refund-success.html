@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+{% set page_title = "" %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": '',
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/my-bookings.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper"><!--start-->
+      <div class="navtabs-main visible-lg visible-md visible-sm hidden-xs">
+        <div class="tabbable">
+          <div class="container">
+            <ul class="nav nav-tabs">
+              <li class=""><a href="seller-only-edit-profile.html">My Profile</a></li>
+              <li class=""><a href="seller-only-my-offerings.html">My Offerings</a></li>
+              <li class="active"><a href="user-only-request-refund-success.html">My Bookings</a></li>
+              <li class=""><a href="seller-only-message.html">Message</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info hidden-lg hidden-md hidden-sm visible-xs navtabs-main-bg">
+        <div class="container navtabs-main-sm">
+          <form name="menuform">
+          <select name="menu2" onchange="top.location.href = this.form.menu2.options[this.form.menu2.selectedIndex].value;return false;" class="form-control">
+            <option value="seller-only-edit-profile.html">My Profile</option>
+            <option value="seller-only-my-offerings.html">My Offerings</option>
+            <option value="user-only-request-refund-success.html" selected>My Bookings</option>
+            <option value="seller-only-message.html">Message</option>
+          </select>
+          </form>
+        </div>
+      </div>
+
+      <div class="tab-content">
+
+        <div class="tab-pane" id="tab1">
+        </div>
+
+        <div class="tab-pane" id="tab2">
+        </div><!--tab pane 2-->
+
+        <div class="tab-pane active" id="tab3">
+          <div class="container panel-container"> 
+            <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <strong>Success!</strong> We have received your refund request for the Offerings. You will received a confirmation shortly about the details of your request.
+            </div>
+            <div class="panel panel-default panel-style">
+              <h4>
+                Current Bookings
+              </h4>
+            </div>
+
+            <div class="list-group list-group-style">
+              <a href="#" class="list-group-item">
+                <div class="row">
+                  <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                    <img src="images/offerings/offering-1.jpg" class="img-responsive">
+                  </div>
+
+                  <div class="col-xs-12 col-sm-10 col-md-10">
+                    <h4 class="list-group-item-heading">Left Bank and Eats</h4>
+                    <ul class="list-inline">
+                      <li><i class="icon-map-marker"></i> New Orleans</li>
+                      <li><i class="icon-calendar"></i> 04/03/2013</li>
+                      <li><i class="icon-time"></i> 10:00</li>
+                      <li><i class="icon-user"></i> No. of Guests: 2</li>
+                    </ul>
+                    <p class="list-group-item-text">
+                      <div class="booking-info-wrap">If you're an artist or Creator, there's no place as magical and mythologized as Paris' Left Bank. Ernest Hemmingway, William Burroughs, James Joyce. Pablo Picasso, Man Ray, Salvador Dali - it's almost quicker to list the 20th century greats that haven't rhapsodized in words and images about this bohemian heartland.</div>
+                    </p>
+                  </div>
+                </div>                
+              </a>
+
+              <a href="#" class="list-group-item">
+                <div class="row">
+                  <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                    <img src="images/offerings/offering-2.jpg" class="img-responsive">
+                  </div>
+
+                  <div class="col-xs-12 col-sm-10 col-md-10">
+                    <h4 class="list-group-item-heading">Navigate Paris</h4>
+                    <ul class="list-inline">
+                      <li><i class="icon-map-marker"></i> New Orleans</li>
+                      <li><i class="icon-calendar"></i> 04/03/2013</li>
+                      <li><i class="icon-time"></i> 10:00</li>
+                      <li><i class="icon-user"></i> No. of Guests: 2</li>
+                    </ul>
+                    <p class="list-group-item-text">
+                      <div class="booking-info-wrap">If you're an artist or Creator, there's no place as magical and mythologized as Paris' Left Bank. Ernest Hemmingway, William Burroughs, James Joyce. Pablo Picasso, Man Ray, Salvador Dali - it's almost quicker to list the 20th century greats that haven't rhapsodized in words and images about this bohemian heartland.</div>
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <a href="#" class="list-group-item">
+                <div class="row">
+                  <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                    <img src="images/offerings/offering-3.jpg" class="img-responsive">
+                  </div>
+
+                  <div class="col-xs-12 col-sm-10 col-md-10">
+                    <h4 class="list-group-item-heading">Paris Chic, Paris Unique</h4>
+                    <ul class="list-inline">
+                      <li><i class="icon-map-marker"></i> New Orleans</li>
+                      <li><i class="icon-calendar"></i> 04/03/2013</li>
+                      <li><i class="icon-time"></i> 10:00</li>
+                      <li><i class="icon-user"></i> No. of Guests: 2</li>
+                    </ul>
+                    <p class="list-group-item-text">
+                      <div class="booking-info-wrap">If you're an artist or Creator, there's no place as magical and mythologized as Paris' Left Bank. Ernest Hemmingway, William Burroughs, James Joyce. Pablo Picasso, Man Ray, Salvador Dali - it's almost quicker to list the 20th century greats that haven't rhapsodized in words and images about this bohemian heartland.</div>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="panel panel-default panel-style">
+              <h4>
+                Completed Bookings
+              </h4>
+            </div>
+
+            <div class="list-group list-group-style">
+              <a href="#" class="list-group-item">
+                <div class="row">
+                  <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                    <img src="images/offerings/offering-1.jpg" class="img-responsive">
+                  </div>
+
+                  <div class="col-xs-12 col-sm-10 col-md-10">
+                    <h4 class="list-group-item-heading">Left Bank and Eats</h4>
+                    <ul class="list-inline">
+                      <li><i class="icon-map-marker"></i> New Orleans</li>
+                      <li><i class="icon-calendar"></i> 04/03/2013</li>
+                      <li><i class="icon-time"></i> 10:00</li>
+                      <li><i class="icon-user"></i> No. of Guests: 2</li>
+                    </ul>
+                    <p class="list-group-item-text">
+                      <div class="booking-info-wrap">If you're an artist or Creator, there's no place as magical and mythologized as Paris' Left Bank. Ernest Hemmingway, William Burroughs, James Joyce. Pablo Picasso, Man Ray, Salvador Dali - it's almost quicker to list the 20th century greats that haven't rhapsodized in words and images about this bohemian heartland.</div>
+                    </p>
+                  </div>
+                </div>                
+              </a>
+
+              <a href="#" class="list-group-item">
+                <div class="row">
+                  <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                    <img src="images/offerings/offering-2.jpg" class="img-responsive">
+                  </div>
+
+                  <div class="col-xs-12 col-sm-10 col-md-10">
+                    <h4 class="list-group-item-heading">Navigate Paris</h4>
+                    <ul class="list-inline">
+                      <li><i class="icon-map-marker"></i> New Orleans</li>
+                      <li><i class="icon-calendar"></i> 04/03/2013</li>
+                      <li><i class="icon-time"></i> 10:00</li>
+                      <li><i class="icon-user"></i> No. of Guests: 2</li>
+                    </ul>
+                    <p class="list-group-item-text">
+                      <div class="booking-info-wrap">If you're an artist or Creator, there's no place as magical and mythologized as Paris' Left Bank. Ernest Hemmingway, William Burroughs, James Joyce. Pablo Picasso, Man Ray, Salvador Dali - it's almost quicker to list the 20th century greats that haven't rhapsodized in words and images about this bohemian heartland.</div>
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <a href="#" class="list-group-item">
+                <div class="row">
+                  <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                    <img src="images/offerings/offering-3.jpg" class="img-responsive">
+                  </div>
+
+                  <div class="col-xs-12 col-sm-10 col-md-10">
+                    <h4 class="list-group-item-heading">Paris Chic, Paris Unique</h4>
+                    <ul class="list-inline">
+                      <li><i class="icon-map-marker"></i> New Orleans</li>
+                      <li><i class="icon-calendar"></i> 04/03/2013</li>
+                      <li><i class="icon-time"></i> 10:00</li>
+                      <li><i class="icon-user"></i> No. of Guests: 2</li>
+                    </ul>
+                    <p class="list-group-item-text">
+                      <div class="booking-info-wrap">If you're an artist or Creator, there's no place as magical and mythologized as Paris' Left Bank. Ernest Hemmingway, William Burroughs, James Joyce. Pablo Picasso, Man Ray, Salvador Dali - it's almost quicker to list the 20th century greats that haven't rhapsodized in words and images about this bohemian heartland.</div>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab4">
+        </div>
+        
+      </div><!--tab-content-->
+    </div><!--dashboard wrapper-->
+
+    <footer id="sub-footer">
+      <div class="container">
+        <div class="">
+          <ul class="nav navbar-nav" id="navbar-container">
+            <li><label>Currency</label></li> 
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">USD$ <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">AUD$</a></li>
+                <li><a href="#">CAD$</a></li>
+                <li><a href="#">EUR€</a></li>
+                <li><a href="#">NZD$</a></li>
+              </ul>
+            </li>
+            <li><label>Timezone</label></li> 
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">(GMT-12.00) Eniwetok, Kwajalein<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">(GMT-11.00) Midway Island, Samoa</a></li>
+                <li><a href="#">(GMT-10.00) Hawaii</a></li>
+                <li><a href="#">(GMT-9.00) Alaska</a></li>
+                <li><a href="#">(GMT-8.00) Pacific Time (US & Canada)</a></li>
+                <li><a href="#">(GMT-11.00) Midway Island, Samoa</a></li>
+                <li><a href="#">(GMT-10.00) Hawaii</a></li>
+                <li><a href="#">(GMT-9.00) Alaska</a></li>
+                <li><a href="#">(GMT-8.00) Pacific Time (US & Canada)</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <footer id="footer-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-lg-8">
+            <ul class="list-inline">
+              <li class="footer-wrapper">
+                <h2>About Us</h2>
+                <ul>
+                  <li><a href="about.html">Marketplace</a></li>
+                  <li><a href="team.html">Team</a></li>
+                  <li><a href="sellers-section.html">Sellers</a></li>
+                  <li><a href="inspirations-section.html">Inspirations</a></li>
+                </ul>
+              </li>
+              <li class="footer-wrapper">
+                <span class="footer-line visible-xs"></span>
+                <h2>Connect</h2>
+                <ul>
+                  <li><a href="#">Read Our Blog</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Youtube</a></li>
+                </ul>
+              </li>
+              <li class="footer-wrapper">
+                <span class="footer-line visible-xs"></span>
+                <h2>Policies</h2>
+                <ul>
+                  <li><a href="sticky-footer.html">Terms of Use</a></li>
+                  <li><a href="confirm-booking.html">Privacy Policy</a></li>
+                  <li><a href="home-blocker.html">Copyright Policy</a></li>
+                  <li><a href="faq.html">FAQ</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-lg-4 social-icons">
+            <span class="footer-line visible-xs"></span>
+            <h1>Stay in touch</h1>
+            <ul class="list-inline">
+              <li><a href="#"><img src="images/social/fb.indexed.png"></a></li>
+              <li><a href="#"><img src="images/social/twitter.indexed.png"></a></li>
+              <li><a href="#"><img src="images/social/tumblr.indexed.png"></a></li>
+              <li><a href="#"><img src="images/social/pinterest.indexed.png"></a></li>
+              <li><a href="#"><img src="images/social/newsletter.indexed.png"></a></li>
+            </ul>
+          </div>
+        </div>
+        <p>Marketplace &copy;{{__copyrights_year__}} All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/assets/javascripts/jquery.js"></script>
+    <script src="/assets/javascripts/bootstrap.js"></script>
+    <script src="/assets/javascripts/pages.js"></script>
+
+  </body>
+</html>

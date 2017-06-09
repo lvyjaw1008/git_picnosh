@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Sellers") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/how-it-works.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="hidden-sm hidden-xs">
+      <div class="sellers-banner">
+        <h1>Marketplace Sellers</h1>
+      </div>
+    </div>
+
+    <div class="visible-sm visible-xs">
+      <div class="sellers-banner-sm">
+        <h1>Marketplace Sellers</h1>
+      </div>
+    </div>
+
+    <div class="container how-it-works-wrapper"><!--start-->
+        {% set _how_it_works_nav_active_ = 'sellers' %}
+        {% include "_parts/how-it-works-navigation.html" %}
+        <div class="col-lg-10">
+          <div class="jumbotron jumbotron-container how-it-works">
+            <div class="page-header">
+              <h1>Marketplace Sellers</h1>
+            </div>
+            <hr>
+            <div class="sellers-section clearfix">
+              <h3>Aenean varius condimentum nunc, in pharetra augue laoreet consectetur. Sed at magna quis massa aliquam facilisis eget at mi. Nullam porta risus erat, et commodo turpis mollis nec. Vestibulum elit massa, vulputate nec cursus at, blandit eu nisi. Sed ornare lacus sit amet ullamcorper iaculis. Pellentesque molestie in mi sed aliquet. Nulla laoreet ultricies velit, posuere ornare ipsum faucibus vitae. Aliquam non dui nec sapien mollis ullamcorper. Vivamus pharetra venenatis augue convallis sagittis. Pellentesque purus tortor, auctor id velit sit amet, egestas imperdiet enim. Fusce rutrum nisl nec magna hendrerit viverra.</h3>
+            </div>
+
+            <div class="sellers-section clearfix">
+              <div class="col-lg-4">
+                <i class="icon-list-alt"></i>
+              </div>
+              <div class="col-lg-8">
+                <h2>List your Offerings</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="sellers-section clearfix">
+              <div class="col-lg-4">
+                <i class="icon-book"></i>
+              </div>
+              <div class="col-lg-8">
+                <h2>Accept Bookings</h2>
+                <p>Proin iaculis eleifend suscipit. Nullam blandit turpis ut tristique consectetur. Suspendisse et eros nec magna volutpat viverra. Sed tempor purus turpis, et consequat ligula tincidunt quis. Nulla nec magna eget ligula elementum sagittis a eu nunc. Morbi semper ornare magna sit amet feugiat. Morbi a lacus a magna commodo convallis ornare vitae nisl. Aenean vestibulum ante quis placerat rutrum. Phasellus blandit vitae nulla sed pharetra. Nam eleifend risus in dolor tincidunt mollis. Aliquam quis pulvinar augue.</p>
+              </div>
+            </div>
+            <div class="sellers-section clearfix">
+              <div class="col-lg-4">
+                <i class="icon-group"></i>
+              </div>
+              <div class="col-lg-8">
+                <h2>Host the Offerings</h2>
+                <p>Quisque congue augue vitae elementum auctor. Cras convallis erat non urna lobortis, eget semper est dictum. Praesent luctus lectus id felis venenatis, sed ultricies ipsum luctus. Etiam dapibus ut purus in euismod. Ut vehicula orci non orci mollis, a imperdiet neque vulputate. Aenean at pharetra augue, non malesuada metus. Morbi pretium ornare massa, et sagittis mi molestie ut.</p>
+              </div>
+            </div>   
+            <div class="sellers-section clearfix">
+              <div class="col-lg-4">
+                <i class="icon-money"></i>
+              </div>
+              <div class="col-lg-8">
+                <h2>Get Paid</h2>
+                <p>Curabitur id nisl vel velit eleifend venenatis ut sed augue. Donec libero orci, ornare non convallis eget, tincidunt feugiat arcu. Quisque vitae nibh in enim semper consectetur sed ac nibh. Ut rhoncus dapibus lorem, et egestas magna pharetra vitae. Quisque nec dui felis. Donec eu mi nulla. Vestibulum a convallis quam, ut pharetra tellus. In commodo justo nec metus euismod, molestie aliquet leo pulvinar. Pellentesque non lorem eu massa tempor varius vitae vel felis.</p>
+              </div>
+            </div>    
+            <div class="form-actions">
+              <a href="{{__url_list__('NewInspiration')}}"><button type="submit" class="btn btn-lg btn-primary">Become a Seller now</button></a>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div><!--end-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+    
+  </body>
+</html>

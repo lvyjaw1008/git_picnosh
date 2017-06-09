@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+{% set page_title = _("Administration") %}
+{% set page_class = "" %}
+{% set meta_data = {"description": "",
+                    "keywords": "",
+                    "creator": "Snozberry Media",
+                    }
+%}
+
+<html lang="{{lang}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    {% include "_parts/head.html" %}
+    <link href="/assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/admin.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    {% include "_parts/top-navigation.html" %}
+
+    <div class="dashboard-wrapper">
+      {% set admin_top_nav_elem = None %}
+      {% include "_parts/admin-top-nav.html %}
+
+      <div class="tab-content">
+
+        <div class="tab-pane" id="tab1">
+        </div>
+
+        <div class="tab-pane" id="tab2">
+        </div>
+      </div>
+
+      <form method="post" action="{{__url_list__('AdminUserSettings', client_url_id)}}">
+        <div class="container panel-container">
+          <p>Settings for:</p>
+          <div class="list-group list-group-style panel-wrapper">
+
+            <div class="row list-group-item">
+              <div class="list-group-adjust col-xs-6 col-sm-2 col-md-2">
+                {% if client_has_seller_page %}<a href="{{__url_list__('Seller', client_url_id)}}">{% end %}
+                  <img src="{{client_picture}}" class="img-responsive" height="75" width="75">
+                {% if client_has_seller_page %}</a>{% end %}
+              </div>
+              <div class="col-xs-12 col-sm-10 col-md-10">
+                <h4 class="list-group-item-heading"><i class="icon-{% if seller_type == 'Company' %}group{% else %}user{% end %}"></i> {{client_name}}</h4>
+                {% if address %}
+                <ul class="list-inline">
+                  <li><i class="icon-globe"></i>{{address}}</li>
+                </ul>
+                {% end %}
+                <p class="list-group-item-text">
+                  <ul class="list-inline">
+                    <li>{% if age or gender %}<i class="icon-{% if gender == 'female' %}female{% else %}male{% end %}"></i> {% end %}{% if age %}{{age}}{% if gender in ['female', 'male'] %}, {% end %}{% end %}{% if gender == 'female' %}Female{% elif gender == 'male' %}Male{% end %}</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+            {% if client_permissions.power %} <!-- if changing icons below, change them in top-navigation.html too -->
+            <span class="label label-info" style="background: #b3b3b3; color: #333;"><i class="icon-asterisk"></i> {{_("Owner")}}</span>
+            {% end %}
+            {% if client_permissions.admin %}
+            <span class="label label-info" style="background: #8ab2ee; color: #333;"><i class="icon-cogs"></i> {{_("Editor")}}</span>
+            {% end %}
+            {% if client_permissions.seller %}
+            <span class="label label-info" style="background: #DCE9BE; color: #333;"><i class="icon-plane"></i> {{_("Sellers")}}</span>
+            {% end %}
+            {% if client_permissions.seller_applicant %}
+            <span class="label label-info" style="background: #DCE9BE; color: #333;"><i class="icon-plane"></i> {{_("Seller Applicants")}}</span>
+            {% end %}
+
+            <br>
+            {% if client_permissions.seller_applicant %}
+            <br>
+            <div class="row">
+              <div class="col-lg-6">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit" name="action" value="seller_approve">Approve Seller Application</button>
+                </span>
+              </div>
+            </div>
+            {% end %}
+            <br>
+
+            <br>
+            {% if client_has_seller_page %}
+            <a href="{{__url_list__('Seller', client_url_id)}}"> Seller public page </a>
+            <br>
+            {% end %}
+            <a href="{{__url_list__('Client', client_url_id)}}"> Client hidden page </a>
+            <br><br>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <p>Change client's url ID:</p>
+                {% if 'change_url_id' in errs.keys() %}
+                  <div class="label-danger">
+                    <p>{{errs['change_url_id']}}</p>
+                  </div>
+                {% end %}
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="{{client_url_id}}" name="new_id">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" name="action" value="change_id">Change ID</button>
+                    <span><a href="#" data-placement="left" title=""></a></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+    </div><!--dashboard wrapper-->
+
+    {% include "_parts/footer-locale-settings.html" %}
+    {% include "_parts/footer.html" %}
+    {% include "_parts/post-js.html" %}
+
+  </body>
+</html>

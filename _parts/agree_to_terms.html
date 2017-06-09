@@ -1,0 +1,23 @@
+            <h1>Confirm Terms and Condition</h1>
+            <hr>
+            <ul>
+              <li>I agree to the <a href="#">Terms of Use</a>, <a href="#">Terms of Business</a> and the <a href="#">Cooperation Agreement</a>.</li>
+              <li>I may receive important notifications from Marketplace.</li>
+            </ul>
+            <div class="checkbox-wrapper">
+              <div class="checkbox">
+                {% if 'terms' in errs %}
+                <label>
+                  <input type="checkbox" value="agreed" name="agree_terms">
+                  <font color="#ee2222">
+                    <p>I have read the above terms and agree.</p>
+                  </font>
+                </label>
+                {% else %}
+                <label>
+                  <input type="checkbox" value="agreed" name="agree_terms">
+                    <p>I have read the above terms and agree.</p>
+                </label>
+                {% end %}
+              </div>
+            </div>
